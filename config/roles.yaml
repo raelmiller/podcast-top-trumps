@@ -1,0 +1,67 @@
+tiers:
+  - name: "RevOps"
+    priority: 1
+    include:
+      - "revenue operations"
+      - "rev ops"
+      - "revops"
+      - "revenue strategy & operations"
+      - "revenue strategy and operations"
+
+  - name: "Sales Ops"
+    priority: 2
+    include:
+      - "sales operations"
+      - "sales ops"
+      - "gtm operations"
+      - "go-to-market operations"
+      - "go to market operations"
+      - "commercial operations"
+
+  - name: "GTM Strategy"
+    priority: 3
+    include:
+      - "gtm strategy"
+      - "go-to-market strategy"
+      - "revenue strategy"
+      - "sales strategy"
+      - "commercial strategy"
+
+  - name: "BI / Analytics"
+    priority: 4
+    include:
+      - "business intelligence"
+      - "bi analyst"
+      - "bi developer"
+      - "bi manager"
+      - "analytics engineer"
+      - "tableau"
+
+exclude:
+  - "deal desk"
+  - "deals desk"
+  - "order management"
+  - "intern"
+  - "internship"
+  - "graduate"
+  - "apprentice"
+  - "working student"
+  - "sdr"
+  - "bdr"
+  - "account executive"
+
+drop_below: ""
+seniority:
+  director_plus: ["chief", " vp", "vice president", "head of", "director"]
+  manager: ["manager", " lead", "principal", "staff"]
+  ic: ["senior", "specialist", "analyst", "associate", "coordinator", "executive"]
+
+locations:
+  include:
+    - "london"
+    - "united kingdom"
+    - "uk"
+    - "england"
+    - "remote"
+    - "emea"
+    - "europe"
