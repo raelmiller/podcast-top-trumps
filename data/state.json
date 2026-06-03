@@ -1,37 +1,37 @@
 {
   "Pleo:ashby:2f0467a6-9f42-4107-afbd-5134ef413a21": {
     "first_seen": "2026-06-03T12:29:31.435570+00:00",
-    "last_seen": "2026-06-03T12:29:31.435570+00:00",
+    "last_seen": "2026-06-03T13:10:27.528713+00:00",
     "title": "GTM Operations Manager (Sales Ops)",
     "company": "Pleo"
   },
   "Mixpanel:greenhouse:7951498": {
     "first_seen": "2026-06-03T12:29:31.435570+00:00",
-    "last_seen": "2026-06-03T12:29:31.435570+00:00",
+    "last_seen": "2026-06-03T13:10:27.528713+00:00",
     "title": "EMEA Revenue Strategy & Operations Manager",
     "company": "Mixpanel"
   },
   "Mixpanel:greenhouse:7857806": {
     "first_seen": "2026-06-03T12:29:31.435570+00:00",
-    "last_seen": "2026-06-03T12:29:31.435570+00:00",
+    "last_seen": "2026-06-03T13:10:27.528713+00:00",
     "title": "Manager, Revenue Strategy & Operations",
     "company": "Mixpanel"
   },
   "Airwallex:ashby:4a4154c1-d00e-452e-9d65-5acb2f76c653": {
     "first_seen": "2026-06-03T12:29:31.435570+00:00",
-    "last_seen": "2026-06-03T12:29:31.435570+00:00",
+    "last_seen": "2026-06-03T13:10:27.528713+00:00",
     "title": "Senior Manager, Revenue Strategy & Operations",
     "company": "Airwallex"
   },
   "Pigment:lever:3c436918-9e0c-41d5-aa1a-fa6ca62cbfcd": {
     "first_seen": "2026-06-03T12:29:31.435570+00:00",
-    "last_seen": "2026-06-03T12:29:31.435570+00:00",
+    "last_seen": "2026-06-03T13:10:27.528713+00:00",
     "title": "EPM Presales Operations - Marketing",
     "company": "Pigment"
   },
   "Nebius:greenhouse:4813946101": {
     "first_seen": "2026-06-03T12:29:31.435570+00:00",
-    "last_seen": "2026-06-03T12:29:31.435570+00:00",
+    "last_seen": "2026-06-03T13:10:27.528713+00:00",
     "title": "Sales Operations Specialist",
     "company": "Nebius"
   },
@@ -55,13 +55,13 @@
   },
   "Xero:ashby:f81c7ab6-d0bc-4747-bfc2-3d3a05dee509": {
     "first_seen": "2026-06-03T12:29:31.435570+00:00",
-    "last_seen": "2026-06-03T12:29:31.435570+00:00",
+    "last_seen": "2026-06-03T13:10:27.528713+00:00",
     "title": "Head of Sales Operations - Americas",
     "company": "Xero"
   },
   "Marqeta:greenhouse:7915193": {
     "first_seen": "2026-06-03T12:29:31.435570+00:00",
-    "last_seen": "2026-06-03T12:29:31.435570+00:00",
+    "last_seen": "2026-06-03T13:10:27.528713+00:00",
     "title": "GTM Strategy & Operations Manager - EU / UK",
     "company": "Marqeta"
   },
@@ -76,5 +76,29 @@
     "last_seen": "2026-06-03T12:29:31.435570+00:00",
     "title": "Staff Analytics Engineer",
     "company": "Twilio"
+  },
+  "Vanta:ashby:cc1cbee0-06cf-4b63-b49c-945b1c12f657": {
+    "first_seen": "2026-06-03T13:10:27.528713+00:00",
+    "last_seen": "2026-06-03T13:10:27.528713+00:00",
+    "title": "Revenue Operations Analyst",
+    "company": "Vanta"
+  },
+  "Elliptic:ashby:26980983-5ee9-4c79-9e92-a61cf2308f6d": {
+    "first_seen": "2026-06-03T13:10:27.528713+00:00",
+    "last_seen": "2026-06-03T13:10:27.528713+00:00",
+    "title": "RevOps Manager",
+    "company": "Elliptic"
+  },
+  "Demandbase:ashby:6d75dd0d-7c6e-454c-9792-95c36442699b": {
+    "first_seen": "2026-06-03T13:10:27.528713+00:00",
+    "last_seen": "2026-06-03T13:10:27.528713+00:00",
+    "title": "Vice President, Revenue Operations",
+    "company": "Demandbase"
+  },
+  "Zscaler:greenhouse:5032957007": {
+    "first_seen": "2026-06-03T13:10:27.528713+00:00",
+    "last_seen": "2026-06-03T13:10:27.528713+00:00",
+    "title": "Sales Operations Manager",
+    "company": "Zscaler"
   }
 }

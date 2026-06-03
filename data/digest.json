@@ -1,8 +1,23 @@
 {
-  "generated": "2026-06-03T12:29:31.435570+00:00",
-  "total": 13,
-  "new": 13,
+  "generated": "2026-06-03T13:10:27.528713+00:00",
+  "total": 12,
+  "new": 4,
   "matches": [
+    {
+      "company": "Vanta",
+      "company_tier": "A",
+      "ats": "ashby",
+      "id": "Vanta:ashby:cc1cbee0-06cf-4b63-b49c-945b1c12f657",
+      "title": "Revenue Operations Analyst",
+      "location": "Remote U.S.",
+      "url": "https://jobs.ashbyhq.com/vanta/cc1cbee0-06cf-4b63-b49c-945b1c12f657",
+      "department": "Revenue",
+      "posted": "2026-05-22T20:13:31.112+00:00",
+      "role_tier": "RevOps",
+      "role_priority": 1,
+      "seniority": "senior/IC",
+      "loc_note": ""
+    },
     {
       "company": "Pleo",
       "company_tier": "A",
@@ -49,6 +64,21 @@
       "loc_note": ""
     },
     {
+      "company": "Elliptic",
+      "company_tier": "B",
+      "ats": "ashby",
+      "id": "Elliptic:ashby:26980983-5ee9-4c79-9e92-a61cf2308f6d",
+      "title": "RevOps Manager",
+      "location": "London, United Kingdom",
+      "url": "https://jobs.ashbyhq.com/elliptic/26980983-5ee9-4c79-9e92-a61cf2308f6d",
+      "department": "Sales",
+      "posted": "2026-04-09T12:20:30.836+00:00",
+      "role_tier": "RevOps",
+      "role_priority": 1,
+      "seniority": "manager",
+      "loc_note": ""
+    },
+    {
       "company": "Airwallex",
       "company_tier": "B",
       "ats": "ashby",
@@ -61,6 +91,21 @@
       "role_tier": "RevOps",
       "role_priority": 1,
       "seniority": "manager",
+      "loc_note": ""
+    },
+    {
+      "company": "Demandbase",
+      "company_tier": "B",
+      "ats": "ashby",
+      "id": "Demandbase:ashby:6d75dd0d-7c6e-454c-9792-95c36442699b",
+      "title": "Vice President, Revenue Operations",
+      "location": "US - Remote",
+      "url": "https://jobs.ashbyhq.com/demandbase/6d75dd0d-7c6e-454c-9792-95c36442699b",
+      "department": "Finance",
+      "posted": "2026-05-27T20:06:24.879+00:00",
+      "role_tier": "RevOps",
+      "role_priority": 1,
+      "seniority": "director+",
       "loc_note": ""
     },
     {
@@ -79,6 +124,21 @@
       "loc_note": ""
     },
     {
+      "company": "Zscaler",
+      "company_tier": "B",
+      "ats": "greenhouse",
+      "id": "Zscaler:greenhouse:5032957007",
+      "title": "Sales Operations Manager",
+      "location": "Remote - Ireland",
+      "url": "https://job-boards.greenhouse.io/zscaler/jobs/5032957007",
+      "department": "WW GTM Operations",
+      "posted": "2026-05-31T23:43:50-04:00",
+      "role_tier": "Sales Ops",
+      "role_priority": 2,
+      "seniority": "manager",
+      "loc_note": ""
+    },
+    {
       "company": "Nebius",
       "company_tier": "B",
       "ats": "greenhouse",
@@ -90,51 +150,6 @@
       "posted": "2026-05-29T11:57:21-04:00",
       "role_tier": "Sales Ops",
       "role_priority": 2,
-      "seniority": "senior/IC",
-      "loc_note": ""
-    },
-    {
-      "company": "Multiverse",
-      "company_tier": "B",
-      "ats": "ashby",
-      "id": "Multiverse:ashby:16c2d2f9-9837-4a33-8a27-6a700b463b89",
-      "title": "Analytics Engineer",
-      "location": "London",
-      "url": "https://jobs.ashbyhq.com/multiverse/16c2d2f9-9837-4a33-8a27-6a700b463b89",
-      "department": "Data and Insight",
-      "posted": "2026-05-12T09:26:08.044+00:00",
-      "role_tier": "BI / Analytics",
-      "role_priority": 4,
-      "seniority": "unspecified",
-      "loc_note": ""
-    },
-    {
-      "company": "Monzo",
-      "company_tier": "B",
-      "ats": "greenhouse",
-      "id": "Monzo:greenhouse:7873998",
-      "title": "Lead Analytics Engineer, Borrowing",
-      "location": "Cardiff, London or Remote (UK)",
-      "url": "https://job-boards.greenhouse.io/monzo/jobs/7873998",
-      "department": "Data",
-      "posted": "2026-05-28T13:06:01-04:00",
-      "role_tier": "BI / Analytics",
-      "role_priority": 4,
-      "seniority": "unspecified",
-      "loc_note": ""
-    },
-    {
-      "company": "Intercom",
-      "company_tier": "B",
-      "ats": "greenhouse",
-      "id": "Intercom:greenhouse:7808050",
-      "title": "Senior Analytics Engineer",
-      "location": "London, England",
-      "url": "https://job-boards.greenhouse.io/intercom/jobs/7808050",
-      "department": "AI Group",
-      "posted": "2026-06-01T11:02:47-04:00",
-      "role_tier": "BI / Analytics",
-      "role_priority": 4,
       "seniority": "senior/IC",
       "loc_note": ""
     },
@@ -165,36 +180,6 @@
       "posted": "2026-06-01T13:40:55-04:00",
       "role_tier": "GTM Strategy",
       "role_priority": 3,
-      "seniority": "manager",
-      "loc_note": ""
-    },
-    {
-      "company": "Wise",
-      "company_tier": "C",
-      "ats": "smartrecruiters",
-      "id": "Wise:smartrecruiters:744000129210959",
-      "title": "Lead Analytics Engineer",
-      "location": "London, gb",
-      "url": "https://jobs.smartrecruiters.com/wise/744000129210959",
-      "department": "",
-      "posted": "2026-05-29T15:36:44.546Z",
-      "role_tier": "BI / Analytics",
-      "role_priority": 4,
-      "seniority": "unspecified",
-      "loc_note": ""
-    },
-    {
-      "company": "Twilio",
-      "company_tier": "C",
-      "ats": "greenhouse",
-      "id": "Twilio:greenhouse:7551660",
-      "title": "Staff Analytics Engineer",
-      "location": "Remote - US",
-      "url": "https://job-boards.greenhouse.io/twilio/jobs/7551660",
-      "department": "Ops (Fraud, Compliance, Biz, Prod, Analyst)",
-      "posted": "2026-06-02T17:04:08-04:00",
-      "role_tier": "BI / Analytics",
-      "role_priority": 4,
       "seniority": "manager",
       "loc_note": ""
     }
