@@ -96,20 +96,6 @@ def write_digest(matches, new):
     md.append("## All current matches")
     md += [row_md(m) for m in matches]
     (DOCS / "digest.md").write_text("\n".join(md))
-
-    rows = "".join(
-        f"<tr><td>{m['company_tier']}</td><td>{m['company']}</td>"
-        f"<td><a href='{m['url']}'>{m['title']}</a></td><td>{m['role_tier']}</td>"
-        f"<td>{m['location'] or m.get('loc_note','')}</td><td>{m['seniority']}</td></tr>"
-        for m in matches)
-    (DOCS / "index.html").write_text(
-        "<!doctype html><meta charset=utf-8><title>Role monitor</title>"
-        "<style>body{font:14px system-ui;margin:2rem;max-width:1100px}"
-        "table{border-collapse:collapse;width:100%}td,th{border-bottom:1px solid #e2e8f0;padding:6px 10px;text-align:left}"
-        "th{background:#1e3a5f;color:#fff}</style>"
-        f"<h1>Role monitor</h1><p>{NOW:%Y-%m-%d %H:%M UTC} - {len(matches)} live matches, {len(new)} new.</p>"
-        "<table><tr><th>Tier</th><th>Company</th><th>Role</th><th>Type</th><th>Location</th><th>Seniority</th></tr>"
-        f"{rows}</table>")
     return new_ids
 
 

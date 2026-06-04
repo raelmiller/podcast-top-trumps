@@ -56,6 +56,15 @@ def classify(job, cfg):
     inc = loc_cfg.get("include", [])
     if loc and inc and not any(k in loc for k in inc):
         return False, {"reason": f"location out of scope ({job.get('location','')})"}
+    # When location is blank, also check the title for obvious non-UK geographic signals
+    if not loc and exc_loc:
+        title_geo_terms = [
+            "amer", "americas", " us ", "(us)", "- us", "u.s.", "apac", " sg",
+            ", sg", "anz", " au ", "australia", "singapore", "korea", "japan",
+            "china", " cn ", "latam", "east coast", "west coast",
+        ]
+        if any(t in title for t in title_geo_terms):
+            return False, {"reason": f"title geo-signal excluded ({job['title']})"}
     loc_note = "location unknown" if not loc else ""
 
     return True, {
