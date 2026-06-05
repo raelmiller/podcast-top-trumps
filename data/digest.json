@@ -1,6 +1,6 @@
 {
-  "generated": "2026-06-04T14:34:51.722082+00:00",
-  "total": 8,
+  "generated": "2026-06-05T11:02:21.716207+00:00",
+  "total": 7,
   "new": 0,
   "matches": [
     {
@@ -33,27 +33,6 @@
       "url": "https://job-boards.greenhouse.io/mixpanel/jobs/7951498",
       "department": "Revenue Operations",
       "posted": "2026-05-22T09:25:18-04:00",
-      "sector": "Product analytics",
-      "hq": "San Francisco / London",
-      "size": "400\u2013600",
-      "stage": "Late",
-      "co_notes": "Analytics-native",
-      "role_tier": "RevOps",
-      "role_priority": 1,
-      "seniority": "manager",
-      "loc_note": "",
-      "is_new": false
-    },
-    {
-      "company": "Mixpanel",
-      "company_tier": "B",
-      "ats": "greenhouse",
-      "id": "Mixpanel:greenhouse:7857806",
-      "title": "Manager, Revenue Strategy & Operations",
-      "location": "London",
-      "url": "https://job-boards.greenhouse.io/mixpanel/jobs/7857806",
-      "department": "Revenue Operations",
-      "posted": "2026-04-28T08:42:33-04:00",
       "sector": "Product analytics",
       "hq": "San Francisco / London",
       "size": "400\u2013600",
