@@ -1,7 +1,7 @@
 {
-  "generated": "2026-06-06T09:39:36.857546+00:00",
+  "generated": "2026-06-07T10:18:05.923189+00:00",
   "total": 8,
-  "new": 1,
+  "new": 0,
   "matches": [
     {
       "company": "Pleo",
@@ -63,7 +63,7 @@
       "role_priority": 1,
       "seniority": "unspecified",
       "loc_note": "location unknown",
-      "is_new": true
+      "is_new": false
     },
     {
       "company": "Showpad",
