@@ -1,7 +1,7 @@
 {
-  "generated": "2026-06-07T10:18:05.923189+00:00",
-  "total": 8,
-  "new": 0,
+  "generated": "2026-06-08T12:14:04.982975+00:00",
+  "total": 9,
+  "new": 1,
   "matches": [
     {
       "company": "Pleo",
@@ -124,6 +124,27 @@
       "seniority": "director+",
       "loc_note": "",
       "is_new": false
+    },
+    {
+      "company": "TrueLayer",
+      "company_tier": "B",
+      "ats": "greenhouse",
+      "id": "TrueLayer:greenhouse:4888733101",
+      "title": "Business Intelligence & Automation Lead",
+      "location": "United Kingdom",
+      "url": "https://job-boards.eu.greenhouse.io/truelayer/jobs/4888733101",
+      "department": "Finance",
+      "posted": "2026-06-08T07:48:45-04:00",
+      "sector": "Open banking",
+      "hq": "London (HQ)",
+      "size": "200\u2013400",
+      "stage": "Growth",
+      "co_notes": "London HQ",
+      "role_tier": "BI / Analytics",
+      "role_priority": 4,
+      "seniority": "manager",
+      "loc_note": "",
+      "is_new": true
     },
     {
       "company": "Marqeta",

@@ -2378,5 +2378,17 @@
     "hq": "Boston",
     "size": "300\u2013500",
     "stage": "Late"
+  },
+  "Codat": {
+    "ats": "ashby",
+    "token": "codat",
+    "jobs": 1,
+    "source": "probe",
+    "tier": "A",
+    "sector": "Financial data API",
+    "hq": "London (HQ)",
+    "size": "200\u2013350",
+    "stage": "Growth",
+    "co_notes": "London HQ; fintech data infra"
   }
 }
