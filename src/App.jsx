@@ -26,7 +26,7 @@ export default function App() {
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState('')
-  const [filters, setFilters] = useState({ tier: '', status: '', query: '', newOnly: false, hideArchived: true })
+  const [filters, setFilters] = useState({ tiers: [], statuses: [], query: '', newOnly: false, hideArchived: true })
 
   useEffect(() => {
     fetch(DIGEST_URL)
@@ -105,8 +105,8 @@ export default function App() {
   const filtered = digest.filter(job => {
     const appStatus = applications[job.id]?.status || 'Watching'
     if (filters.hideArchived && ARCHIVED.has(appStatus)) return false
-    if (filters.tier && job.role_tier !== filters.tier) return false
-    if (filters.status && appStatus !== filters.status) return false
+    if (filters.tiers.length && !filters.tiers.includes(job.role_tier)) return false
+    if (filters.statuses.length && !filters.statuses.includes(appStatus)) return false
     if (filters.newOnly && !job.is_new) return false
     if (filters.query) {
       const q = filters.query.toLowerCase()

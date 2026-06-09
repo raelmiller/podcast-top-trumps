@@ -11,12 +11,22 @@ export default function FilterBar({ tiers, statuses, filters, onChange, total, s
         value={filters.query}
         onChange={e => set('query', e.target.value)}
       />
-      <select value={filters.tier} onChange={e => set('tier', e.target.value)}>
-        <option value="">All tiers</option>
+      <select
+        multiple
+        value={filters.tiers}
+        onChange={e => set('tiers', [...e.target.selectedOptions].map(o => o.value))}
+        style={{ height: 'auto', minWidth: 120 }}
+        title="Ctrl/Cmd+click to select multiple"
+      >
         {tiers.map(t => <option key={t} value={t}>{t}</option>)}
       </select>
-      <select value={filters.status} onChange={e => set('status', e.target.value)}>
-        <option value="">All statuses</option>
+      <select
+        multiple
+        value={filters.statuses}
+        onChange={e => set('statuses', [...e.target.selectedOptions].map(o => o.value))}
+        style={{ height: 'auto', minWidth: 120 }}
+        title="Ctrl/Cmd+click to select multiple"
+      >
         {statuses.map(s => <option key={s} value={s}>{s}</option>)}
       </select>
       <label className="new-filter">
