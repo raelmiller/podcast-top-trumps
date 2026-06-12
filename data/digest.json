@@ -1,7 +1,7 @@
 {
-  "generated": "2026-06-11T11:35:41.222613+00:00",
-  "total": 8,
-  "new": 0,
+  "generated": "2026-06-12T11:15:24.554270+00:00",
+  "total": 9,
+  "new": 1,
   "matches": [
     {
       "company": "Pleo",
@@ -43,6 +43,26 @@
       "seniority": "manager",
       "loc_note": "",
       "is_new": false
+    },
+    {
+      "company": "ClickUp",
+      "company_tier": "B",
+      "ats": "ashby",
+      "id": "ClickUp:ashby:d0d40567-7559-4ecd-8229-ee62e6235832",
+      "title": "Revenue Operations Manager (Presales Solutions)",
+      "location": "",
+      "url": "https://jobs.ashbyhq.com/clickup/d0d40567-7559-4ecd-8229-ee62e6235832",
+      "department": "",
+      "posted": "",
+      "sector": "Productivity",
+      "hq": "San Diego",
+      "size": "1,000\u20131,500",
+      "stage": "Late",
+      "role_tier": "RevOps",
+      "role_priority": 1,
+      "seniority": "manager",
+      "loc_note": "location unknown",
+      "is_new": true
     },
     {
       "company": "Paddle",
