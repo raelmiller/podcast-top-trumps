@@ -1,7 +1,7 @@
 {
-  "generated": "2026-06-12T11:15:24.554270+00:00",
+  "generated": "2026-06-13T10:08:26.573275+00:00",
   "total": 9,
-  "new": 1,
+  "new": 0,
   "matches": [
     {
       "company": "Pleo",
@@ -62,7 +62,7 @@
       "role_priority": 1,
       "seniority": "manager",
       "loc_note": "location unknown",
-      "is_new": true
+      "is_new": false
     },
     {
       "company": "Paddle",
