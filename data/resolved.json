@@ -2390,5 +2390,16 @@
     "size": "200\u2013350",
     "stage": "Growth",
     "co_notes": "London HQ; fintech data infra"
+  },
+  "Crossbeam": {
+    "ats": "greenhouse",
+    "token": "crossbeam",
+    "jobs": 4,
+    "source": "probe",
+    "tier": "B",
+    "sector": "Partner ecosystem",
+    "hq": "Philadelphia",
+    "size": "200\u2013400",
+    "stage": "Late"
   }
 }
