@@ -1,6 +1,6 @@
 {
-  "generated": "2026-06-22T13:03:13.712785+00:00",
-  "total": 12,
+  "generated": "2026-06-23T10:49:39.839193+00:00",
+  "total": 11,
   "new": 0,
   "matches": [
     {
@@ -103,26 +103,6 @@
       "role_priority": 1,
       "seniority": "unspecified",
       "loc_note": "location unknown",
-      "is_new": false
-    },
-    {
-      "company": "Nebius",
-      "company_tier": "B",
-      "ats": "greenhouse",
-      "id": "Nebius:greenhouse:4813946101",
-      "title": "Sales Operations Specialist",
-      "location": "Amsterdam, Remote - Europe",
-      "url": "https://careers.nebius.com/?gh_jid=4813946101",
-      "department": "Operations",
-      "posted": "2026-06-16T11:08:36-04:00",
-      "sector": "AI cloud infrastructure",
-      "hq": "Amsterdam / London",
-      "size": "1,000\u20132,000",
-      "stage": "Growth (public)",
-      "role_tier": "Sales Ops",
-      "role_priority": 2,
-      "seniority": "senior/IC",
-      "loc_note": "",
       "is_new": false
     },
     {

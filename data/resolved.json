@@ -2401,5 +2401,16 @@
     "hq": "Philadelphia",
     "size": "200\u2013400",
     "stage": "Late"
+  },
+  "Toast": {
+    "ats": "greenhouse",
+    "token": "toast",
+    "jobs": 280,
+    "source": "probe",
+    "tier": "C",
+    "sector": "Restaurant tech",
+    "hq": "Boston",
+    "size": "5,000+",
+    "stage": "Public"
   }
 }
