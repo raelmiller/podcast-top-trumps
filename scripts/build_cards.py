@@ -139,6 +139,10 @@ def main():
             None
         )
 
+        if "WDWDY" in entry.get("title", ""):
+            print(f"Skipping ep {ep_num} — WDWDY episode")
+            continue
+
         if not audio_url:
             print(f"Skipping ep {ep_num} — no audio link found")
             continue
