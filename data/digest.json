@@ -1,6 +1,6 @@
 {
-  "generated": "2026-06-23T10:49:39.839193+00:00",
-  "total": 11,
+  "generated": "2026-06-24T10:36:34.827403+00:00",
+  "total": 10,
   "new": 0,
   "matches": [
     {
@@ -162,26 +162,6 @@
       "role_tier": "GTM Strategy",
       "role_priority": 3,
       "seniority": "director+",
-      "loc_note": "",
-      "is_new": false
-    },
-    {
-      "company": "Nebius",
-      "company_tier": "B",
-      "ats": "greenhouse",
-      "id": "Nebius:greenhouse:4880708101",
-      "title": "Manager, Sales Strategy & Operations \u2013 Specialist Overlay Teams",
-      "location": "United Kingdom",
-      "url": "https://careers.nebius.com/?gh_jid=4880708101",
-      "department": "Sales Ops",
-      "posted": "2026-06-16T11:08:36-04:00",
-      "sector": "AI cloud infrastructure",
-      "hq": "Amsterdam / London",
-      "size": "1,000\u20132,000",
-      "stage": "Growth (public)",
-      "role_tier": "GTM Strategy",
-      "role_priority": 3,
-      "seniority": "manager",
       "loc_note": "",
       "is_new": false
     },
