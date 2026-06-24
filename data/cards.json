@@ -3,7 +3,7 @@
     "id": 312,
     "episode": 312,
     "guest": "Tom Basden",
-    "photo": "https://everythingisshowbiz.com/i/og.png",
+    "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Tom_Basden_at_the_2025_Sundance_Film_Festival_1_%28cropped%29.jpg/500px-Tom_Basden_at_the_2025_Sundance_Film_Festival_1_%28cropped%29.jpg",
     "wakeTime": 7.25,
     "calories": 1850,
     "transportModes": 2,
@@ -14,9 +14,9 @@
     "id": 314,
     "episode": 314,
     "guest": "Sooz Kempner",
-    "photo": "https://everythingisshowbiz.com/i/og.png",
+    "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Kempner.png/500px-Kempner.png",
     "wakeTime": 6.25,
-    "calories": 1250,
+    "calories": 1450,
     "transportModes": 2,
     "bedTime": 25.5,
     "coffees": 2
@@ -25,12 +25,12 @@
     "id": 316,
     "episode": 316,
     "guest": "Tim Key",
-    "photo": "https://everythingisshowbiz.com/i/og.png",
-    "wakeTime": 4.583,
-    "calories": 1450,
+    "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/2025_01_25_Sundance_Film_Festival-41_Full_%28cropped%29.jpg/500px-2025_01_25_Sundance_Film_Festival-41_Full_%28cropped%29.jpg",
+    "wakeTime": 4.58,
+    "calories": 1850,
     "transportModes": 3,
-    "bedTime": 23.0,
-    "coffees": 2
+    "bedTime": 23.5,
+    "coffees": 3
   },
   {
     "id": 318,
@@ -38,8 +38,8 @@
     "guest": "Justin Moorhouse",
     "photo": "https://everythingisshowbiz.com/i/og.png",
     "wakeTime": 5.5,
-    "calories": 1250,
-    "transportModes": 4,
+    "calories": 1850,
+    "transportModes": 5,
     "bedTime": 24.5,
     "coffees": 2
   },
@@ -47,9 +47,9 @@
     "id": 320,
     "episode": 320,
     "guest": "Cariad Lloyd",
-    "photo": "https://everythingisshowbiz.com/i/og.png",
+    "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Cariad_Lloyd_at_the_2024_Edinburgh_International_Book_Festival_1.jpg/500px-Cariad_Lloyd_at_the_2024_Edinburgh_International_Book_Festival_1.jpg",
     "wakeTime": 5.0,
-    "calories": 2850,
+    "calories": 2100,
     "transportModes": 2,
     "bedTime": 24.5,
     "coffees": 1
@@ -58,33 +58,33 @@
     "id": 322,
     "episode": 322,
     "guest": "Gary Lineker",
-    "photo": "https://everythingisshowbiz.com/i/og.png",
+    "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Prime_Minister_Keir_Starmer_hosts_St_George%27s_Day_Reception_%2854470857860%29_%28cropped%29.jpg/500px-Prime_Minister_Keir_Starmer_hosts_St_George%27s_Day_Reception_%2854470857860%29_%28cropped%29.jpg",
     "wakeTime": 8.5,
     "calories": 1850,
     "transportModes": 5,
-    "bedTime": 23.75,
+    "bedTime": 24.5,
     "coffees": 1
   },
   {
     "id": 324,
     "episode": 324,
     "guest": "Matthew Crosby",
-    "photo": "https://everythingisshowbiz.com/i/og.png",
+    "photo": "https://upload.wikimedia.org/wikipedia/commons/9/99/Matthew_diner.jpg",
     "wakeTime": 6.05,
-    "calories": 1850,
+    "calories": 2100,
     "transportModes": 3,
-    "bedTime": 23.5,
-    "coffees": 2
+    "bedTime": 23,
+    "coffees": 1
   },
   {
     "id": 326,
     "episode": 326,
     "guest": "Adam Buxton",
-    "photo": "https://everythingisshowbiz.com/i/og.png",
+    "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/AdamBuxton_EIBF2025_i263_cropped.jpg/500px-AdamBuxton_EIBF2025_i263_cropped.jpg",
     "wakeTime": 7.5,
-    "calories": 1450,
+    "calories": 1250,
     "transportModes": 3,
-    "bedTime": 25.25,
+    "bedTime": 24.25,
     "coffees": 1
   },
   {
@@ -93,18 +93,18 @@
     "guest": "Esther Manito",
     "photo": "https://everythingisshowbiz.com/i/og.png",
     "wakeTime": 7.63,
-    "calories": 2850,
+    "calories": 2450,
     "transportModes": 3,
-    "bedTime": 23.5,
+    "bedTime": 23,
     "coffees": 2
   },
   {
     "id": 330,
     "episode": 330,
     "guest": "Pierre Novellie",
-    "photo": "https://everythingisshowbiz.com/i/og.png",
+    "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Pierrenovellie.jpg/500px-Pierrenovellie.jpg",
     "wakeTime": 8.5,
-    "calories": 1850,
+    "calories": 2100,
     "transportModes": 3,
     "bedTime": 22.5,
     "coffees": 2
@@ -126,7 +126,7 @@
     "guest": "Joel Dommett",
     "photo": "https://everythingisshowbiz.com/i/og.png",
     "wakeTime": 7.25,
-    "calories": 1650,
+    "calories": 1850,
     "transportModes": 2,
     "bedTime": 21,
     "coffees": 0
@@ -136,7 +136,7 @@
     "episode": 336,
     "guest": "Omid Djalili",
     "photo": "https://everythingisshowbiz.com/i/og.png",
-    "wakeTime": 6.0,
+    "wakeTime": 6,
     "calories": 1850,
     "transportModes": 1,
     "bedTime": 22.5,
@@ -160,7 +160,7 @@
     "photo": "https://everythingisshowbiz.com/i/og.png",
     "wakeTime": 5.167,
     "calories": 1850,
-    "transportModes": 4,
+    "transportModes": 3,
     "bedTime": 20.5,
     "coffees": 3
   },
@@ -171,8 +171,8 @@
     "photo": "https://everythingisshowbiz.com/i/og.png",
     "wakeTime": 6.5,
     "calories": 1850,
-    "transportModes": 2,
-    "bedTime": 24.25,
+    "transportModes": 3,
+    "bedTime": 24.5,
     "coffees": 1
   },
   {
@@ -181,7 +181,7 @@
     "guest": "Phil Wang",
     "photo": "https://everythingisshowbiz.com/i/og.png",
     "wakeTime": 9,
-    "calories": 2140,
+    "calories": 2180,
     "transportModes": 1,
     "bedTime": 25,
     "coffees": 3
@@ -191,19 +191,19 @@
     "episode": 346,
     "guest": "Tom Rosenthal",
     "photo": "https://everythingisshowbiz.com/i/og.png",
-    "wakeTime": 10.31666666666667,
+    "wakeTime": 10.317,
     "calories": 650,
     "transportModes": 2,
-    "bedTime": 25.63,
+    "bedTime": 23.63,
     "coffees": 1
   },
   {
     "id": 348,
     "episode": 348,
     "guest": "Joanne McNally",
-    "photo": "https://everythingisshowbiz.com/i/og.png",
+    "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Joanne_McNally_profile.jpg/500px-Joanne_McNally_profile.jpg",
     "wakeTime": 5.5,
-    "calories": 1850,
+    "calories": 1650,
     "transportModes": 3,
     "bedTime": 24.5,
     "coffees": 2
@@ -212,11 +212,11 @@
     "id": 350,
     "episode": 350,
     "guest": "Mark Watson",
-    "photo": "https://everythingisshowbiz.com/i/og.png",
+    "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/MarkWatson-byPhilipRomano.jpg/500px-MarkWatson-byPhilipRomano.jpg",
     "wakeTime": 7.0,
     "calories": 1850,
     "transportModes": 2,
-    "bedTime": 23.5,
+    "bedTime": 24.5,
     "coffees": 1
   },
   {
@@ -224,8 +224,8 @@
     "episode": 352,
     "guest": "James Buckley",
     "photo": "https://everythingisshowbiz.com/i/og.png",
-    "wakeTime": 4.83,
-    "calories": 2850,
+    "wakeTime": 4.92,
+    "calories": 2150,
     "transportModes": 2,
     "bedTime": 22.5,
     "coffees": 0
@@ -234,9 +234,9 @@
     "id": 354,
     "episode": 354,
     "guest": "Natalie Cassidy",
-    "photo": "https://everythingisshowbiz.com/i/og.png",
+    "photo": "https://upload.wikimedia.org/wikipedia/commons/a/af/Natalie_Cassidy_crop.jpg",
     "wakeTime": 6.33,
-    "calories": 1450,
+    "calories": 1150,
     "transportModes": 0,
     "bedTime": 24.5,
     "coffees": 2
@@ -245,9 +245,9 @@
     "id": 356,
     "episode": 356,
     "guest": "Rhys James",
-    "photo": "https://everythingisshowbiz.com/i/og.png",
+    "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Rhys_James_on_Spurred_On.jpg/500px-Rhys_James_on_Spurred_On.jpg",
     "wakeTime": 8.25,
-    "calories": 1450,
+    "calories": 1850,
     "transportModes": 1,
     "bedTime": 25.0,
     "coffees": 1
@@ -256,8 +256,8 @@
     "id": 358,
     "episode": 358,
     "guest": "Huge Davies",
-    "photo": "https://everythingisshowbiz.com/i/og.png",
-    "wakeTime": 7.0,
+    "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/HugeDavies-byPhilipRomano.jpg/500px-HugeDavies-byPhilipRomano.jpg",
+    "wakeTime": 7,
     "calories": 1850,
     "transportModes": 3,
     "bedTime": 25.5,
@@ -269,7 +269,7 @@
     "guest": "Chloe Petts",
     "photo": "https://everythingisshowbiz.com/i/og.png",
     "wakeTime": 8.383,
-    "calories": 1150,
+    "calories": 1350,
     "transportModes": 2,
     "bedTime": 23.5,
     "coffees": 1
@@ -278,22 +278,22 @@
     "id": 362,
     "episode": 362,
     "guest": "Dara \u00d3 Briain",
-    "photo": "https://everythingisshowbiz.com/i/og.png",
+    "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Dara_%C3%93_Briain_2011_BAFTAs.jpg/500px-Dara_%C3%93_Briain_2011_BAFTAs.jpg",
     "wakeTime": 6.18,
-    "calories": 1650,
+    "calories": 1850,
     "transportModes": 1,
-    "bedTime": 25.0,
+    "bedTime": 23.0,
     "coffees": 0
   },
   {
     "id": 364,
     "episode": 364,
     "guest": "Nish Kumar",
-    "photo": "https://everythingisshowbiz.com/i/og.png",
+    "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Nish_Kumar%2C_2019_Freedom_of_Expression_Awards_%2840575331383%29_%28cropped%29.jpg/500px-Nish_Kumar%2C_2019_Freedom_of_Expression_Awards_%2840575331383%29_%28cropped%29.jpg",
     "wakeTime": 6.5,
-    "calories": 2150,
-    "transportModes": 2,
-    "bedTime": 24.0,
+    "calories": 1850,
+    "transportModes": 3,
+    "bedTime": 24,
     "coffees": 1
   },
   {
@@ -302,10 +302,10 @@
     "guest": "Kerry Godliman",
     "photo": "https://everythingisshowbiz.com/i/og.png",
     "wakeTime": 7.5,
-    "calories": 1150,
+    "calories": 1250,
     "transportModes": 4,
     "bedTime": 26,
-    "coffees": 2
+    "coffees": 1
   },
   {
     "id": 366,
@@ -338,7 +338,7 @@
     "calories": 1850,
     "transportModes": 2,
     "bedTime": 24.25,
-    "coffees": 6
+    "coffees": 7
   },
   {
     "id": 369,
@@ -359,7 +359,7 @@
     "wakeTime": 9.25,
     "calories": 1850,
     "transportModes": 2,
-    "bedTime": 24.5,
+    "bedTime": 25.5,
     "coffees": 1
   },
   {
@@ -367,8 +367,8 @@
     "episode": 371,
     "guest": "Richard Osman",
     "photo": "https://everythingisshowbiz.com/i/og.png",
-    "wakeTime": 7.0,
-    "calories": 1850,
+    "wakeTime": 7,
+    "calories": 1650,
     "transportModes": 1,
     "bedTime": 22.5,
     "coffees": 2
@@ -377,7 +377,7 @@
     "id": 381,
     "episode": 381,
     "guest": "Lou Sanders",
-    "photo": "https://everythingisshowbiz.com/i/og.png",
+    "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Lou_Sanders_at_BAFTA_2026_02.jpg/500px-Lou_Sanders_at_BAFTA_2026_02.jpg",
     "wakeTime": 4.5,
     "calories": 1850,
     "transportModes": 1,
@@ -389,10 +389,10 @@
     "episode": 382,
     "guest": "Elis James",
     "photo": "https://everythingisshowbiz.com/i/og.png",
-    "wakeTime": 7.57,
-    "calories": 1850,
+    "wakeTime": 7.567,
+    "calories": 1050,
     "transportModes": 3,
-    "bedTime": 24.42,
+    "bedTime": 25.42,
     "coffees": 3
   },
   {
@@ -401,7 +401,7 @@
     "guest": "Jamali Maddix",
     "photo": "https://everythingisshowbiz.com/i/og.png",
     "wakeTime": 11,
-    "calories": 2850,
+    "calories": 2350,
     "transportModes": 1,
     "bedTime": 24.5,
     "coffees": 1
@@ -410,11 +410,11 @@
     "id": 411,
     "episode": 411,
     "guest": "James Acaster",
-    "photo": "https://everythingisshowbiz.com/i/og.png",
+    "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/James_Acaster_Union_Hall_09_%28cropped%29.jpg/500px-James_Acaster_Union_Hall_09_%28cropped%29.jpg",
     "wakeTime": 10.5,
-    "calories": 850,
+    "calories": 1250,
     "transportModes": 2,
-    "bedTime": 23,
+    "bedTime": 23.5,
     "coffees": 0
   },
   {
@@ -422,11 +422,11 @@
     "episode": 412,
     "guest": "Jen Brister",
     "photo": "https://everythingisshowbiz.com/i/og.png",
-    "wakeTime": 8,
-    "calories": 1150,
+    "wakeTime": 8.0,
+    "calories": 1850,
     "transportModes": 3,
-    "bedTime": 25.5,
-    "coffees": 1
+    "bedTime": 24.5,
+    "coffees": 2
   },
   {
     "id": 413,
@@ -436,16 +436,16 @@
     "wakeTime": 6.92,
     "calories": 1850,
     "transportModes": 3,
-    "bedTime": 24,
+    "bedTime": 24.0,
     "coffees": 0
   },
   {
     "id": 419,
     "episode": 419,
     "guest": "Rose Matafeo",
-    "photo": "https://everythingisshowbiz.com/i/og.png",
-    "wakeTime": 10.0,
-    "calories": 2150,
+    "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Rose_Matafeo_March_2025.jpg/500px-Rose_Matafeo_March_2025.jpg",
+    "wakeTime": 10,
+    "calories": 2850,
     "transportModes": 2,
     "bedTime": 23.5,
     "coffees": 2
@@ -454,7 +454,7 @@
     "id": 426,
     "episode": 426,
     "guest": "Ivo Graham",
-    "photo": "https://everythingisshowbiz.com/i/og.png",
+    "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Ivo_Graham_at_the_2025_Edinburgh_Festival_Fringe-5_%28cropped%29.jpg/500px-Ivo_Graham_at_the_2025_Edinburgh_Festival_Fringe-5_%28cropped%29.jpg",
     "wakeTime": 8.75,
     "calories": 1850,
     "transportModes": 2,
@@ -467,16 +467,16 @@
     "guest": "Suzi Ruffell",
     "photo": "https://everythingisshowbiz.com/i/og.png",
     "wakeTime": 6.5,
-    "calories": 1450,
-    "transportModes": 1,
-    "bedTime": 21.75,
+    "calories": 1650,
+    "transportModes": 2,
+    "bedTime": 21.5,
     "coffees": 3
   },
   {
     "id": 431,
     "episode": 431,
     "guest": "Josh Widdicombe",
-    "photo": "https://everythingisshowbiz.com/i/og.png",
+    "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Josh_Widdicombe_%2827394462077%29_%28cropped%29.jpg/500px-Josh_Widdicombe_%2827394462077%29_%28cropped%29.jpg",
     "wakeTime": 7.5,
     "calories": 2000,
     "transportModes": 2,
@@ -487,9 +487,9 @@
     "id": 434,
     "episode": 434,
     "guest": "Alex Horne",
-    "photo": "https://everythingisshowbiz.com/i/og.png",
+    "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/AlexHorne-byPhilipRomano_%28cropped%29.jpg/500px-AlexHorne-byPhilipRomano_%28cropped%29.jpg",
     "wakeTime": 6.92,
-    "calories": 1850,
+    "calories": 2150,
     "transportModes": 1,
     "bedTime": 23.5,
     "coffees": 2
@@ -500,7 +500,7 @@
     "guest": "Guy Montgomery",
     "photo": "https://everythingisshowbiz.com/i/og.png",
     "wakeTime": 6.5,
-    "calories": 850,
+    "calories": 1150,
     "transportModes": 3,
     "bedTime": 23.5,
     "coffees": 2
@@ -511,7 +511,7 @@
     "guest": "Charlie Baker",
     "photo": "https://everythingisshowbiz.com/i/og.png",
     "wakeTime": 6.1,
-    "calories": 1150,
+    "calories": 1250,
     "transportModes": 3,
     "bedTime": 24.5,
     "coffees": 4
@@ -522,7 +522,7 @@
     "guest": "Stevie Martin",
     "photo": "https://everythingisshowbiz.com/i/og.png",
     "wakeTime": 8.5,
-    "calories": 1850,
+    "calories": 2100,
     "transportModes": 1,
     "bedTime": 24.5,
     "coffees": 1
@@ -532,10 +532,10 @@
     "episode": 443,
     "guest": "Trevor Nelson",
     "photo": "https://everythingisshowbiz.com/i/og.png",
-    "wakeTime": 10.0,
-    "calories": 1050,
+    "wakeTime": 10,
+    "calories": 1350,
     "transportModes": 2,
-    "bedTime": 24.0,
+    "bedTime": 23.5,
     "coffees": 1
   },
   {
@@ -544,9 +544,9 @@
     "guest": "Emma Doran",
     "photo": "https://everythingisshowbiz.com/i/og.png",
     "wakeTime": 6.75,
-    "calories": 2150,
+    "calories": 1850,
     "transportModes": 3,
-    "bedTime": 24.5,
+    "bedTime": 23.5,
     "coffees": 0
   },
   {
@@ -576,32 +576,32 @@
     "episode": 451,
     "guest": "Dame Mary Beard",
     "photo": "https://everythingisshowbiz.com/i/og.png",
-    "wakeTime": 6.0,
-    "calories": 1050,
+    "wakeTime": 6,
+    "calories": 1150,
     "transportModes": 2,
-    "bedTime": 22.0,
+    "bedTime": 22,
     "coffees": 2
   },
   {
     "id": 453,
     "episode": 453,
     "guest": "Sara Pascoe",
-    "photo": "https://everythingisshowbiz.com/i/og.png",
-    "wakeTime": 5.967,
-    "calories": 1850,
+    "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Sara_Pascoe_at_the_2024_Edinburgh_International_Book_Festival_1.jpg/500px-Sara_Pascoe_at_the_2024_Edinburgh_International_Book_Festival_1.jpg",
+    "wakeTime": 5.97,
+    "calories": 1250,
     "transportModes": 1,
-    "bedTime": 21.333,
+    "bedTime": 21.33,
     "coffees": 4
   },
   {
     "id": 455,
     "episode": 455,
     "guest": "Alan Davies",
-    "photo": "https://everythingisshowbiz.com/i/og.png",
+    "photo": "https://upload.wikimedia.org/wikipedia/commons/6/6f/Alan_Davies_during_2014_FIFA_World_Cup_%28cropped%29.jpg",
     "wakeTime": 6.583,
-    "calories": 1050,
+    "calories": 1650,
     "transportModes": 2,
-    "bedTime": 24.0,
+    "bedTime": 23.0,
     "coffees": 1
   },
   {
@@ -610,7 +610,7 @@
     "guest": "Helen Bauer",
     "photo": "https://everythingisshowbiz.com/i/og.png",
     "wakeTime": 7.5,
-    "calories": 850,
+    "calories": 1250,
     "transportModes": 5,
     "bedTime": 23.5,
     "coffees": 3
@@ -630,9 +630,9 @@
     "id": 461,
     "episode": 461,
     "guest": "Chris McCausland",
-    "photo": "https://everythingisshowbiz.com/i/og.png",
-    "wakeTime": 8.416666667,
-    "calories": 1850,
+    "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Chris_McCausland_at_BAFTA_2026_%28cropped%29.jpg/500px-Chris_McCausland_at_BAFTA_2026_%28cropped%29.jpg",
+    "wakeTime": 8.417,
+    "calories": 1350,
     "transportModes": 3,
     "bedTime": 24.0,
     "coffees": 3
@@ -646,15 +646,15 @@
     "calories": 1850,
     "transportModes": 4,
     "bedTime": 24.5,
-    "coffees": 1
+    "coffees": 2
   },
   {
     "id": 465,
     "episode": 465,
     "guest": "Alison Spittle",
-    "photo": "https://everythingisshowbiz.com/i/og.png",
+    "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Alison_Spittle_at_the_2025_Edinburgh_Festival_Fringe-14_%28cropped%29.jpg/500px-Alison_Spittle_at_the_2025_Edinburgh_Festival_Fringe-14_%28cropped%29.jpg",
     "wakeTime": 7.3,
-    "calories": 2150,
+    "calories": 2850,
     "transportModes": 5,
     "bedTime": 22.5,
     "coffees": 1
@@ -663,9 +663,9 @@
     "id": 467,
     "episode": 467,
     "guest": "Ian Smith",
-    "photo": "https://everythingisshowbiz.com/i/og.png",
+    "photo": "https://upload.wikimedia.org/wikipedia/commons/6/6c/Ian_Smith_1975.jpg",
     "wakeTime": 7,
-    "calories": 1250,
+    "calories": 1850,
     "transportModes": 1,
     "bedTime": 23.75,
     "coffees": 1
@@ -689,7 +689,7 @@
     "wakeTime": 6.67,
     "calories": 1850,
     "transportModes": 2,
-    "bedTime": 23.5,
+    "bedTime": 23,
     "coffees": 1
   },
   {
@@ -709,9 +709,9 @@
     "guest": "Russell Howard",
     "photo": "https://everythingisshowbiz.com/i/og.png",
     "wakeTime": 7,
-    "calories": 2650,
+    "calories": 2150,
     "transportModes": 3,
-    "bedTime": 25.5,
+    "bedTime": 23,
     "coffees": 8
   },
   {
@@ -731,21 +731,21 @@
     "guest": "Kelly Cates",
     "photo": "https://everythingisshowbiz.com/i/og.png",
     "wakeTime": 9.5,
-    "calories": 1250,
+    "calories": 850,
     "transportModes": 2,
     "bedTime": 22,
-    "coffees": 3
+    "coffees": 2
   },
   {
     "id": 481,
     "episode": 481,
     "guest": "Hal Cruttenden",
-    "photo": "https://everythingisshowbiz.com/i/og.png",
+    "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Hal_Cruttenden_-_13591490.jpg/500px-Hal_Cruttenden_-_13591490.jpg",
     "wakeTime": 8.5,
-    "calories": 1850,
+    "calories": 1250,
     "transportModes": 2,
     "bedTime": 25.5,
-    "coffees": 5
+    "coffees": 4
   },
   {
     "id": 483,
@@ -753,8 +753,8 @@
     "guest": "Jessica Fostekew",
     "photo": "https://everythingisshowbiz.com/i/og.png",
     "wakeTime": 6.33,
-    "calories": 1650,
-    "transportModes": 4,
+    "calories": 1850,
+    "transportModes": 5,
     "bedTime": 23,
     "coffees": 2
   },
@@ -775,7 +775,7 @@
     "guest": "The Great Christmas Bunny Emergency  (Part 1 )",
     "photo": "https://everythingisshowbiz.com/i/og.png",
     "wakeTime": 7.5,
-    "calories": 250,
+    "calories": 150,
     "transportModes": 2,
     "bedTime": 23.0,
     "coffees": 0
@@ -806,9 +806,9 @@
     "id": 490,
     "episode": 490,
     "guest": "Bret McKenzie",
-    "photo": "https://everythingisshowbiz.com/i/og.png",
+    "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Bret_McKenzie_Muppets_Most_Wanted_Premiere_%28cropped%29.jpg/500px-Bret_McKenzie_Muppets_Most_Wanted_Premiere_%28cropped%29.jpg",
     "wakeTime": 6.75,
-    "calories": 1150,
+    "calories": 1450,
     "transportModes": 3,
     "bedTime": 23.0,
     "coffees": 2
@@ -817,11 +817,11 @@
     "id": 492,
     "episode": 492,
     "guest": "John Kearns",
-    "photo": "https://everythingisshowbiz.com/i/og.png",
-    "wakeTime": 3,
-    "calories": 1250,
+    "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/John_Kearns_at_the_2025_Edinburgh_Festival_Fringe-1_%28cropped%29.jpg/500px-John_Kearns_at_the_2025_Edinburgh_Festival_Fringe-1_%28cropped%29.jpg",
+    "wakeTime": 3.0,
+    "calories": 2150,
     "transportModes": 3,
-    "bedTime": 23,
+    "bedTime": 23.0,
     "coffees": 3
   },
   {
@@ -841,8 +841,8 @@
     "guest": "Vittorio Angelone",
     "photo": "https://everythingisshowbiz.com/i/og.png",
     "wakeTime": 8.583,
-    "calories": 1850,
-    "transportModes": 2,
+    "calories": 1200,
+    "transportModes": 1,
     "bedTime": 24.5,
     "coffees": 1
   },
@@ -851,8 +851,8 @@
     "episode": 498,
     "guest": "Richard Herring",
     "photo": "https://everythingisshowbiz.com/i/og.png",
-    "wakeTime": 6.717,
-    "calories": 1250,
+    "wakeTime": 6.716666667,
+    "calories": 1850,
     "transportModes": 2,
     "bedTime": 22.5,
     "coffees": 1
@@ -862,8 +862,8 @@
     "episode": 500,
     "guest": "Susie McCabe",
     "photo": "https://everythingisshowbiz.com/i/og.png",
-    "wakeTime": 9,
-    "calories": 1650,
+    "wakeTime": 9.0,
+    "calories": 1850,
     "transportModes": 1,
     "bedTime": 23.5,
     "coffees": 4
@@ -874,10 +874,10 @@
     "guest": "Michelle Wolf",
     "photo": "https://everythingisshowbiz.com/i/og.png",
     "wakeTime": 7.25,
-    "calories": 1850,
+    "calories": 1250,
     "transportModes": 0,
     "bedTime": 23.75,
-    "coffees": 3
+    "coffees": 1
   },
   {
     "id": 505,
@@ -897,9 +897,9 @@
     "photo": "https://everythingisshowbiz.com/i/og.png",
     "wakeTime": 9.5,
     "calories": 1850,
-    "transportModes": 4,
+    "transportModes": 3,
     "bedTime": 25.5,
-    "coffees": 3
+    "coffees": 2
   },
   {
     "id": 510,
@@ -907,7 +907,7 @@
     "guest": "Phil Ellis",
     "photo": "https://everythingisshowbiz.com/i/og.png",
     "wakeTime": 8.25,
-    "calories": 2150,
+    "calories": 1850,
     "transportModes": 5,
     "bedTime": 26,
     "coffees": 1
@@ -917,11 +917,11 @@
     "episode": 512,
     "guest": "Tom Cashman",
     "photo": "https://everythingisshowbiz.com/i/og.png",
-    "wakeTime": 11,
+    "wakeTime": 11.0,
     "calories": 1850,
     "transportModes": 2,
-    "bedTime": 24.5,
-    "coffees": 1
+    "bedTime": 25.0,
+    "coffees": 2
   },
   {
     "id": 514,
@@ -938,7 +938,7 @@
     "id": 516,
     "episode": 516,
     "guest": "Chris Addison",
-    "photo": "https://everythingisshowbiz.com/i/og.png",
+    "photo": "https://upload.wikimedia.org/wikipedia/commons/a/a0/Chris_Addison_cropped.jpg",
     "wakeTime": 4.63,
     "calories": 1850,
     "transportModes": 3,
@@ -949,21 +949,21 @@
     "id": 518,
     "episode": 518,
     "guest": "Mel Giedroyc",
-    "photo": "https://everythingisshowbiz.com/i/og.png",
+    "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Mel_Giedroyc_folk_awards_%28cropped%29.jpg/500px-Mel_Giedroyc_folk_awards_%28cropped%29.jpg",
     "wakeTime": 6.75,
     "calories": 850,
-    "transportModes": 2,
-    "bedTime": 22,
-    "coffees": 0
+    "transportModes": 3,
+    "bedTime": 21.75,
+    "coffees": 2
   },
   {
     "id": 520,
     "episode": 520,
     "guest": "Isy Suttie",
-    "photo": "https://everythingisshowbiz.com/i/og.png",
+    "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Isy_Suttie_%28439275877%29.jpg/500px-Isy_Suttie_%28439275877%29.jpg",
     "wakeTime": 7.5,
     "calories": 1850,
-    "transportModes": 2,
+    "transportModes": 3,
     "bedTime": 23.5,
     "coffees": 2
   },
@@ -971,21 +971,21 @@
     "id": 522,
     "episode": 522,
     "guest": "Lloyd Langford",
-    "photo": "https://everythingisshowbiz.com/i/og.png",
+    "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Lloyd_Langford_2.jpg/500px-Lloyd_Langford_2.jpg",
     "wakeTime": 7.33,
-    "calories": 2850,
+    "calories": 2100,
     "transportModes": 4,
     "bedTime": 25,
-    "coffees": 2
+    "coffees": 1
   },
   {
     "id": 524,
     "episode": 524,
     "guest": "Waleed Aly",
-    "photo": "https://everythingisshowbiz.com/i/og.png",
+    "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Waleed_Aly_headshot.jpg/500px-Waleed_Aly_headshot.jpg",
     "wakeTime": 6.1,
     "calories": 650,
-    "transportModes": 4,
+    "transportModes": 3,
     "bedTime": 22.5,
     "coffees": 2
   },
@@ -1008,8 +1008,8 @@
     "wakeTime": 8.25,
     "calories": 1850,
     "transportModes": 2,
-    "bedTime": 26.5,
-    "coffees": 3
+    "bedTime": 25.5,
+    "coffees": 4
   },
   {
     "id": 530,
@@ -1017,16 +1017,16 @@
     "guest": "Shane Daniel Byrne",
     "photo": "https://everythingisshowbiz.com/i/og.png",
     "wakeTime": 5.0,
-    "calories": 2180,
+    "calories": 2850,
     "transportModes": 3,
-    "bedTime": 23.5,
+    "bedTime": 24.0,
     "coffees": 1
   },
   {
     "id": 532,
     "episode": 532,
     "guest": "Ben Elton",
-    "photo": "https://everythingisshowbiz.com/i/og.png",
+    "photo": "https://upload.wikimedia.org/wikipedia/commons/c/ca/BenElton.jpg",
     "wakeTime": 6,
     "calories": 1850,
     "transportModes": 2,
@@ -1042,24 +1042,24 @@
     "calories": 1850,
     "transportModes": 2,
     "bedTime": 20.0,
-    "coffees": 2
+    "coffees": 3
   },
   {
     "id": 536,
     "episode": 536,
     "guest": "David Baddiel",
-    "photo": "https://everythingisshowbiz.com/i/og.png",
+    "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/David_Baddiel_at_the_2025_Edinburgh_International_Book_Festival-02_%28cropped%29.jpg/500px-David_Baddiel_at_the_2025_Edinburgh_International_Book_Festival-02_%28cropped%29.jpg",
     "wakeTime": 10,
     "calories": 1850,
     "transportModes": 2,
-    "bedTime": 24,
+    "bedTime": 24.3,
     "coffees": 0
   },
   {
     "id": 650,
     "episode": 650,
     "guest": "Kristen Schaal",
-    "photo": "https://everythingisshowbiz.com/i/og.png",
+    "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Kristen_Schaal_by_Gage_Skidmore_3.jpg/500px-Kristen_Schaal_by_Gage_Skidmore_3.jpg",
     "wakeTime": 6.5,
     "calories": 2100,
     "transportModes": 1,
