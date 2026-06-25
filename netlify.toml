@@ -1,0 +1,8 @@
+[build]
+  command = "npm run build"
+  publish = "docs"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Content-Security-Policy = "default-src 'self' 'unsafe-inline' 'unsafe-eval' data: https:;"

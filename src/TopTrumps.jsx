@@ -4,7 +4,7 @@ import './TopTrumps.css'
 
 const CATS = [
   { key: 'wakeTime',       label: 'Wake Time',       icon: '⏰', lowerWins: true,  fmt: formatTime },
-  { key: 'calories',       label: 'Calories',        icon: '🍽️', lowerWins: false, fmt: n => n.toLocaleString() + ' kcal' },
+  { key: 'exoticScore',    label: 'Exotic Food',     icon: '🍱', lowerWins: false, fmt: n => `${n}/100`, subKey: 'exoticFood' },
   { key: 'transportModes', label: 'Transport Modes', icon: '🚌', lowerWins: false, fmt: n => String(n) },
   { key: 'bedTime',        label: 'Bed Time',        icon: '🌙', lowerWins: false, fmt: formatTime },
   { key: 'coffees',        label: 'Coffees',         icon: '☕', lowerWins: false, fmt: n => String(n) },
@@ -15,15 +15,14 @@ function formatTime(h) {
   const hours = Math.floor(hh)
   const mins = Math.round((hh - hours) * 60)
   const ampm = hours < 12 ? 'am' : 'pm'
-  const display = hours === 0 ? 12 : hours > 12 ? hours - 12 : hours
-  return `${display}:${String(mins).padStart(2, '0')}${ampm}`
+  const display12 = hours === 0 ? 12 : hours > 12 ? hours - 12 : hours
+  return `${String(display12).padStart(2, '0')}:${String(mins).padStart(2, '0')}${ampm}`
 }
 
 function shuffle(arr) {
   const a = [...arr]
   for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]]
+    const j = Math.floor(Math.random() * (i + 1));[a[i], a[j]] = [a[j], a[i]]
   }
   return a
 }
@@ -165,6 +164,9 @@ function TrumpCard({ card, phase, activeCat, onPick, perspective, result }) {
                   <span className="tt-cat-label">
                     {c.label}
                     {c.lowerWins && <em> ↓</em>}
+                    {c.subKey && card[c.subKey] && (
+                      <small style={{display:'block', opacity: 0.75, fontStyle: 'italic'}}>{card[c.subKey]}</small>
+                    )}
                   </span>
                   <span className="tt-cat-val">{c.fmt(card[c.key])}</span>
                 </li>
