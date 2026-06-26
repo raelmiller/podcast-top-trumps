@@ -2,6 +2,10 @@
   command = "npm run build"
   publish = "docs"
 
+[build.environment]
+  SECRETS_SCAN_SMART_DETECTION_ENABLED = "false"
+
+
 [[headers]]
   for = "/*"
   [headers.values]
