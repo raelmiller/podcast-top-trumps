@@ -283,6 +283,18 @@ body {
 .tt-winner { font-size: clamp(1.25rem, 5vw, 2rem); font-weight: 700; }
 .tt-final  { font-size: clamp(2rem, 8vw, 3.5rem); font-weight: 900; color: #555; }
 
+/* Credits footer */
+.tt-credits {
+  width: 100%;
+  max-width: 700px;
+  text-align: center;
+  font-size: 0.65rem;
+  color: #444;
+  padding: 0.5rem 1rem 1rem;
+  line-height: 1.5;
+}
+.tt-credits a { color: #555; text-decoration: underline; }
+
 /* Mobile: stack cards vertically */
 @media (max-width: 480px) {
   .tt-arena {
