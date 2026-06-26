@@ -1,7 +1,23 @@
-import { useReducer, useRef, useState, useEffect } from 'react'
-import Peer from 'peerjs'
+import { useReducer, useRef, useState } from 'react'
+import { initializeApp } from 'firebase/app'
+import { getDatabase, ref, push, onChildAdded } from 'firebase/database'
 import cards from '../data/cards.json'
 import './TopTrumps.css'
+
+// ── Firebase config ───────────────────────────────────────────────────────────
+// Replace with your config from:
+// console.firebase.google.com → Project Settings → Your apps → SDK setup and configuration
+const firebaseConfig = {
+  apiKey:            "AIzaSyALomVZcPbp3hWHCVyGNb-LXo04QqcNx74",
+  authDomain:        "wdydy-abc65.firebaseapp.com",
+  databaseURL:       "https://wdydy-abc65-default-rtdb.firebaseio.com",
+  projectId:         "wdydy-abc65",
+  storageBucket:     "wdydy-abc65.firebasestorage.app",
+  messagingSenderId: "1098296030845",
+  appId:             "1:1098296030845:web:f12a4f3a51f18cff106314",
+}
+const db = getDatabase(initializeApp(firebaseConfig))
+// ─────────────────────────────────────────────────────────────────────────────
 
 const CATS = [
   { key: 'wakeTime',       label: 'Wake Time',       icon: '⏰', lowerWins: true,  fmt: formatTime },
@@ -72,12 +88,15 @@ function dealHands(deck) {
   }
 }
 
-// ── Game state reducer ────────────────────────────────────────────────────────
-// All game actions go through here — both local and received from peer.
-// Guards (phase checks) make every action idempotent so duplicate messages
-// from both players clicking Next simultaneously are safe.
+// ── Game reducer ──────────────────────────────────────────────────────────────
+// All actions have guards so receiving a duplicate (e.g. both players click
+// Next at the same moment) is a safe no-op.
 
-const BLANK = { p1Hand: null, p2Hand: null, pot: [], isP1Turn: true, round: 1, phase: 'pick', cat: null, result: null }
+const BLANK = {
+  p1Hand: null, p2Hand: null, pot: [],
+  isP1Turn: true, round: 1,
+  phase: 'pick', cat: null, result: null,
+}
 
 function gameReducer(state, action) {
   switch (action.type) {
@@ -110,7 +129,11 @@ function gameReducer(state, action) {
       }
       if (newP1.length === 0 || newP2.length === 0)
         return { ...state, p1Hand: newP1, p2Hand: newP2, phase: 'gameover' }
-      return { ...state, p1Hand: newP1, p2Hand: newP2, pot: newPot, isP1Turn: nextIsP1Turn, round: state.round + 1, phase: 'pick', cat: null, result: null }
+      return {
+        ...state, p1Hand: newP1, p2Hand: newP2, pot: newPot,
+        isP1Turn: nextIsP1Turn, round: state.round + 1,
+        phase: 'pick', cat: null, result: null,
+      }
     }
     case 'RESET': return BLANK
     default: return state
@@ -122,57 +145,44 @@ function gameReducer(state, action) {
 export default function TopTrumps() {
   const urlParams = getUrlParams()
 
-  const [screen, setScreen] = useState(urlParams.code ? 'joining' : 'setup')
-  const [mode, setMode] = useState(null)       // 'solo' | 'multi'
-  const [playerNum, setPlayerNum] = useState(null)  // 1 or 2
+  const [screen, setScreen]     = useState(urlParams.code ? 'joining' : 'setup')
+  const [mode, setMode]         = useState(null)   // 'solo' | 'multi'
+  const [playerNum, setPlayerNum] = useState(null) // 1 or 2
   const [gameCode, setGameCode] = useState(urlParams.code || '')
   const [shareUrl, setShareUrl] = useState('')
-  const [peerStatus, setPeerStatus] = useState('idle') // 'idle'|'waiting'|'connecting'|'connected'|'disconnected'|'error'
 
   const [gs, dispatch] = useReducer(gameReducer, BLANK)
-  const peerRef = useRef(null)
-  const connRef = useRef(null)
 
-  useEffect(() => () => peerRef.current?.destroy(), [])
+  // Firebase listener unsubscribe handle
+  const unsubRef = useRef(null)
+  // Firebase ref for the current game's moves
+  const movesRef = useRef(null)
 
-  // ── PeerJS helpers ──────────────────────────────────────────────────────────
+  // ── Firebase helpers ────────────────────────────────────────────────────────
 
-  function onData(data) {
-    if (data.type === 'pick') dispatch({ type: 'PICK', catKey: data.catKey })
-    if (data.type === 'next') dispatch({ type: 'NEXT' })
-  }
-
-  function wireConn(connection) {
-    connRef.current = connection
-    connection.on('data', onData)
-    connection.on('close', () => setPeerStatus('disconnected'))
-    connection.on('error', () => setPeerStatus('disconnected'))
-  }
-
-  function send(msg) { connRef.current?.send(msg) }
-
-  function openPeerAsHost(code) {
-    const p = new Peer('wdydy-' + code)
-    peerRef.current = p
-    p.on('connection', conn => {
-      wireConn(conn)
-      conn.on('open', () => { setPeerStatus('connected'); setMode('multi'); setScreen('game') })
+  function startListening(code) {
+    const r = ref(db, `games/${code}/moves`)
+    movesRef.current = r
+    // onChildAdded replays all existing children first, then streams new ones.
+    // This means a player who joins late (or refreshes) auto-catches up.
+    unsubRef.current = onChildAdded(r, snap => {
+      const { t, k } = snap.val()
+      if (t === 'pick') dispatch({ type: 'PICK', catKey: k })
+      if (t === 'next') dispatch({ type: 'NEXT' })
     })
-    p.on('error', () => setPeerStatus('error'))
   }
 
-  function openPeerAsJoiner(code) {
-    const p = new Peer()
-    peerRef.current = p
-    p.on('open', () => {
-      const conn = p.connect('wdydy-' + code)
-      wireConn(conn)
-      conn.on('open', () => { setPeerStatus('connected'); setMode('multi'); setScreen('game') })
-    })
-    p.on('error', () => setPeerStatus('error'))
+  function stopListening() {
+    unsubRef.current?.()
+    unsubRef.current = null
+    movesRef.current = null
   }
 
-  // ── Game flow ───────────────────────────────────────────────────────────────
+  function send(msg) {
+    if (movesRef.current) push(movesRef.current, msg)
+  }
+
+  // ── Game actions ────────────────────────────────────────────────────────────
 
   function startSolo() {
     dispatch({ type: 'INIT', deck: shuffle(cards) })
@@ -184,37 +194,39 @@ export default function TopTrumps() {
     dispatch({ type: 'INIT', deck: seededShuffle(cards, codeToSeed(code)) })
     setGameCode(code); setPlayerNum(1)
     setShareUrl(makeShareUrl(code))
-    setPeerStatus('waiting')
-    openPeerAsHost(code)
+    startListening(code)
     setScreen('host-waiting')
+  }
+
+  function startFromHost() {
+    setMode('multi'); setScreen('game')
   }
 
   function joinFromUrl() {
     const code = urlParams.code.trim().toUpperCase()
     dispatch({ type: 'INIT', deck: seededShuffle(cards, codeToSeed(code)) })
     setGameCode(code); setPlayerNum(2)
-    setPeerStatus('connecting')
-    openPeerAsJoiner(code)
-    // screen transitions to 'game' when conn opens
+    startListening(code)
+    setMode('multi'); setScreen('game')
   }
 
   function pick(c) {
     if (gs.phase !== 'pick' || !isMyTurn) return
     dispatch({ type: 'PICK', catKey: c.key })
-    send({ type: 'pick', catKey: c.key })
+    send({ t: 'pick', k: c.key })
   }
 
   function next() {
     if (gs.phase !== 'reveal') return
     dispatch({ type: 'NEXT' })
-    send({ type: 'next' })
+    send({ t: 'next' })
   }
 
   function reset() {
-    peerRef.current?.destroy(); peerRef.current = null; connRef.current = null
+    stopListening()
     dispatch({ type: 'RESET' })
-    setPeerStatus('idle'); setMode(null); setPlayerNum(null)
-    setGameCode(''); setShareUrl(''); setScreen('setup')
+    setMode(null); setPlayerNum(null); setGameCode(''); setShareUrl('')
+    setScreen('setup')
     const url = new URL(window.location.href); url.search = ''
     window.history.replaceState({}, '', url)
   }
@@ -252,49 +264,33 @@ export default function TopTrumps() {
   if (screen === 'host-waiting') {
     return (
       <div className="tt-over">
-        <h1 style={{ fontSize: 'clamp(1.5rem,6vw,2.5rem)' }}>
-          {peerStatus === 'error' ? 'Connection failed' : 'Waiting for friend…'}
-        </h1>
-        {peerStatus === 'error'
-          ? <p style={{ color: '#f88', fontSize: '0.9rem' }}>Could not create game. Try again.</p>
-          : <p style={{ color: '#888', fontSize: '0.85rem' }}>Share this link — game starts when they join</p>
-        }
-        {peerStatus !== 'error' && <>
-          <div className="tt-code-box">
-            <span className="tt-code-label">Game code</span>
-            <span className="tt-code-text">{gameCode}</span>
-          </div>
-          <div style={{ width: '100%', maxWidth: '420px' }}>
-            <input className="tt-code-input" readOnly value={shareUrl} onFocus={e => e.target.select()} />
-            <button className="tt-btn" style={{ marginTop: '0.5rem', width: '100%' }}
-              onClick={() => navigator.clipboard?.writeText(shareUrl)}>
-              Copy Link
-            </button>
-          </div>
-          <p style={{ color: '#555', fontSize: '0.78rem' }}>
-            {peerStatus === 'waiting' ? '⏳ Waiting for friend to open the link…' : '✅ Friend connected!'}
-          </p>
-        </>}
+        <h1 style={{ fontSize: 'clamp(1.5rem,6vw,2.5rem)' }}>Share this link</h1>
+        <p style={{ color: '#888', fontSize: '0.85rem' }}>Send it to your friend, then press Start when you're both ready</p>
+        <div className="tt-code-box">
+          <span className="tt-code-label">Game code</span>
+          <span className="tt-code-text">{gameCode}</span>
+        </div>
+        <div style={{ width: '100%', maxWidth: '420px' }}>
+          <input className="tt-code-input" readOnly value={shareUrl} onFocus={e => e.target.select()} />
+          <button className="tt-btn" style={{ marginTop: '0.5rem', width: '100%' }}
+            onClick={() => navigator.clipboard?.writeText(shareUrl)}>
+            Copy Link
+          </button>
+        </div>
+        <button className="tt-btn" onClick={startFromHost}>Start Game →</button>
         <button onClick={reset} style={{ background: 'none', border: 'none', color: '#555', cursor: 'pointer', fontSize: '0.8rem' }}>← Back</button>
       </div>
     )
   }
 
   if (screen === 'joining') {
-    const busy = peerStatus === 'connecting'
     return (
       <div className="tt-over">
-        <h1 style={{ fontSize: 'clamp(1.5rem,6vw,2.5rem)' }}>
-          {peerStatus === 'error' ? 'Could not connect' : busy ? 'Connecting…' : 'Join Game'}
-        </h1>
-        {peerStatus === 'error'
-          ? <p style={{ color: '#f88', fontSize: '0.9rem' }}>Check the link is correct and the host is waiting.</p>
-          : <p style={{ color: '#888', fontSize: '0.85rem' }}>Code: <strong style={{ color: '#ffd700' }}>{urlParams.code}</strong></p>
-        }
-        {!busy && peerStatus !== 'error' && (
-          <button className="tt-btn" onClick={joinFromUrl}>Join →</button>
-        )}
-        {busy && <p style={{ color: '#555', fontSize: '0.85rem' }}>⏳ Connecting to host…</p>}
+        <h1 style={{ fontSize: 'clamp(1.5rem,6vw,2.5rem)' }}>Join Game</h1>
+        <p style={{ color: '#888', fontSize: '0.85rem' }}>
+          Code: <strong style={{ color: '#ffd700' }}>{urlParams.code}</strong>
+        </p>
+        <button className="tt-btn" onClick={joinFromUrl}>Join →</button>
         <button onClick={() => { window.history.replaceState({}, '', window.location.pathname); setScreen('setup') }}
           style={{ background: 'none', border: 'none', color: '#555', cursor: 'pointer', fontSize: '0.8rem' }}>
           ← Back to menu
@@ -321,7 +317,6 @@ export default function TopTrumps() {
   // ── Main game ───────────────────────────────────────────────────────────────
 
   const potNote = gs.pot.length > 0 ? ` · ${gs.pot.length} in pot` : ''
-  const disconnected = mode === 'multi' && peerStatus === 'disconnected'
 
   return (
     <div className="tt-root">
@@ -334,11 +329,7 @@ export default function TopTrumps() {
         </div>
       </header>
 
-      {disconnected && (
-        <div className="tt-banner tt-banner-lose">⚠️ Friend disconnected</div>
-      )}
-
-      {gs.phase === 'reveal' && !disconnected && (
+      {gs.phase === 'reveal' && (
         <div className={`tt-banner tt-banner-${resultForMe}`}>
           {resultForMe === 'win'
             ? `🏆 You win${gs.pot.length > 0 ? ` +${gs.pot.length} from pot` : ''}!`
@@ -363,7 +354,7 @@ export default function TopTrumps() {
       </div>
 
       <div className="tt-footer">
-        {gs.phase === 'pick' && !disconnected && (
+        {gs.phase === 'pick' && (
           <p className="tt-hint">
             {mode === 'multi'
               ? isMyTurn ? 'Your pick' : 'Waiting for friend to pick…'
@@ -391,7 +382,6 @@ function Credits() {
 function TrumpCard({ card, alwaysVisible, phase, activeCat, onPick, isMe, result, canPick }) {
   const revealed = alwaysVisible || phase === 'reveal'
   if (!card) return null
-
   return (
     <div className={`tt-card ${!revealed ? 'tt-card-hidden' : ''}`}>
       {!revealed ? (
@@ -412,8 +402,7 @@ function TrumpCard({ card, alwaysVisible, phase, activeCat, onPick, isMe, result
               const win  = isActive && (isMe ? result === 'win'  : result === 'lose')
               const lose = isActive && (isMe ? result === 'lose' : result === 'win')
               return (
-                <li
-                  key={c.key}
+                <li key={c.key}
                   className={['tt-stat', canPick ? 'tt-stat-pick' : '', isActive ? 'tt-stat-active' : '', win ? 'tt-stat-win' : '', lose ? 'tt-stat-lose' : ''].filter(Boolean).join(' ')}
                   onClick={() => canPick && onPick(c)}
                 >
