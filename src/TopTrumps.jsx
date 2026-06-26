@@ -50,74 +50,82 @@ function makeCode() {
   return n.toString(36).toUpperCase().padStart(6, '0')
 }
 
-function codeToSeed(code) {
-  return parseInt(code, 36)
-}
+function codeToSeed(code) { return parseInt(code, 36) }
 
 function getUrlParams() {
   const p = new URLSearchParams(window.location.search)
-  return { code: p.get('g'), player: p.get('p') }
+  return { code: p.get('g') }
 }
 
-function makeShareUrl(code, playerNum) {
+function makeShareUrl(code) {
   const url = new URL(window.location.href)
   url.search = ''
   url.searchParams.set('g', code)
-  url.searchParams.set('p', playerNum)
+  url.searchParams.set('p', '2')
   return url.toString()
+}
+
+function dealHands(shuffledDeck) {
+  return {
+    p1: shuffledDeck.filter((_, i) => i % 2 === 0),
+    p2: shuffledDeck.filter((_, i) => i % 2 === 1),
+  }
 }
 
 export default function TopTrumps() {
   const urlParams = getUrlParams()
 
   const [screen, setScreen] = useState(urlParams.code ? 'joining' : 'setup')
-  const [mode, setMode] = useState(null)      // 'solo' | 'multi'
+  const [mode, setMode] = useState(null)       // 'solo' | 'multi'
   const [playerNum, setPlayerNum] = useState(null)  // 1 or 2 (multi only)
   const [gameCode, setGameCode] = useState(urlParams.code || '')
   const [shareUrl, setShareUrl] = useState('')
-  const [deck, setDeck] = useState(null)
-  const [round, setRound] = useState(0)
-  const [phase, setPhase] = useState('pick')
+
+  // Per-game state
+  const [p1Hand, setP1Hand] = useState(null)   // Player 1's cards (top = [0])
+  const [p2Hand, setP2Hand] = useState(null)   // Player 2 / CPU's cards
+  const [pot, setPot] = useState([])            // Unclaimed cards from draws
+  const [isP1Turn, setIsP1Turn] = useState(true) // true = P1 picks this round
+  const [round, setRound] = useState(1)
+  const [phase, setPhase] = useState('pick')   // 'pick' | 'reveal' | 'gameover'
   const [cat, setCat] = useState(null)
-  // result is always P1-perspective: 'win' = deck[r*2] beat deck[r*2+1]
+  // result is always from P1's perspective: 'win' means p1Hand[0] beat p2Hand[0]
   const [result, setResult] = useState(null)
-  // score.p = P1 round wins, score.c = P2 round wins
-  const [score, setScore] = useState({ p: 0, c: 0 })
+
+  // ── Game init helpers ─────────────────────────────────────────────────────
+
+  function initGame(shuffledDeck) {
+    const { p1, p2 } = dealHands(shuffledDeck)
+    setP1Hand(p1); setP2Hand(p2); setPot([])
+    setIsP1Turn(true); setRound(1)
+    setPhase('pick'); setCat(null); setResult(null)
+  }
 
   function startSolo() {
-    setMode('solo')
-    setDeck(shuffle(cards))
-    setScreen('game')
+    initGame(shuffle(cards))
+    setMode('solo'); setPlayerNum(null); setScreen('game')
   }
 
   function hostMulti() {
     const code = makeCode()
-    const seed = codeToSeed(code)
-    setGameCode(code)
-    setPlayerNum(1)
-    setDeck(seededShuffle(cards, seed))
-    setShareUrl(makeShareUrl(code, 2))
+    initGame(seededShuffle(cards, codeToSeed(code)))
+    setGameCode(code); setPlayerNum(1)
+    setShareUrl(makeShareUrl(code))
     setScreen('host-waiting')
   }
 
-  function startFromHost() {
-    setMode('multi')
-    setScreen('game')
-  }
+  function startFromHost() { setMode('multi'); setScreen('game') }
 
   function joinFromUrl() {
     const code = urlParams.code.trim().toUpperCase()
-    setGameCode(code)
-    setPlayerNum(2)
-    setDeck(seededShuffle(cards, codeToSeed(code)))
-    setMode('multi')
-    setScreen('game')
+    initGame(seededShuffle(cards, codeToSeed(code)))
+    setGameCode(code); setPlayerNum(2); setMode('multi'); setScreen('game')
   }
 
   function reset() {
-    setDeck(shuffle(cards))
-    setRound(0); setPhase('pick'); setCat(null); setResult(null)
-    setScore({ p: 0, c: 0 })
+    setP1Hand(null); setP2Hand(null); setPot([])
+    setIsP1Turn(true); setRound(1)
+    setPhase('pick'); setCat(null); setResult(null)
     setScreen('setup'); setMode(null); setPlayerNum(null)
     setGameCode(''); setShareUrl('')
     const url = new URL(window.location.href)
@@ -125,48 +133,71 @@ export default function TopTrumps() {
     window.history.replaceState({}, '', url)
   }
 
-  const totalRounds = deck ? Math.floor(deck.length / 2) : 0
-  // Canonical P1 card and P2 card from the deck
-  const p1Card = deck ? deck[round * 2] : null
-  const p2Card = deck ? deck[round * 2 + 1] : null
+  // ── Derived values ────────────────────────────────────────────────────────
 
   const isP2 = mode === 'multi' && playerNum === 2
+  const p1Card = p1Hand?.[0]
+  const p2Card = p2Hand?.[0]
   // Each player sees their own card on the left, opponent's on the right
   const myCard  = isP2 ? p2Card : p1Card
   const oppCard = isP2 ? p1Card : p2Card
-
-  // Score from my perspective
-  const myScore  = isP2 ? score.c : score.p
-  const oppScore = isP2 ? score.p : score.c
-
-  // Whose turn to announce the pick (alternates in multi; always "mine" in solo)
-  const isMyTurn = mode !== 'multi' || (playerNum === 1 ? round % 2 === 0 : round % 2 === 1)
-
-  // Result from MY perspective
+  const myCards  = isP2 ? p2Hand?.length ?? 0 : p1Hand?.length ?? 0
+  const oppCards = isP2 ? p1Hand?.length ?? 0 : p2Hand?.length ?? 0
+  // Whose turn to announce the pick
+  const isMyTurn = mode !== 'multi' || (isP2 ? !isP1Turn : isP1Turn)
+  // Result from my perspective (flip for P2 since result is P1-perspective)
   const resultForMe = !result ? null : result === 'draw' ? 'draw'
     : isP2 ? (result === 'win' ? 'lose' : 'win') : result
-
   const oppLabel = mode === 'multi' ? 'Friend' : 'CPU'
+
+  // ── Game actions ──────────────────────────────────────────────────────────
 
   function pick(c) {
     if (phase !== 'pick') return
-    // Always compare p1Card vs p2Card; result 'win' means p1Card won
     const pv = p1Card[c.key]
     const cv = p2Card[c.key]
     const r = pv === cv ? 'draw' : (c.lowerWins ? pv < cv : pv > cv) ? 'win' : 'lose'
-    setCat(c)
-    setResult(r)
-    setPhase('reveal')
-    setScore(s => ({ p: s.p + (r === 'win' ? 1 : 0), c: s.c + (r === 'lose' ? 1 : 0) }))
+    setCat(c); setResult(r); setPhase('reveal')
   }
 
   function next() {
-    const nr = round + 1
-    if (nr >= totalRounds) { setPhase('gameover'); return }
-    setRound(nr); setPhase('pick'); setCat(null); setResult(null)
+    const top1 = p1Hand[0]
+    const top2 = p2Hand[0]
+    let newP1, newP2, newPot, nextIsP1Turn
+
+    if (result === 'win') {
+      // P1 wins: takes both cards + pot to bottom of their deck
+      newP1 = [...p1Hand.slice(1), ...pot, top1, top2]
+      newP2 = p2Hand.slice(1)
+      newPot = []
+      nextIsP1Turn = true
+    } else if (result === 'lose') {
+      // P2 wins: takes both cards + pot to bottom of their deck
+      newP1 = p1Hand.slice(1)
+      newP2 = [...p2Hand.slice(1), ...pot, top2, top1]
+      newPot = []
+      nextIsP1Turn = false
+    } else {
+      // Draw: both top cards go to pot, same player picks again
+      newP1 = p1Hand.slice(1)
+      newP2 = p2Hand.slice(1)
+      newPot = [...pot, top1, top2]
+      nextIsP1Turn = isP1Turn
+    }
+
+    setP1Hand(newP1); setP2Hand(newP2); setPot(newPot)
+
+    if (newP1.length === 0 || newP2.length === 0) {
+      setPhase('gameover')
+      return
+    }
+
+    setIsP1Turn(nextIsP1Turn)
+    setRound(r => r + 1)
+    setPhase('pick'); setCat(null); setResult(null)
   }
 
-  // ── Setup ─────────────────────────────────────────────────────────────────
+  // ── Screens ───────────────────────────────────────────────────────────────
 
   if (screen === 'setup') {
     return (
@@ -179,14 +210,10 @@ export default function TopTrumps() {
             Play with a Friend
           </button>
         </div>
-        <footer className="tt-credits">
-          <p>Based on the <a href="https://everythingisshowbiz.com" target="_blank" rel="noreferrer">What Did You Do Yesterday?</a> podcast. All rights reserved by the podcast creators. Data sourced from <a href="https://everythingisshowbiz.com" target="_blank" rel="noreferrer">everythingisshowbiz.com</a>. This is an unofficial fan project.</p>
-        </footer>
+        <Credits />
       </div>
     )
   }
-
-  // ── Host waiting ──────────────────────────────────────────────────────────
 
   if (screen === 'host-waiting') {
     return (
@@ -205,14 +232,10 @@ export default function TopTrumps() {
           </button>
         </div>
         <button className="tt-btn" onClick={startFromHost}>Start Game →</button>
-        <button onClick={reset} style={{ background: 'none', border: 'none', color: '#555', cursor: 'pointer', fontSize: '0.8rem' }}>
-          ← Back
-        </button>
+        <button onClick={reset} style={{ background: 'none', border: 'none', color: '#555', cursor: 'pointer', fontSize: '0.8rem' }}>← Back</button>
       </div>
     )
   }
-
-  // ── Joining (arrived via URL) ─────────────────────────────────────────────
 
   if (screen === 'joining') {
     return (
@@ -230,15 +253,18 @@ export default function TopTrumps() {
     )
   }
 
-  // ── Game over ─────────────────────────────────────────────────────────────
-
   if (phase === 'gameover') {
-    const winner = myScore > oppScore ? 'You win! 🏆' : oppScore > myScore ? `${oppLabel} wins!` : "It's a draw! 🤝"
+    const myFinal  = isP2 ? p2Hand.length : p1Hand.length
+    const oppFinal = isP2 ? p1Hand.length : p2Hand.length
+    const winner = myFinal > oppFinal ? 'You win! 🏆'
+      : oppFinal > myFinal ? `${oppLabel} wins!`
+      : "It's a draw! 🤝"
     return (
       <div className="tt-over">
         <h1>Game Over</h1>
         <p className="tt-winner">{winner}</p>
-        <p className="tt-final">{myScore} – {oppScore}</p>
+        <p className="tt-final">{myFinal} – {oppFinal}</p>
+        <p style={{ color: '#555', fontSize: '0.85rem' }}>cards</p>
         <button className="tt-btn" onClick={reset}>Play Again</button>
       </div>
     )
@@ -246,40 +272,42 @@ export default function TopTrumps() {
 
   // ── Main game ─────────────────────────────────────────────────────────────
 
+  const potNote = pot.length > 0 ? ` · ${pot.length} in pot` : ''
+
   return (
     <div className="tt-root">
       <header className="tt-header">
         <h1>What Did You Do Yesterday?</h1>
         <div className="tt-scorebar">
-          <span className={myScore >= oppScore && (myScore > 0 || oppScore > 0) ? 'tt-leading' : ''}>
-            You: {myScore}
+          <span className={myCards > oppCards ? 'tt-leading' : ''}>
+            You: {myCards}
           </span>
-          <span className="tt-rounds">Round {round + 1} / {totalRounds}</span>
-          <span className={oppScore > myScore ? 'tt-leading' : ''}>
-            {oppLabel}: {oppScore}
+          <span className="tt-rounds">Round {round}{potNote}</span>
+          <span className={oppCards > myCards ? 'tt-leading' : ''}>
+            {oppLabel}: {oppCards}
           </span>
         </div>
       </header>
 
       {phase === 'reveal' && (
         <div className={`tt-banner tt-banner-${resultForMe}`}>
-          {resultForMe === 'win' ? '🏆 You win this round!'
-            : resultForMe === 'lose' ? `😬 ${oppLabel} wins this round!`
-            : '🤝 Draw!'}
+          {resultForMe === 'win'
+            ? `🏆 You win${pot.length > 0 ? ` +${pot.length} from pot` : ''}!`
+            : resultForMe === 'lose'
+            ? `😬 ${oppLabel} wins${pot.length > 0 ? ` +${pot.length} from pot` : ''}!`
+            : '🤝 Draw — cards go to the pot!'}
         </div>
       )}
 
       <div className="tt-arena">
         <div className="tt-side">
           <p className="tt-label">Your card</p>
-          {/* My card: always visible, always clickable during pick phase */}
           <TrumpCard card={myCard} alwaysVisible phase={phase} activeCat={cat}
             onPick={pick} isMe result={resultForMe} canPick={phase === 'pick'} />
         </div>
         <div className="tt-vs">VS</div>
         <div className="tt-side">
           <p className="tt-label">{oppLabel}'s card</p>
-          {/* Opp card: hidden until reveal, never clickable */}
           <TrumpCard card={oppCard} phase={phase} activeCat={cat}
             isMe={false} result={resultForMe} canPick={false} />
         </div>
@@ -296,16 +324,20 @@ export default function TopTrumps() {
           </p>
         )}
         {phase === 'reveal' && (
-          <button className="tt-btn" onClick={next}>
-            {round + 1 >= totalRounds ? 'See Final Score' : 'Next Round →'}
-          </button>
+          <button className="tt-btn" onClick={next}>Next Round →</button>
         )}
       </div>
 
-      <footer className="tt-credits">
-        <p>Based on the <a href="https://everythingisshowbiz.com" target="_blank" rel="noreferrer">What Did You Do Yesterday?</a> podcast. All rights reserved by the podcast creators. Data sourced from <a href="https://everythingisshowbiz.com" target="_blank" rel="noreferrer">everythingisshowbiz.com</a>. This is an unofficial fan project.</p>
-      </footer>
+      <Credits />
     </div>
+  )
+}
+
+function Credits() {
+  return (
+    <footer className="tt-credits">
+      <p>Based on the <a href="https://everythingisshowbiz.com" target="_blank" rel="noreferrer">What Did You Do Yesterday?</a> podcast. All rights reserved by the podcast creators. Data sourced from <a href="https://everythingisshowbiz.com" target="_blank" rel="noreferrer">everythingisshowbiz.com</a>. This is an unofficial fan project.</p>
+    </footer>
   )
 }
 
@@ -329,7 +361,6 @@ function TrumpCard({ card, alwaysVisible, phase, activeCat, onPick, isMe, result
           <ul className="tt-stats">
             {CATS.map(c => {
               const isActive = activeCat?.key === c.key
-              // win/lose is from this card's perspective
               const win  = isActive && (isMe ? result === 'win'  : result === 'lose')
               const lose = isActive && (isMe ? result === 'lose' : result === 'win')
               return (
