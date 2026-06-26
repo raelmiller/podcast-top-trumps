@@ -46,7 +46,7 @@ function shuffle(arr) {
 }
 
 function makeCode() {
-  const n = Math.floor(Math.random() * 2176782336) // 36^6
+  const n = Math.floor(Math.random() * 2176782336)
   return n.toString(36).toUpperCase().padStart(6, '0')
 }
 
@@ -69,25 +69,23 @@ function makeShareUrl(code, playerNum) {
 
 export default function TopTrumps() {
   const urlParams = getUrlParams()
-  const initialMode = urlParams.code ? 'joining' : null
 
-  const [screen, setScreen] = useState(initialMode || 'setup')
-  const [mode, setMode] = useState(null) // 'solo' | 'multi'
-  const [playerNum, setPlayerNum] = useState(null) // 1 or 2 (multi only)
+  const [screen, setScreen] = useState(urlParams.code ? 'joining' : 'setup')
+  const [mode, setMode] = useState(null)      // 'solo' | 'multi'
+  const [playerNum, setPlayerNum] = useState(null)  // 1 or 2 (multi only)
   const [gameCode, setGameCode] = useState(urlParams.code || '')
-  const [joinInput, setJoinInput] = useState('')
-  const [joinError, setJoinError] = useState('')
   const [shareUrl, setShareUrl] = useState('')
   const [deck, setDeck] = useState(null)
   const [round, setRound] = useState(0)
   const [phase, setPhase] = useState('pick')
   const [cat, setCat] = useState(null)
+  // result is always P1-perspective: 'win' = deck[r*2] beat deck[r*2+1]
   const [result, setResult] = useState(null)
+  // score.p = P1 round wins, score.c = P2 round wins
   const [score, setScore] = useState({ p: 0, c: 0 })
 
   function startSolo() {
     setMode('solo')
-    setPlayerNum(0)
     setDeck(shuffle(cards))
     setScreen('game')
   }
@@ -107,38 +105,54 @@ export default function TopTrumps() {
     setScreen('game')
   }
 
-  function joinMulti(code) {
-    const clean = code.trim().toUpperCase()
-    if (!/^[0-9A-Z]{6}$/.test(clean)) {
-      setJoinError('Enter a valid 6-character code')
-      return
-    }
-    const seed = codeToSeed(clean)
-    setGameCode(clean)
+  function joinFromUrl() {
+    const code = urlParams.code.trim().toUpperCase()
+    setGameCode(code)
     setPlayerNum(2)
-    setDeck(seededShuffle(cards, seed))
+    setDeck(seededShuffle(cards, codeToSeed(code)))
     setMode('multi')
     setScreen('game')
   }
 
-  function joinFromUrl() {
-    joinMulti(urlParams.code)
+  function reset() {
+    setDeck(shuffle(cards))
+    setRound(0); setPhase('pick'); setCat(null); setResult(null)
+    setScore({ p: 0, c: 0 })
+    setScreen('setup'); setMode(null); setPlayerNum(null)
+    setGameCode(''); setShareUrl('')
+    const url = new URL(window.location.href)
+    url.search = ''
+    window.history.replaceState({}, '', url)
   }
 
   const totalRounds = deck ? Math.floor(deck.length / 2) : 0
-  const pCard = deck ? deck[round * 2] : null
-  const cCard = deck ? deck[round * 2 + 1] : null
+  // Canonical P1 card and P2 card from the deck
+  const p1Card = deck ? deck[round * 2] : null
+  const p2Card = deck ? deck[round * 2 + 1] : null
 
-  const isMyTurn = mode === 'solo' || playerNum === 1
-    ? round % 2 === 0
-    : round % 2 === 1
+  const isP2 = mode === 'multi' && playerNum === 2
+  // Each player sees their own card on the left, opponent's on the right
+  const myCard  = isP2 ? p2Card : p1Card
+  const oppCard = isP2 ? p1Card : p2Card
+
+  // Score from my perspective
+  const myScore  = isP2 ? score.c : score.p
+  const oppScore = isP2 ? score.p : score.c
+
+  // Whose turn to announce the pick (alternates in multi; always "mine" in solo)
+  const isMyTurn = mode !== 'multi' || (playerNum === 1 ? round % 2 === 0 : round % 2 === 1)
+
+  // Result from MY perspective
+  const resultForMe = !result ? null : result === 'draw' ? 'draw'
+    : isP2 ? (result === 'win' ? 'lose' : 'win') : result
+
   const oppLabel = mode === 'multi' ? 'Friend' : 'CPU'
-  const myLabel = 'You'
 
   function pick(c) {
-    if (phase !== 'pick' || !isMyTurn) return
-    const pv = pCard[c.key]
-    const cv = cCard[c.key]
+    if (phase !== 'pick') return
+    // Always compare p1Card vs p2Card; result 'win' means p1Card won
+    const pv = p1Card[c.key]
+    const cv = p2Card[c.key]
     const r = pv === cv ? 'draw' : (c.lowerWins ? pv < cv : pv > cv) ? 'win' : 'lose'
     setCat(c)
     setResult(r)
@@ -149,30 +163,10 @@ export default function TopTrumps() {
   function next() {
     const nr = round + 1
     if (nr >= totalRounds) { setPhase('gameover'); return }
-    setRound(nr)
-    setPhase('pick')
-    setCat(null)
-    setResult(null)
+    setRound(nr); setPhase('pick'); setCat(null); setResult(null)
   }
 
-  function reset() {
-    setDeck(shuffle(cards))
-    setRound(0)
-    setPhase('pick')
-    setCat(null)
-    setResult(null)
-    setScore({ p: 0, c: 0 })
-    setScreen('setup')
-    setMode(null)
-    setPlayerNum(null)
-    setGameCode('')
-    setShareUrl('')
-    const url = new URL(window.location.href)
-    url.search = ''
-    window.history.replaceState({}, '', url)
-  }
-
-  // ── Setup screen ──────────────────────────────────────────────────────────
+  // ── Setup ─────────────────────────────────────────────────────────────────
 
   if (screen === 'setup') {
     return (
@@ -192,7 +186,7 @@ export default function TopTrumps() {
     )
   }
 
-  // ── Host waiting screen ───────────────────────────────────────────────────
+  // ── Host waiting ──────────────────────────────────────────────────────────
 
   if (screen === 'host-waiting') {
     return (
@@ -204,23 +198,13 @@ export default function TopTrumps() {
           <span className="tt-code-text">{gameCode}</span>
         </div>
         <div style={{ width: '100%', maxWidth: '420px' }}>
-          <input
-            className="tt-code-input"
-            readOnly
-            value={shareUrl}
-            onFocus={e => e.target.select()}
-          />
-          <button
-            className="tt-btn"
-            style={{ marginTop: '0.5rem', width: '100%' }}
-            onClick={() => navigator.clipboard?.writeText(shareUrl)}
-          >
+          <input className="tt-code-input" readOnly value={shareUrl} onFocus={e => e.target.select()} />
+          <button className="tt-btn" style={{ marginTop: '0.5rem', width: '100%' }}
+            onClick={() => navigator.clipboard?.writeText(shareUrl)}>
             Copy Link
           </button>
         </div>
-        <button className="tt-btn" onClick={startFromHost}>
-          Start Game →
-        </button>
+        <button className="tt-btn" onClick={startFromHost}>Start Game →</button>
         <button onClick={reset} style={{ background: 'none', border: 'none', color: '#555', cursor: 'pointer', fontSize: '0.8rem' }}>
           ← Back
         </button>
@@ -228,15 +212,18 @@ export default function TopTrumps() {
     )
   }
 
-  // ── Joining screen (arrived via URL) ─────────────────────────────────────
+  // ── Joining (arrived via URL) ─────────────────────────────────────────────
 
   if (screen === 'joining') {
     return (
       <div className="tt-over">
         <h1 style={{ fontSize: 'clamp(1.5rem,6vw,2.5rem)' }}>Join Game</h1>
-        <p style={{ color: '#888', fontSize: '0.85rem' }}>Code: <strong style={{ color: '#ffd700' }}>{urlParams.code}</strong></p>
+        <p style={{ color: '#888', fontSize: '0.85rem' }}>
+          Code: <strong style={{ color: '#ffd700' }}>{urlParams.code}</strong>
+        </p>
         <button className="tt-btn" onClick={joinFromUrl}>Join as Player 2 →</button>
-        <button onClick={() => setScreen('setup')} style={{ background: 'none', border: 'none', color: '#555', cursor: 'pointer', fontSize: '0.8rem' }}>
+        <button onClick={() => { window.history.replaceState({}, '', window.location.pathname); setScreen('setup') }}
+          style={{ background: 'none', border: 'none', color: '#555', cursor: 'pointer', fontSize: '0.8rem' }}>
           ← Back to menu
         </button>
       </div>
@@ -246,12 +233,12 @@ export default function TopTrumps() {
   // ── Game over ─────────────────────────────────────────────────────────────
 
   if (phase === 'gameover') {
-    const winner = score.p > score.c ? `${myLabel} win! 🏆` : score.c > score.p ? `${oppLabel} wins! 🤖` : "It's a draw! 🤝"
+    const winner = myScore > oppScore ? 'You win! 🏆' : oppScore > myScore ? `${oppLabel} wins!` : "It's a draw! 🤝"
     return (
       <div className="tt-over">
         <h1>Game Over</h1>
         <p className="tt-winner">{winner}</p>
-        <p className="tt-final">{score.p} – {score.c}</p>
+        <p className="tt-final">{myScore} – {oppScore}</p>
         <button className="tt-btn" onClick={reset}>Play Again</button>
       </div>
     )
@@ -259,47 +246,53 @@ export default function TopTrumps() {
 
   // ── Main game ─────────────────────────────────────────────────────────────
 
-  const nextTurnLabel = isMyTurn ? `${myLabel} pick` : `${oppLabel}'s pick`
-
   return (
     <div className="tt-root">
       <header className="tt-header">
         <h1>What Did You Do Yesterday?</h1>
         <div className="tt-scorebar">
-          <span className={score.p >= score.c && (score.p > 0 || score.c > 0) ? 'tt-leading' : ''}>
-            {myLabel}: {score.p}
+          <span className={myScore >= oppScore && (myScore > 0 || oppScore > 0) ? 'tt-leading' : ''}>
+            You: {myScore}
           </span>
           <span className="tt-rounds">Round {round + 1} / {totalRounds}</span>
-          <span className={score.c > score.p ? 'tt-leading' : ''}>
-            {oppLabel}: {score.c}
+          <span className={oppScore > myScore ? 'tt-leading' : ''}>
+            {oppLabel}: {oppScore}
           </span>
         </div>
       </header>
 
       {phase === 'reveal' && (
-        <div className={`tt-banner tt-banner-${result}`}>
-          {result === 'win' ? `🏆 ${myLabel} win this round!` : result === 'lose' ? `😬 ${oppLabel} wins this round!` : '🤝 Draw!'}
+        <div className={`tt-banner tt-banner-${resultForMe}`}>
+          {resultForMe === 'win' ? '🏆 You win this round!'
+            : resultForMe === 'lose' ? `😬 ${oppLabel} wins this round!`
+            : '🤝 Draw!'}
         </div>
       )}
 
       <div className="tt-arena">
         <div className="tt-side">
           <p className="tt-label">Your card</p>
-          <TrumpCard card={pCard} phase={phase} activeCat={cat} onPick={pick} perspective="player" result={result} isMyTurn={isMyTurn} />
+          {/* My card: always visible, always clickable during pick phase */}
+          <TrumpCard card={myCard} alwaysVisible phase={phase} activeCat={cat}
+            onPick={pick} isMe result={resultForMe} canPick={phase === 'pick'} />
         </div>
         <div className="tt-vs">VS</div>
         <div className="tt-side">
           <p className="tt-label">{oppLabel}'s card</p>
-          <TrumpCard card={cCard} phase={phase} activeCat={cat} perspective="cpu" result={result} isMyTurn={isMyTurn} />
+          {/* Opp card: hidden until reveal, never clickable */}
+          <TrumpCard card={oppCard} phase={phase} activeCat={cat}
+            isMe={false} result={resultForMe} canPick={false} />
         </div>
       </div>
 
       <div className="tt-footer">
         {phase === 'pick' && (
           <p className="tt-hint">
-            {isMyTurn
-              ? mode === 'multi' ? 'Your pick — tell your friend!' : 'Pick a category to challenge'
-              : `${oppLabel}'s pick — tap the category they choose`}
+            {mode === 'multi'
+              ? isMyTurn
+                ? 'Your pick — tell your friend what you chose!'
+                : `${oppLabel}'s pick — tap the category they announce`
+              : 'Pick a category to challenge the CPU'}
           </p>
         )}
         {phase === 'reveal' && (
@@ -316,10 +309,8 @@ export default function TopTrumps() {
   )
 }
 
-function TrumpCard({ card, phase, activeCat, onPick, perspective, result, isMyTurn }) {
-  const isPlayer = perspective === 'player'
-  const revealed = isPlayer || phase === 'reveal'
-  const canPick = isPlayer && phase === 'pick' && isMyTurn
+function TrumpCard({ card, alwaysVisible, phase, activeCat, onPick, isMe, result, canPick }) {
+  const revealed = alwaysVisible || phase === 'reveal'
 
   return (
     <div className={`tt-card ${!revealed ? 'tt-card-hidden' : ''}`}>
@@ -338,8 +329,9 @@ function TrumpCard({ card, phase, activeCat, onPick, perspective, result, isMyTu
           <ul className="tt-stats">
             {CATS.map(c => {
               const isActive = activeCat?.key === c.key
-              const win  = isActive && (isPlayer ? result === 'win'  : result === 'lose')
-              const lose = isActive && (isPlayer ? result === 'lose' : result === 'win')
+              // win/lose is from this card's perspective
+              const win  = isActive && (isMe ? result === 'win'  : result === 'lose')
+              const lose = isActive && (isMe ? result === 'lose' : result === 'win')
               return (
                 <li
                   key={c.key}
@@ -357,7 +349,7 @@ function TrumpCard({ card, phase, activeCat, onPick, perspective, result, isMyTu
                     {c.label}
                     {c.lowerWins && <em> ↓</em>}
                     {c.subKey && card[c.subKey] && (
-                      <small style={{display:'block', opacity: 0.75, fontStyle: 'italic'}}>{card[c.subKey]}</small>
+                      <small style={{ display: 'block', opacity: 0.75, fontStyle: 'italic' }}>{card[c.subKey]}</small>
                     )}
                   </span>
                   <span className="tt-cat-val">{c.fmt(card[c.key])}</span>
