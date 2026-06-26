@@ -283,6 +283,46 @@ body {
 .tt-winner { font-size: clamp(1.25rem, 5vw, 2rem); font-weight: 700; }
 .tt-final  { font-size: clamp(2rem, 8vw, 3.5rem); font-weight: 900; color: #555; }
 
+/* Multiplayer code display */
+
+.tt-code-box {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,215,0,0.3);
+  border-radius: 12px;
+  padding: 0.75rem 2rem;
+  text-align: center;
+}
+
+.tt-code-label {
+  display: block;
+  font-size: 0.65rem;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 0.25rem;
+}
+
+.tt-code-text {
+  display: block;
+  font-size: 2rem;
+  font-weight: 900;
+  letter-spacing: 0.18em;
+  color: #ffd700;
+}
+
+.tt-code-input {
+  width: 100%;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid #333;
+  border-radius: 8px;
+  color: #aaa;
+  font-size: 0.78rem;
+  padding: 0.5rem 0.75rem;
+  text-align: center;
+  outline: none;
+  word-break: break-all;
+}
+
 /* Credits footer */
 .tt-credits {
   width: 100%;
