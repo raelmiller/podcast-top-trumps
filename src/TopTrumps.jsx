@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useReducer, useRef, useState, useEffect } from 'react'
+import Peer from 'peerjs'
 import cards from '../data/cards.json'
 import './TopTrumps.css'
 
@@ -46,8 +47,7 @@ function shuffle(arr) {
 }
 
 function makeCode() {
-  const n = Math.floor(Math.random() * 2176782336)
-  return n.toString(36).toUpperCase().padStart(6, '0')
+  return Math.floor(Math.random() * 2176782336).toString(36).toUpperCase().padStart(6, '0')
 }
 
 function codeToSeed(code) { return parseInt(code, 36) }
@@ -65,139 +65,173 @@ function makeShareUrl(code) {
   return url.toString()
 }
 
-function dealHands(shuffledDeck) {
+function dealHands(deck) {
   return {
-    p1: shuffledDeck.filter((_, i) => i % 2 === 0),
-    p2: shuffledDeck.filter((_, i) => i % 2 === 1),
+    p1: deck.filter((_, i) => i % 2 === 0),
+    p2: deck.filter((_, i) => i % 2 === 1),
   }
 }
+
+// ── Game state reducer ────────────────────────────────────────────────────────
+// All game actions go through here — both local and received from peer.
+// Guards (phase checks) make every action idempotent so duplicate messages
+// from both players clicking Next simultaneously are safe.
+
+const BLANK = { p1Hand: null, p2Hand: null, pot: [], isP1Turn: true, round: 1, phase: 'pick', cat: null, result: null }
+
+function gameReducer(state, action) {
+  switch (action.type) {
+    case 'INIT': {
+      const { p1, p2 } = dealHands(action.deck)
+      return { ...BLANK, p1Hand: p1, p2Hand: p2 }
+    }
+    case 'PICK': {
+      if (state.phase !== 'pick') return state
+      const c = CATS.find(c => c.key === action.catKey)
+      const pv = state.p1Hand[0][c.key]
+      const cv = state.p2Hand[0][c.key]
+      const result = pv === cv ? 'draw' : (c.lowerWins ? pv < cv : pv > cv) ? 'win' : 'lose'
+      return { ...state, cat: c, result, phase: 'reveal' }
+    }
+    case 'NEXT': {
+      if (state.phase !== 'reveal') return state
+      const top1 = state.p1Hand[0], top2 = state.p2Hand[0]
+      let newP1, newP2, newPot, nextIsP1Turn
+      if (state.result === 'win') {
+        newP1 = [...state.p1Hand.slice(1), ...state.pot, top1, top2]
+        newP2 = state.p2Hand.slice(1); newPot = []; nextIsP1Turn = true
+      } else if (state.result === 'lose') {
+        newP1 = state.p1Hand.slice(1)
+        newP2 = [...state.p2Hand.slice(1), ...state.pot, top2, top1]
+        newPot = []; nextIsP1Turn = false
+      } else {
+        newP1 = state.p1Hand.slice(1); newP2 = state.p2Hand.slice(1)
+        newPot = [...state.pot, top1, top2]; nextIsP1Turn = state.isP1Turn
+      }
+      if (newP1.length === 0 || newP2.length === 0)
+        return { ...state, p1Hand: newP1, p2Hand: newP2, phase: 'gameover' }
+      return { ...state, p1Hand: newP1, p2Hand: newP2, pot: newPot, isP1Turn: nextIsP1Turn, round: state.round + 1, phase: 'pick', cat: null, result: null }
+    }
+    case 'RESET': return BLANK
+    default: return state
+  }
+}
+
+// ── Component ─────────────────────────────────────────────────────────────────
 
 export default function TopTrumps() {
   const urlParams = getUrlParams()
 
   const [screen, setScreen] = useState(urlParams.code ? 'joining' : 'setup')
   const [mode, setMode] = useState(null)       // 'solo' | 'multi'
-  const [playerNum, setPlayerNum] = useState(null)  // 1 or 2 (multi only)
+  const [playerNum, setPlayerNum] = useState(null)  // 1 or 2
   const [gameCode, setGameCode] = useState(urlParams.code || '')
   const [shareUrl, setShareUrl] = useState('')
+  const [peerStatus, setPeerStatus] = useState('idle') // 'idle'|'waiting'|'connecting'|'connected'|'disconnected'|'error'
 
-  // Per-game state
-  const [p1Hand, setP1Hand] = useState(null)   // Player 1's cards (top = [0])
-  const [p2Hand, setP2Hand] = useState(null)   // Player 2 / CPU's cards
-  const [pot, setPot] = useState([])            // Unclaimed cards from draws
-  const [isP1Turn, setIsP1Turn] = useState(true) // true = P1 picks this round
-  const [round, setRound] = useState(1)
-  const [phase, setPhase] = useState('pick')   // 'pick' | 'reveal' | 'gameover'
-  const [cat, setCat] = useState(null)
-  // result is always from P1's perspective: 'win' means p1Hand[0] beat p2Hand[0]
-  const [result, setResult] = useState(null)
+  const [gs, dispatch] = useReducer(gameReducer, BLANK)
+  const peerRef = useRef(null)
+  const connRef = useRef(null)
 
-  // ── Game init helpers ─────────────────────────────────────────────────────
+  useEffect(() => () => peerRef.current?.destroy(), [])
 
-  function initGame(shuffledDeck) {
-    const { p1, p2 } = dealHands(shuffledDeck)
-    setP1Hand(p1); setP2Hand(p2); setPot([])
-    setIsP1Turn(true); setRound(1)
-    setPhase('pick'); setCat(null); setResult(null)
+  // ── PeerJS helpers ──────────────────────────────────────────────────────────
+
+  function onData(data) {
+    if (data.type === 'pick') dispatch({ type: 'PICK', catKey: data.catKey })
+    if (data.type === 'next') dispatch({ type: 'NEXT' })
   }
 
+  function wireConn(connection) {
+    connRef.current = connection
+    connection.on('data', onData)
+    connection.on('close', () => setPeerStatus('disconnected'))
+    connection.on('error', () => setPeerStatus('disconnected'))
+  }
+
+  function send(msg) { connRef.current?.send(msg) }
+
+  function openPeerAsHost(code) {
+    const p = new Peer('wdydy-' + code)
+    peerRef.current = p
+    p.on('connection', conn => {
+      wireConn(conn)
+      conn.on('open', () => { setPeerStatus('connected'); setMode('multi'); setScreen('game') })
+    })
+    p.on('error', () => setPeerStatus('error'))
+  }
+
+  function openPeerAsJoiner(code) {
+    const p = new Peer()
+    peerRef.current = p
+    p.on('open', () => {
+      const conn = p.connect('wdydy-' + code)
+      wireConn(conn)
+      conn.on('open', () => { setPeerStatus('connected'); setMode('multi'); setScreen('game') })
+    })
+    p.on('error', () => setPeerStatus('error'))
+  }
+
+  // ── Game flow ───────────────────────────────────────────────────────────────
+
   function startSolo() {
-    initGame(shuffle(cards))
+    dispatch({ type: 'INIT', deck: shuffle(cards) })
     setMode('solo'); setPlayerNum(null); setScreen('game')
   }
 
   function hostMulti() {
     const code = makeCode()
-    initGame(seededShuffle(cards, codeToSeed(code)))
+    dispatch({ type: 'INIT', deck: seededShuffle(cards, codeToSeed(code)) })
     setGameCode(code); setPlayerNum(1)
     setShareUrl(makeShareUrl(code))
+    setPeerStatus('waiting')
+    openPeerAsHost(code)
     setScreen('host-waiting')
   }
 
-  function startFromHost() { setMode('multi'); setScreen('game') }
-
   function joinFromUrl() {
     const code = urlParams.code.trim().toUpperCase()
-    initGame(seededShuffle(cards, codeToSeed(code)))
-    setGameCode(code); setPlayerNum(2); setMode('multi'); setScreen('game')
+    dispatch({ type: 'INIT', deck: seededShuffle(cards, codeToSeed(code)) })
+    setGameCode(code); setPlayerNum(2)
+    setPeerStatus('connecting')
+    openPeerAsJoiner(code)
+    // screen transitions to 'game' when conn opens
   }
-
-  function reset() {
-    setP1Hand(null); setP2Hand(null); setPot([])
-    setIsP1Turn(true); setRound(1)
-    setPhase('pick'); setCat(null); setResult(null)
-    setScreen('setup'); setMode(null); setPlayerNum(null)
-    setGameCode(''); setShareUrl('')
-    const url = new URL(window.location.href)
-    url.search = ''
-    window.history.replaceState({}, '', url)
-  }
-
-  // ── Derived values ────────────────────────────────────────────────────────
-
-  const isP2 = mode === 'multi' && playerNum === 2
-  const p1Card = p1Hand?.[0]
-  const p2Card = p2Hand?.[0]
-  // Each player sees their own card on the left, opponent's on the right
-  const myCard  = isP2 ? p2Card : p1Card
-  const oppCard = isP2 ? p1Card : p2Card
-  const myCards  = isP2 ? p2Hand?.length ?? 0 : p1Hand?.length ?? 0
-  const oppCards = isP2 ? p1Hand?.length ?? 0 : p2Hand?.length ?? 0
-  // Whose turn to announce the pick
-  const isMyTurn = mode !== 'multi' || (isP2 ? !isP1Turn : isP1Turn)
-  // Result from my perspective (flip for P2 since result is P1-perspective)
-  const resultForMe = !result ? null : result === 'draw' ? 'draw'
-    : isP2 ? (result === 'win' ? 'lose' : 'win') : result
-  const oppLabel = mode === 'multi' ? 'Friend' : 'CPU'
-
-  // ── Game actions ──────────────────────────────────────────────────────────
 
   function pick(c) {
-    if (phase !== 'pick') return
-    const pv = p1Card[c.key]
-    const cv = p2Card[c.key]
-    const r = pv === cv ? 'draw' : (c.lowerWins ? pv < cv : pv > cv) ? 'win' : 'lose'
-    setCat(c); setResult(r); setPhase('reveal')
+    if (gs.phase !== 'pick' || !isMyTurn) return
+    dispatch({ type: 'PICK', catKey: c.key })
+    send({ type: 'pick', catKey: c.key })
   }
 
   function next() {
-    const top1 = p1Hand[0]
-    const top2 = p2Hand[0]
-    let newP1, newP2, newPot, nextIsP1Turn
-
-    if (result === 'win') {
-      // P1 wins: takes both cards + pot to bottom of their deck
-      newP1 = [...p1Hand.slice(1), ...pot, top1, top2]
-      newP2 = p2Hand.slice(1)
-      newPot = []
-      nextIsP1Turn = true
-    } else if (result === 'lose') {
-      // P2 wins: takes both cards + pot to bottom of their deck
-      newP1 = p1Hand.slice(1)
-      newP2 = [...p2Hand.slice(1), ...pot, top2, top1]
-      newPot = []
-      nextIsP1Turn = false
-    } else {
-      // Draw: both top cards go to pot, same player picks again
-      newP1 = p1Hand.slice(1)
-      newP2 = p2Hand.slice(1)
-      newPot = [...pot, top1, top2]
-      nextIsP1Turn = isP1Turn
-    }
-
-    setP1Hand(newP1); setP2Hand(newP2); setPot(newPot)
-
-    if (newP1.length === 0 || newP2.length === 0) {
-      setPhase('gameover')
-      return
-    }
-
-    setIsP1Turn(nextIsP1Turn)
-    setRound(r => r + 1)
-    setPhase('pick'); setCat(null); setResult(null)
+    if (gs.phase !== 'reveal') return
+    dispatch({ type: 'NEXT' })
+    send({ type: 'next' })
   }
 
-  // ── Screens ───────────────────────────────────────────────────────────────
+  function reset() {
+    peerRef.current?.destroy(); peerRef.current = null; connRef.current = null
+    dispatch({ type: 'RESET' })
+    setPeerStatus('idle'); setMode(null); setPlayerNum(null)
+    setGameCode(''); setShareUrl(''); setScreen('setup')
+    const url = new URL(window.location.href); url.search = ''
+    window.history.replaceState({}, '', url)
+  }
+
+  // ── Derived values ──────────────────────────────────────────────────────────
+
+  const isP2 = mode === 'multi' && playerNum === 2
+  const myCard  = isP2 ? gs.p2Hand?.[0] : gs.p1Hand?.[0]
+  const oppCard = isP2 ? gs.p1Hand?.[0] : gs.p2Hand?.[0]
+  const myCards  = (isP2 ? gs.p2Hand : gs.p1Hand)?.length ?? 0
+  const oppCards = (isP2 ? gs.p1Hand : gs.p2Hand)?.length ?? 0
+  const isMyTurn = mode !== 'multi' || (isP2 ? !gs.isP1Turn : gs.isP1Turn)
+  const resultForMe = !gs.result ? null : gs.result === 'draw' ? 'draw'
+    : isP2 ? (gs.result === 'win' ? 'lose' : 'win') : gs.result
+  const oppLabel = mode === 'multi' ? 'Friend' : 'CPU'
+
+  // ── Screens ─────────────────────────────────────────────────────────────────
 
   if (screen === 'setup') {
     return (
@@ -218,33 +252,49 @@ export default function TopTrumps() {
   if (screen === 'host-waiting') {
     return (
       <div className="tt-over">
-        <h1 style={{ fontSize: 'clamp(1.5rem,6vw,2.5rem)' }}>Share this link</h1>
-        <p style={{ color: '#888', fontSize: '0.85rem' }}>Send it to your friend, then press Start when they're ready</p>
-        <div className="tt-code-box">
-          <span className="tt-code-label">Game code</span>
-          <span className="tt-code-text">{gameCode}</span>
-        </div>
-        <div style={{ width: '100%', maxWidth: '420px' }}>
-          <input className="tt-code-input" readOnly value={shareUrl} onFocus={e => e.target.select()} />
-          <button className="tt-btn" style={{ marginTop: '0.5rem', width: '100%' }}
-            onClick={() => navigator.clipboard?.writeText(shareUrl)}>
-            Copy Link
-          </button>
-        </div>
-        <button className="tt-btn" onClick={startFromHost}>Start Game →</button>
+        <h1 style={{ fontSize: 'clamp(1.5rem,6vw,2.5rem)' }}>
+          {peerStatus === 'error' ? 'Connection failed' : 'Waiting for friend…'}
+        </h1>
+        {peerStatus === 'error'
+          ? <p style={{ color: '#f88', fontSize: '0.9rem' }}>Could not create game. Try again.</p>
+          : <p style={{ color: '#888', fontSize: '0.85rem' }}>Share this link — game starts when they join</p>
+        }
+        {peerStatus !== 'error' && <>
+          <div className="tt-code-box">
+            <span className="tt-code-label">Game code</span>
+            <span className="tt-code-text">{gameCode}</span>
+          </div>
+          <div style={{ width: '100%', maxWidth: '420px' }}>
+            <input className="tt-code-input" readOnly value={shareUrl} onFocus={e => e.target.select()} />
+            <button className="tt-btn" style={{ marginTop: '0.5rem', width: '100%' }}
+              onClick={() => navigator.clipboard?.writeText(shareUrl)}>
+              Copy Link
+            </button>
+          </div>
+          <p style={{ color: '#555', fontSize: '0.78rem' }}>
+            {peerStatus === 'waiting' ? '⏳ Waiting for friend to open the link…' : '✅ Friend connected!'}
+          </p>
+        </>}
         <button onClick={reset} style={{ background: 'none', border: 'none', color: '#555', cursor: 'pointer', fontSize: '0.8rem' }}>← Back</button>
       </div>
     )
   }
 
   if (screen === 'joining') {
+    const busy = peerStatus === 'connecting'
     return (
       <div className="tt-over">
-        <h1 style={{ fontSize: 'clamp(1.5rem,6vw,2.5rem)' }}>Join Game</h1>
-        <p style={{ color: '#888', fontSize: '0.85rem' }}>
-          Code: <strong style={{ color: '#ffd700' }}>{urlParams.code}</strong>
-        </p>
-        <button className="tt-btn" onClick={joinFromUrl}>Join as Player 2 →</button>
+        <h1 style={{ fontSize: 'clamp(1.5rem,6vw,2.5rem)' }}>
+          {peerStatus === 'error' ? 'Could not connect' : busy ? 'Connecting…' : 'Join Game'}
+        </h1>
+        {peerStatus === 'error'
+          ? <p style={{ color: '#f88', fontSize: '0.9rem' }}>Check the link is correct and the host is waiting.</p>
+          : <p style={{ color: '#888', fontSize: '0.85rem' }}>Code: <strong style={{ color: '#ffd700' }}>{urlParams.code}</strong></p>
+        }
+        {!busy && peerStatus !== 'error' && (
+          <button className="tt-btn" onClick={joinFromUrl}>Join →</button>
+        )}
+        {busy && <p style={{ color: '#555', fontSize: '0.85rem' }}>⏳ Connecting to host…</p>}
         <button onClick={() => { window.history.replaceState({}, '', window.location.pathname); setScreen('setup') }}
           style={{ background: 'none', border: 'none', color: '#555', cursor: 'pointer', fontSize: '0.8rem' }}>
           ← Back to menu
@@ -253,12 +303,10 @@ export default function TopTrumps() {
     )
   }
 
-  if (phase === 'gameover') {
-    const myFinal  = isP2 ? p2Hand.length : p1Hand.length
-    const oppFinal = isP2 ? p1Hand.length : p2Hand.length
-    const winner = myFinal > oppFinal ? 'You win! 🏆'
-      : oppFinal > myFinal ? `${oppLabel} wins!`
-      : "It's a draw! 🤝"
+  if (gs.phase === 'gameover') {
+    const myFinal  = (isP2 ? gs.p2Hand : gs.p1Hand)?.length ?? 0
+    const oppFinal = (isP2 ? gs.p1Hand : gs.p2Hand)?.length ?? 0
+    const winner = myFinal > oppFinal ? 'You win! 🏆' : oppFinal > myFinal ? `${oppLabel} wins!` : "It's a draw! 🤝"
     return (
       <div className="tt-over">
         <h1>Game Over</h1>
@@ -270,31 +318,32 @@ export default function TopTrumps() {
     )
   }
 
-  // ── Main game ─────────────────────────────────────────────────────────────
+  // ── Main game ───────────────────────────────────────────────────────────────
 
-  const potNote = pot.length > 0 ? ` · ${pot.length} in pot` : ''
+  const potNote = gs.pot.length > 0 ? ` · ${gs.pot.length} in pot` : ''
+  const disconnected = mode === 'multi' && peerStatus === 'disconnected'
 
   return (
     <div className="tt-root">
       <header className="tt-header">
         <h1>What Did You Do Yesterday?</h1>
         <div className="tt-scorebar">
-          <span className={myCards > oppCards ? 'tt-leading' : ''}>
-            You: {myCards}
-          </span>
-          <span className="tt-rounds">Round {round}{potNote}</span>
-          <span className={oppCards > myCards ? 'tt-leading' : ''}>
-            {oppLabel}: {oppCards}
-          </span>
+          <span className={myCards > oppCards ? 'tt-leading' : ''}>You: {myCards}</span>
+          <span className="tt-rounds">Round {gs.round}{potNote}</span>
+          <span className={oppCards > myCards ? 'tt-leading' : ''}>{oppLabel}: {oppCards}</span>
         </div>
       </header>
 
-      {phase === 'reveal' && (
+      {disconnected && (
+        <div className="tt-banner tt-banner-lose">⚠️ Friend disconnected</div>
+      )}
+
+      {gs.phase === 'reveal' && !disconnected && (
         <div className={`tt-banner tt-banner-${resultForMe}`}>
           {resultForMe === 'win'
-            ? `🏆 You win${pot.length > 0 ? ` +${pot.length} from pot` : ''}!`
+            ? `🏆 You win${gs.pot.length > 0 ? ` +${gs.pot.length} from pot` : ''}!`
             : resultForMe === 'lose'
-            ? `😬 ${oppLabel} wins${pot.length > 0 ? ` +${pot.length} from pot` : ''}!`
+            ? `😬 ${oppLabel} wins${gs.pot.length > 0 ? ` +${gs.pot.length} from pot` : ''}!`
             : '🤝 Draw — cards go to the pot!'}
         </div>
       )}
@@ -302,28 +351,26 @@ export default function TopTrumps() {
       <div className="tt-arena">
         <div className="tt-side">
           <p className="tt-label">Your card</p>
-          <TrumpCard card={myCard} alwaysVisible phase={phase} activeCat={cat}
-            onPick={pick} isMe result={resultForMe} canPick={phase === 'pick'} />
+          <TrumpCard card={myCard} alwaysVisible phase={gs.phase} activeCat={gs.cat}
+            onPick={pick} isMe result={resultForMe} canPick={gs.phase === 'pick' && isMyTurn} />
         </div>
         <div className="tt-vs">VS</div>
         <div className="tt-side">
           <p className="tt-label">{oppLabel}'s card</p>
-          <TrumpCard card={oppCard} phase={phase} activeCat={cat}
+          <TrumpCard card={oppCard} phase={gs.phase} activeCat={gs.cat}
             isMe={false} result={resultForMe} canPick={false} />
         </div>
       </div>
 
       <div className="tt-footer">
-        {phase === 'pick' && (
+        {gs.phase === 'pick' && !disconnected && (
           <p className="tt-hint">
             {mode === 'multi'
-              ? isMyTurn
-                ? 'Your pick — tell your friend what you chose!'
-                : `${oppLabel}'s pick — tap the category they announce`
+              ? isMyTurn ? 'Your pick' : 'Waiting for friend to pick…'
               : 'Pick a category to challenge the CPU'}
           </p>
         )}
-        {phase === 'reveal' && (
+        {gs.phase === 'reveal' && (
           <button className="tt-btn" onClick={next}>Next Round →</button>
         )}
       </div>
@@ -343,6 +390,7 @@ function Credits() {
 
 function TrumpCard({ card, alwaysVisible, phase, activeCat, onPick, isMe, result, canPick }) {
   const revealed = alwaysVisible || phase === 'reveal'
+  if (!card) return null
 
   return (
     <div className={`tt-card ${!revealed ? 'tt-card-hidden' : ''}`}>
@@ -366,13 +414,7 @@ function TrumpCard({ card, alwaysVisible, phase, activeCat, onPick, isMe, result
               return (
                 <li
                   key={c.key}
-                  className={[
-                    'tt-stat',
-                    canPick ? 'tt-stat-pick' : '',
-                    isActive ? 'tt-stat-active' : '',
-                    win  ? 'tt-stat-win'  : '',
-                    lose ? 'tt-stat-lose' : '',
-                  ].filter(Boolean).join(' ')}
+                  className={['tt-stat', canPick ? 'tt-stat-pick' : '', isActive ? 'tt-stat-active' : '', win ? 'tt-stat-win' : '', lose ? 'tt-stat-lose' : ''].filter(Boolean).join(' ')}
                   onClick={() => canPick && onPick(c)}
                 >
                   <span className="tt-cat-icon">{c.icon}</span>
