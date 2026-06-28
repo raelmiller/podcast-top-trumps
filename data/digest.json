@@ -1,7 +1,7 @@
 {
-  "generated": "2026-06-27T09:31:26.327294+00:00",
+  "generated": "2026-06-28T10:01:05.659907+00:00",
   "total": 11,
-  "new": 1,
+  "new": 0,
   "matches": [
     {
       "company": "Pleo",
@@ -42,7 +42,7 @@
       "role_priority": 1,
       "seniority": "senior/IC",
       "loc_note": "location unknown",
-      "is_new": true
+      "is_new": false
     },
     {
       "company": "Pleo",
@@ -129,6 +129,26 @@
       "company": "Showpad",
       "company_tier": "B",
       "ats": "greenhouse",
+      "id": "Showpad:greenhouse:7829217",
+      "title": "Director GTM Strategy",
+      "location": "London",
+      "url": "https://job-boards.greenhouse.io/showpad/jobs/7829217",
+      "department": "Revenue Operations",
+      "posted": "2026-06-04T01:05:58-04:00",
+      "sector": "Sales enablement",
+      "hq": "Ghent / Chicago",
+      "size": "500\u2013700",
+      "stage": "Late",
+      "role_tier": "GTM Strategy",
+      "role_priority": 3,
+      "seniority": "director+",
+      "loc_note": "",
+      "is_new": false
+    },
+    {
+      "company": "Showpad",
+      "company_tier": "B",
+      "ats": "greenhouse",
       "id": "Showpad:greenhouse:7895393",
       "title": "Director GTM Strategy",
       "location": "London",
@@ -155,26 +175,6 @@
       "url": "https://job-boards.greenhouse.io/showpad/jobs/7895398",
       "department": "Revenue Operations",
       "posted": "2026-06-04T01:05:59-04:00",
-      "sector": "Sales enablement",
-      "hq": "Ghent / Chicago",
-      "size": "500\u2013700",
-      "stage": "Late",
-      "role_tier": "GTM Strategy",
-      "role_priority": 3,
-      "seniority": "director+",
-      "loc_note": "",
-      "is_new": false
-    },
-    {
-      "company": "Showpad",
-      "company_tier": "B",
-      "ats": "greenhouse",
-      "id": "Showpad:greenhouse:7829217",
-      "title": "Director GTM Strategy",
-      "location": "London",
-      "url": "https://job-boards.greenhouse.io/showpad/jobs/7829217",
-      "department": "Revenue Operations",
-      "posted": "2026-06-04T01:05:58-04:00",
       "sector": "Sales enablement",
       "hq": "Ghent / Chicago",
       "size": "500\u2013700",
