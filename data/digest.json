@@ -1,7 +1,7 @@
 {
-  "generated": "2026-07-02T10:00:53.471086+00:00",
+  "generated": "2026-07-03T09:59:27.058612+00:00",
   "total": 11,
-  "new": 0,
+  "new": 1,
   "matches": [
     {
       "company": "Pleo",
@@ -65,26 +65,6 @@
       "is_new": false
     },
     {
-      "company": "Pleo",
-      "company_tier": "A",
-      "ats": "ashby",
-      "id": "Pleo:ashby:2f0467a6-9f42-4107-afbd-5134ef413a21",
-      "title": "GTM Operations Manager (Sales Ops)",
-      "location": "",
-      "url": "https://jobs.ashbyhq.com/pleo/2f0467a6-9f42-4107-afbd-5134ef413a21",
-      "department": "",
-      "posted": "",
-      "sector": "Spend management",
-      "hq": "Copenhagen / London",
-      "size": "900\u20131,200",
-      "stage": "Late",
-      "role_tier": "Sales Ops",
-      "role_priority": 2,
-      "seniority": "manager",
-      "loc_note": "location unknown",
-      "is_new": false
-    },
-    {
       "company": "ClickUp",
       "company_tier": "B",
       "ats": "ashby",
@@ -124,6 +104,27 @@
       "seniority": "unspecified",
       "loc_note": "location unknown",
       "is_new": false
+    },
+    {
+      "company": "Collibra",
+      "company_tier": "B",
+      "ats": "greenhouse",
+      "id": "Collibra:greenhouse:8043536",
+      "title": "Sales Operations Manager",
+      "location": "Remote - US",
+      "url": "https://www.collibra.com/us/en/company/careers/job-listing/?gh_jid=8043536",
+      "department": "Sales",
+      "posted": "2026-07-02T17:07:56-04:00",
+      "sector": "Data governance",
+      "hq": "Brussels / New York",
+      "size": "1,000\u20131,500",
+      "stage": "Late",
+      "co_notes": "European HQ",
+      "role_tier": "Sales Ops",
+      "role_priority": 2,
+      "seniority": "manager",
+      "loc_note": "",
+      "is_new": true
     },
     {
       "company": "Showpad",
