@@ -1,7 +1,7 @@
 {
-  "generated": "2026-07-06T11:31:01.743958+00:00",
-  "total": 11,
-  "new": 0,
+  "generated": "2026-07-07T10:27:58.730309+00:00",
+  "total": 12,
+  "new": 1,
   "matches": [
     {
       "company": "Pleo",
@@ -114,7 +114,7 @@
       "location": "Remote - US",
       "url": "https://www.collibra.com/us/en/company/careers/job-listing/?gh_jid=8043536",
       "department": "Sales",
-      "posted": "2026-07-02T17:07:56-04:00",
+      "posted": "2026-07-07T04:16:20-04:00",
       "sector": "Data governance",
       "hq": "Brussels / New York",
       "size": "1,000\u20131,500",
@@ -226,6 +226,26 @@
       "seniority": "manager",
       "loc_note": "",
       "is_new": false
+    },
+    {
+      "company": "Airtable",
+      "company_tier": "C",
+      "ats": "greenhouse",
+      "id": "Airtable:greenhouse:8610944002",
+      "title": "Manager, Sales Strategy & Planning",
+      "location": "Remote - US",
+      "url": "https://job-boards.greenhouse.io/airtable/jobs/8610944002",
+      "department": "Revenue Operations",
+      "posted": "2026-07-06T14:18:28-04:00",
+      "sector": "No-code database",
+      "hq": "San Francisco",
+      "size": "700\u20131,000",
+      "stage": "Late",
+      "role_tier": "GTM Strategy",
+      "role_priority": 3,
+      "seniority": "manager",
+      "loc_note": "",
+      "is_new": true
     }
   ]
 }
