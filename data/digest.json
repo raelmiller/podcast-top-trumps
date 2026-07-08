@@ -1,6 +1,6 @@
 {
-  "generated": "2026-07-07T10:27:58.730309+00:00",
-  "total": 12,
+  "generated": "2026-07-08T09:30:09.832533+00:00",
+  "total": 13,
   "new": 1,
   "matches": [
     {
@@ -28,7 +28,7 @@
       "company_tier": "A",
       "ats": "ashby",
       "id": "Synthesia:ashby:b073c9cc-3053-47e7-b4c1-7a471d4c6ffe",
-      "title": "Revenue Operations Specialist - Solutions & Services",
+      "title": "Revenue Operations Manager",
       "location": "",
       "url": "https://jobs.ashbyhq.com/synthesia/b073c9cc-3053-47e7-b4c1-7a471d4c6ffe",
       "department": "",
@@ -40,7 +40,7 @@
       "co_notes": "London HQ, rapid GTM build-out",
       "role_tier": "RevOps",
       "role_priority": 1,
-      "seniority": "senior/IC",
+      "seniority": "manager",
       "loc_note": "location unknown",
       "is_new": false
     },
@@ -125,6 +125,26 @@
       "seniority": "manager",
       "loc_note": "",
       "is_new": false
+    },
+    {
+      "company": "Amplitude",
+      "company_tier": "B",
+      "ats": "greenhouse",
+      "id": "Amplitude:greenhouse:8623858002",
+      "title": "Senior Manager, Sales Operations & Strategy",
+      "location": "London",
+      "url": "https://job-boards.greenhouse.io/amplitude/jobs/8623858002",
+      "department": "Sales Operations",
+      "posted": "2026-07-08T05:06:53-04:00",
+      "sector": "Product analytics",
+      "hq": "San Francisco / London",
+      "size": "700\u20131,000",
+      "stage": "Public",
+      "role_tier": "Sales Ops",
+      "role_priority": 2,
+      "seniority": "manager",
+      "loc_note": "",
+      "is_new": true
     },
     {
       "company": "Showpad",
@@ -245,7 +265,7 @@
       "role_priority": 3,
       "seniority": "manager",
       "loc_note": "",
-      "is_new": true
+      "is_new": false
     }
   ]
 }
