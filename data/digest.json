@@ -1,7 +1,7 @@
 {
-  "generated": "2026-07-09T10:28:00.504562+00:00",
+  "generated": "2026-07-10T10:24:09.755422+00:00",
   "total": 13,
-  "new": 1,
+  "new": 0,
   "matches": [
     {
       "company": "Pleo",
@@ -195,7 +195,7 @@
       "location": "United Kingdom",
       "url": "https://job-boards.eu.greenhouse.io/truelayer/jobs/4888733101",
       "department": "Finance",
-      "posted": "2026-06-22T05:48:22-04:00",
+      "posted": "2026-07-09T10:51:34-04:00",
       "sector": "Open banking",
       "hq": "London (HQ)",
       "size": "200\u2013400",
@@ -246,7 +246,7 @@
       "role_priority": 3,
       "seniority": "senior/IC",
       "loc_note": "location unknown",
-      "is_new": true
+      "is_new": false
     },
     {
       "company": "Airtable",
