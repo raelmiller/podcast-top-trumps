@@ -1,6 +1,6 @@
 {
-  "generated": "2026-07-12T09:08:39.099603+00:00",
-  "total": 14,
+  "generated": "2026-07-13T10:26:12.791600+00:00",
+  "total": 13,
   "new": 0,
   "matches": [
     {
@@ -100,26 +100,6 @@
       "size": "1,000\u20131,500",
       "stage": "Late",
       "co_notes": "European HQ",
-      "role_tier": "Sales Ops",
-      "role_priority": 2,
-      "seniority": "manager",
-      "loc_note": "",
-      "is_new": false
-    },
-    {
-      "company": "Amplitude",
-      "company_tier": "B",
-      "ats": "greenhouse",
-      "id": "Amplitude:greenhouse:8623858002",
-      "title": "Senior Manager, Sales Operations & Strategy",
-      "location": "London",
-      "url": "https://job-boards.greenhouse.io/amplitude/jobs/8623858002",
-      "department": "Sales Operations",
-      "posted": "2026-07-08T05:06:53-04:00",
-      "sector": "Product analytics",
-      "hq": "San Francisco / London",
-      "size": "700\u20131,000",
-      "stage": "Public",
       "role_tier": "Sales Ops",
       "role_priority": 2,
       "seniority": "manager",
