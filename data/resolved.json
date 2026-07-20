@@ -2412,5 +2412,16 @@
     "hq": "Boston",
     "size": "5,000+",
     "stage": "Public"
+  },
+  "Okta": {
+    "ats": "greenhouse",
+    "token": "okta",
+    "jobs": 348,
+    "source": "probe",
+    "tier": "C",
+    "sector": "Identity / Security",
+    "hq": "San Francisco / London",
+    "size": "6,000+",
+    "stage": "Public"
   }
 }
