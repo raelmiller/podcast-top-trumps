@@ -88,8 +88,8 @@ Extract these statistics from the transcript. For each field:
   home. Venue cost raises a score; it is never a precondition for a high one.
 
   Use the WHOLE range and commit to the extremes. If it is a British staple, give it a
-  single-digit or teens score — do not hedge toward the middle. Fewer than half of all
-  episodes should land in the 20s. Integer. Use null if no food mentioned.
+  single-digit or teens score — do not hedge toward the middle.
+  Integer. Use null if no food mentioned.
 - transportModes: number of DISTINCT transport types used (car, tube, walk, cycle, taxi, train, plane, bus, etc). Integer.
   Only return 0 if they explicitly say they didn't leave the house.
 - transportList: brief comma-separated list of the actual transport types used, e.g. "car, tube, walking". Null if none.
@@ -283,7 +283,7 @@ def main():
 
     existing = {}
     if (args.incremental or only_ids) and OUT_PATH.exists():
-        for card in json.loads(OUT_PATH.read_text()):
+        for card in json.loads(OUT_PATH.read_text(encoding="utf-8")):
             existing[card["episode"]] = card
         print(f"Loaded {len(existing)} existing cards")
 
@@ -361,7 +361,7 @@ def main():
     OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
     deduped = {c["episode"]: c for c in cards}  # later entries win
     cards = sorted(deduped.values(), key=lambda c: c["episode"])
-    OUT_PATH.write_text(json.dumps(cards, indent=2))
+    OUT_PATH.write_text(json.dumps(cards, indent=2, ensure_ascii=False), encoding="utf-8")
     print(f"\nWrote {len(cards)} cards to {OUT_PATH}")
 
 

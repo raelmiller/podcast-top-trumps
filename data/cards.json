@@ -1272,5 +1272,18 @@
     "transportList": "running",
     "bedTime": 25.5,
     "coffees": 0
+  },
+  {
+    "id": 660,
+    "episode": 660,
+    "guest": "Bella Hull",
+    "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Bella_Hull_at_the_2025_Edinburgh_Festival_Fringe-3_%28cropped2%29.jpg/500px-Bella_Hull_at_the_2025_Edinburgh_Festival_Fringe-3_%28cropped2%29.jpg",
+    "wakeTime": 7.5,
+    "exoticFood": "chicken and rice from Rooster's Piri Piri",
+    "exoticScore": 26,
+    "transportModes": 4,
+    "transportList": "tube, bus, black cab, walking",
+    "bedTime": 26.25,
+    "coffees": 1
   }
 ]
