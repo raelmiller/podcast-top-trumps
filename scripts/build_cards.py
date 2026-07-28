@@ -52,7 +52,7 @@ Extract these statistics from the transcript. For each field:
 
     1-10   British staples and everyday drinks: tea, coffee, toast, cereal, beans on toast,
            chippy chips, a pint, Bacardi and Coke, supermarket sandwich, KFC, Greggs
-    11-20  Ordinary home cooking and high-street chains: tuna pasta bake, roast chicken,
+    11-20  Everyday assembly and high-street chains: tuna pasta bake, roast chicken,
            Pret / Leon / Nando's, full English, meal-kit box, M&S food hall
     21-35  World food fully naturalised in Britain — the stuff on every high street:
            chicken tikka masala, Thai green curry, sweet and sour chicken balls,
@@ -70,6 +70,13 @@ Extract these statistics from the transcript. For each field:
     81-95  Luxury or genuinely rare: Michelin-starred tasting menu, wild game, truffle in season,
            live seafood specialities
     96-100 Once-in-a-lifetime: fugu, ortolan, ant eggs
+
+  Cooking at home is NOT automatically low. Judge a home-cooked meal on the dish itself —
+  its scarcity, its ingredients and how much work it takes. Paratha laminated from scratch,
+  a stew carrying a dozen ingredients, or a plate with three separately-cooked components
+  belongs in the 40s or 50s even though nobody paid a restaurant bill. The low bands are for
+  food that is genuinely simple — beans on toast, a pasta bake, assembling a salad — wherever
+  it was made. Venue cost raises a score; it is not a precondition for a high one.
 
   Use the WHOLE range and commit to the extremes. If it is a British staple, give it a
   single-digit or teens score — do not hedge toward the middle. Fewer than half of all
