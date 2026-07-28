@@ -44,39 +44,48 @@ Extract these statistics from the transcript. For each field:
 - wakeTime: the time they woke up, as decimal hours since midnight (e.g. 7.5 = 7:30am)
 - exoticFood: the single most unusual, exotic, or interesting food or drink item they consumed.
   Prefer restaurant dishes, unusual cuisines, or anything memorable over everyday items.
+  It MUST be something THIS guest actually ate or drank during the day they are describing.
+  Do NOT use: food the hosts mention, food a previous guest ate, running jokes or callbacks
+  to earlier episodes, food the guest only talked about, wished for, cooked for someone else,
+  or named hypothetically. If the transcript's most memorable food fails that test, fall back
+  to the most interesting thing the guest genuinely consumed.
   Use null only if absolutely no food or drink is mentioned.
 - exoticScore: how exotic that food is, 1-100, judged from a mainstream BRITISH perspective.
   Weigh two things together: (a) how rare or specialised the ingredients and preparation are
   to a British eater, and (b) how expensive/high-end the place serving it is. A humble dish at
   a very good restaurant scores up; a fancy-sounding cuisine from a high-street takeaway does not.
 
-    1-10   British staples and everyday drinks: tea, coffee, toast, cereal, beans on toast,
-           chippy chips, a pint, Bacardi and Coke, supermarket sandwich, KFC, Greggs
-    11-20  Everyday assembly and high-street chains: tuna pasta bake, roast chicken,
-           Pret / Leon / Nando's, full English, meal-kit box, M&S food hall
-    21-35  World food fully naturalised in Britain — the stuff on every high street:
-           chicken tikka masala, Thai green curry, sweet and sour chicken balls,
-           crispy duck pancakes, doner kebab, burrito, supermarket sushi, chain pizzeria.
+    1-10   Only the truly plain: tea, coffee, a slushy, Bacardi and Coke, toast, cereal
+    11-25  Simple everyday food, wherever it was made: tuna pasta bake, a sandwich,
+           chain grab-and-go (Pret / Leon / Greggs / KFC / Nando's), full English, chippy tea
+    26-40  Familiar world food naturalised in Britain, or competent everyday cooking:
+           chicken tikka masala, Thai green curry, sweet and sour chicken balls, doner kebab,
+           burrito, supermarket sushi, chain pizzeria, a roast, pasta alla vodka.
            Cuisine does NOT score highly merely for being foreign — if a British town of
-           20,000 people has a place selling it, it belongs in this band.
-    36-50  Proper independent restaurant cooking, or home cooking using genuinely specialist
-           ingredients: regional Italian, Turkish eggs, shakshuka, Cantabrian anchovies,
-           paneer 65 at a real South Indian place, moussaka with a named wine
-    51-65  Regional specialities demanding specialist ingredients or skill, or notably upmarket
-           dining: hand-pulled Sichuan noodle soup, mala broth, ceremonial cacao,
-           modern Italian small plates involving offal
-    66-80  Rare ingredients and/or restaurants approaching Michelin standard:
-           spider crab omelette at Mountain = 78, salted cod at Rovi = 72, a tasting menu = 70
-    81-95  Luxury or genuinely rare: Michelin-starred tasting menu, wild game, truffle in season,
+           20,000 people has a place selling it, it starts in this band.
+    41-55  Proper independent restaurant cooking, or ambitious cooking at home: regional
+           Italian, shakshuka, crispy duck done properly, a curry built from whole spices,
+           a plate with several separately-cooked components
+    56-70  Specialist ingredients or genuine skill, or notably upmarket dining: hand-pulled
+           Sichuan noodle soup, mala broth, Cantabrian anchovies, finger lime, offal,
+           paratha laminated from scratch, a stew carrying a dozen ingredients,
+           ceremonial cacao, modern small plates
+    71-85  Rare ingredients and/or restaurants approaching Michelin standard:
+           spider crab omelette at Mountain = 80, salted cod at Rovi = 76, a tasting menu = 74
+    86-95  Luxury or genuinely rare: Michelin-starred tasting menu, wild game, truffle in season,
            live seafood specialities
     96-100 Once-in-a-lifetime: fugu, ortolan, ant eggs
 
-  Cooking at home is NOT automatically low. Judge a home-cooked meal on the dish itself —
-  its scarcity, its ingredients and how much work it takes. Paratha laminated from scratch,
-  a stew carrying a dozen ingredients, or a plate with three separately-cooked components
-  belongs in the 40s or 50s even though nobody paid a restaurant bill. The low bands are for
-  food that is genuinely simple — beans on toast, a pasta bake, assembling a salad — wherever
-  it was made. Venue cost raises a score; it is not a precondition for a high one.
+  Aim for a spread centred around 40-45, with a real tail in both directions. Scores above 55
+  should be common enough to matter — roughly a quarter of episodes earn them.
+
+  Cooking at home is NOT a penalty. Judge a home-cooked meal on the dish itself — its
+  scarcity, its ingredients and how much work it takes. An exotic dish cooked at home ranks
+  as highly as the same dish in a restaurant: paratha laminated from scratch, a stew carrying
+  a dozen ingredients, or a plate with three separately-cooked components belongs in the 50s
+  or 60s even though nobody paid a bill. The restaurant distinction only decides where BASIC
+  dishes land — a plain meal is worth more cooked to order in a good kitchen than reheated at
+  home. Venue cost raises a score; it is never a precondition for a high one.
 
   Use the WHOLE range and commit to the extremes. If it is a British staple, give it a
   single-digit or teens score — do not hedge toward the middle. Fewer than half of all
@@ -103,7 +112,7 @@ Return ONLY valid JSON, no markdown, no explanation:
 Transcript:
 """
 
-DEFAULTS = {"wakeTime": 7.5, "exoticFood": "home cooking", "exoticScore": 14, "transportModes": 2, "transportList": None, "bedTime": 23.0, "coffees": 2}
+DEFAULTS = {"wakeTime": 7.5, "exoticFood": "home cooking", "exoticScore": 30, "transportModes": 2, "transportList": None, "bedTime": 23.0, "coffees": 2}
 
 
 def extract_json_array(text, var_name):
@@ -258,7 +267,12 @@ def main():
     parser.add_argument("--limit", type=int, default=0, help="Max episodes to process (0 = all)")
     parser.add_argument("--incremental", action="store_true", help="Skip already-processed episodes")
     parser.add_argument("--pages", type=int, default=4, help="Listing pages to fetch (default 4)")
+    parser.add_argument("--episodes", help="Only (re)process these episode ids, comma-separated")
     args = parser.parse_args()
+
+    only_ids = None
+    if args.episodes:
+        only_ids = {int(x) for x in args.episodes.split(",") if x.strip()}
 
     api_key = os.environ.get("ANTHROPIC_API_KEY")
     if not api_key:
@@ -268,7 +282,7 @@ def main():
     session = requests.Session()
 
     existing = {}
-    if args.incremental and OUT_PATH.exists():
+    if (args.incremental or only_ids) and OUT_PATH.exists():
         for card in json.loads(OUT_PATH.read_text()):
             existing[card["episode"]] = card
         print(f"Loaded {len(existing)} existing cards")
@@ -284,7 +298,9 @@ def main():
     interview_eps = [e for e in all_episodes if not should_skip(e)]
     print(f"Found {len(all_episodes)} total, {len(interview_eps)} to consider")
 
-    cards = list(existing.values()) if args.incremental else []
+    # Old cards stay in the list; a rebuilt card is appended after its predecessor
+    # and wins the dedupe at write time, so a failed fetch leaves the old one intact.
+    cards = list(existing.values())
     processed = 0
 
     for ep in interview_eps:
@@ -292,7 +308,10 @@ def main():
         raw_title = ep.get("title", f"Episode {ep_id}")
         guest = extract_guest(raw_title)
 
-        if args.incremental and ep_id in existing:
+        if only_ids and ep_id not in only_ids:
+            continue
+
+        if args.incremental and not only_ids and ep_id in existing:
             continue
 
         if args.limit and processed >= args.limit:
@@ -340,7 +359,8 @@ def main():
         time.sleep(1.5)
 
     OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
-    cards.sort(key=lambda c: c["episode"])
+    deduped = {c["episode"]: c for c in cards}  # later entries win
+    cards = sorted(deduped.values(), key=lambda c: c["episode"])
     OUT_PATH.write_text(json.dumps(cards, indent=2))
     print(f"\nWrote {len(cards)} cards to {OUT_PATH}")
 
