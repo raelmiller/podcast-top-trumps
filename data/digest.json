@@ -1,7 +1,7 @@
 {
-  "generated": "2026-07-28T09:41:07.851267+00:00",
+  "generated": "2026-07-29T09:46:20.172186+00:00",
   "total": 11,
-  "new": 2,
+  "new": 0,
   "matches": [
     {
       "company": "Pleo",
@@ -69,6 +69,27 @@
       "company": "Abnormal Security",
       "company_tier": "B",
       "ats": "greenhouse",
+      "id": "Abnormal Security:greenhouse:7817418003",
+      "title": "Sales Operations Analyst, EMEA & APJ",
+      "location": "Remote - UK",
+      "url": "https://abnormal.ai/careers/jobs/7817418003?gh_jid=7817418003",
+      "department": "Revenue Operations",
+      "posted": "2026-07-28T06:10:44-04:00",
+      "sector": "Email security",
+      "hq": "San Francisco / London",
+      "size": "500\u2013700",
+      "stage": "Late",
+      "co_notes": "London expansion",
+      "role_tier": "Sales Ops",
+      "role_priority": 2,
+      "seniority": "senior/IC",
+      "loc_note": "",
+      "is_new": false
+    },
+    {
+      "company": "Abnormal Security",
+      "company_tier": "B",
+      "ats": "greenhouse",
       "id": "Abnormal Security:greenhouse:7818876003",
       "title": "Sales Operations Analyst, EMEA & APJ",
       "location": "Remote - UK",
@@ -84,28 +105,7 @@
       "role_priority": 2,
       "seniority": "senior/IC",
       "loc_note": "",
-      "is_new": true
-    },
-    {
-      "company": "Abnormal Security",
-      "company_tier": "B",
-      "ats": "greenhouse",
-      "id": "Abnormal Security:greenhouse:7817418003",
-      "title": "Sales Operations Analyst, EMEA & APJ",
-      "location": "Remote - UK",
-      "url": "https://abnormal.ai/careers/jobs/7817418003?gh_jid=7817418003",
-      "department": "Revenue Operations",
-      "posted": "2026-07-28T04:20:30-04:00",
-      "sector": "Email security",
-      "hq": "San Francisco / London",
-      "size": "500\u2013700",
-      "stage": "Late",
-      "co_notes": "London expansion",
-      "role_tier": "Sales Ops",
-      "role_priority": 2,
-      "seniority": "senior/IC",
-      "loc_note": "",
-      "is_new": true
+      "is_new": false
     },
     {
       "company": "Collibra",
