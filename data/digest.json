@@ -1,7 +1,7 @@
 {
-  "generated": "2026-07-31T09:46:31.848736+00:00",
-  "total": 10,
-  "new": 0,
+  "generated": "2026-08-01T09:09:27.230091+00:00",
+  "total": 11,
+  "new": 1,
   "matches": [
     {
       "company": "Pleo",
@@ -126,6 +126,26 @@
       "seniority": "manager",
       "loc_note": "",
       "is_new": false
+    },
+    {
+      "company": "Qualtrics",
+      "company_tier": "C",
+      "ats": "greenhouse",
+      "id": "Qualtrics:greenhouse:8099208",
+      "title": "Principal Analyst II Revenue Strategy & Operations, Enterprise (North America)",
+      "location": "Remote - US",
+      "url": "https://www.qualtrics.com/careers/us/en/job/8099208?gh_jid=8099208",
+      "department": "GTM Field Operations",
+      "posted": "2026-07-31T17:30:04-04:00",
+      "sector": "Experience management",
+      "hq": "Provo / London",
+      "size": "5,000+",
+      "stage": "Private (PE)",
+      "role_tier": "RevOps",
+      "role_priority": 1,
+      "seniority": "manager",
+      "loc_note": "",
+      "is_new": true
     },
     {
       "company": "Marqeta",
