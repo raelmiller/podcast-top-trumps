@@ -1,7 +1,7 @@
 {
-  "generated": "2026-08-01T09:09:27.230091+00:00",
+  "generated": "2026-08-02T09:14:15.273406+00:00",
   "total": 11,
-  "new": 1,
+  "new": 0,
   "matches": [
     {
       "company": "Pleo",
@@ -145,7 +145,7 @@
       "role_priority": 1,
       "seniority": "manager",
       "loc_note": "",
-      "is_new": true
+      "is_new": false
     },
     {
       "company": "Marqeta",
