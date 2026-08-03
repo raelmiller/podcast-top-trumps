@@ -2423,5 +2423,17 @@
     "hq": "San Francisco / London",
     "size": "6,000+",
     "stage": "Public"
+  },
+  "Multiplier": {
+    "ats": "recruitee",
+    "token": "multiplier",
+    "jobs": 1,
+    "source": "probe",
+    "tier": "B",
+    "sector": "EOR",
+    "hq": "Singapore / London",
+    "size": "300\u2013500",
+    "stage": "Late",
+    "co_notes": "London presence"
   }
 }
