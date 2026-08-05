@@ -1,7 +1,7 @@
 {
-  "generated": "2026-08-04T09:42:43.160494+00:00",
+  "generated": "2026-08-05T09:39:57.425524+00:00",
   "total": 11,
-  "new": 0,
+  "new": 1,
   "matches": [
     {
       "company": "Pleo",
@@ -108,6 +108,27 @@
       "is_new": false
     },
     {
+      "company": "Monzo",
+      "company_tier": "B",
+      "ats": "greenhouse",
+      "id": "Monzo:greenhouse:8105783",
+      "title": "Sales Operations Executive, Fixed Term Contract",
+      "location": "London",
+      "url": "https://job-boards.greenhouse.io/monzo/jobs/8105783",
+      "department": "Special Projects",
+      "posted": "2026-08-05T03:26:01-04:00",
+      "sector": "Neobank",
+      "hq": "London (HQ)",
+      "size": "2,000\u20132,500",
+      "stage": "Late",
+      "co_notes": "London HQ; UK challenger bank",
+      "role_tier": "Sales Ops",
+      "role_priority": 2,
+      "seniority": "senior/IC",
+      "loc_note": "",
+      "is_new": true
+    },
+    {
       "company": "Amplitude",
       "company_tier": "B",
       "ats": "greenhouse",
@@ -123,26 +144,6 @@
       "stage": "Public",
       "role_tier": "GTM Strategy",
       "role_priority": 3,
-      "seniority": "manager",
-      "loc_note": "",
-      "is_new": false
-    },
-    {
-      "company": "Qualtrics",
-      "company_tier": "C",
-      "ats": "greenhouse",
-      "id": "Qualtrics:greenhouse:8099208",
-      "title": "Principal Analyst II Revenue Strategy & Operations, Enterprise (North America)",
-      "location": "Remote - US",
-      "url": "https://www.qualtrics.com/careers/us/en/job/8099208?gh_jid=8099208",
-      "department": "GTM Field Operations",
-      "posted": "2026-07-31T17:30:04-04:00",
-      "sector": "Experience management",
-      "hq": "Provo / London",
-      "size": "5,000+",
-      "stage": "Private (PE)",
-      "role_tier": "RevOps",
-      "role_priority": 1,
       "seniority": "manager",
       "loc_note": "",
       "is_new": false
