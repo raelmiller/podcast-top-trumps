@@ -1,7 +1,7 @@
 {
-  "generated": "2026-08-05T09:39:57.425524+00:00",
-  "total": 11,
-  "new": 1,
+  "generated": "2026-08-06T09:43:50.804656+00:00",
+  "total": 9,
+  "new": 0,
   "matches": [
     {
       "company": "Pleo",
@@ -20,27 +20,6 @@
       "role_tier": "RevOps",
       "role_priority": 1,
       "seniority": "senior/IC",
-      "loc_note": "location unknown",
-      "is_new": false
-    },
-    {
-      "company": "Synthesia",
-      "company_tier": "A",
-      "ats": "ashby",
-      "id": "Synthesia:ashby:b073c9cc-3053-47e7-b4c1-7a471d4c6ffe",
-      "title": "Revenue Operations Manager",
-      "location": "",
-      "url": "https://jobs.ashbyhq.com/synthesia/b073c9cc-3053-47e7-b4c1-7a471d4c6ffe",
-      "department": "",
-      "posted": "",
-      "sector": "Video AI",
-      "hq": "London (HQ)",
-      "size": "400\u2013600",
-      "stage": "Late",
-      "co_notes": "London HQ, rapid GTM build-out",
-      "role_tier": "RevOps",
-      "role_priority": 1,
-      "seniority": "manager",
       "loc_note": "location unknown",
       "is_new": false
     },
@@ -106,27 +85,6 @@
       "seniority": "senior/IC",
       "loc_note": "",
       "is_new": false
-    },
-    {
-      "company": "Monzo",
-      "company_tier": "B",
-      "ats": "greenhouse",
-      "id": "Monzo:greenhouse:8105783",
-      "title": "Sales Operations Executive, Fixed Term Contract",
-      "location": "London",
-      "url": "https://job-boards.greenhouse.io/monzo/jobs/8105783",
-      "department": "Special Projects",
-      "posted": "2026-08-05T03:26:01-04:00",
-      "sector": "Neobank",
-      "hq": "London (HQ)",
-      "size": "2,000\u20132,500",
-      "stage": "Late",
-      "co_notes": "London HQ; UK challenger bank",
-      "role_tier": "Sales Ops",
-      "role_priority": 2,
-      "seniority": "senior/IC",
-      "loc_note": "",
-      "is_new": true
     },
     {
       "company": "Amplitude",
