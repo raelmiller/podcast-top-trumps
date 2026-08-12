@@ -166,47 +166,107 @@ def extract_guest(title):
     return title
 
 
-def fetch_wikipedia_photo(name: str, session) -> str | None:
-    try:
-        search = session.get(
-            "https://en.wikipedia.org/w/api.php",
-            params={
-                "action": "query",
-                "list": "search",
-                "srsearch": name,
-                "srlimit": 1,
-                "srnamespace": 0,
-                "format": "json",
-            },
-            headers=HEADERS,
-            timeout=10,
-        )
-        search.raise_for_status()
-        results = search.json().get("query", {}).get("search", [])
-        page_title = results[0]["title"] if results else name
+def _norm(s: str) -> str:
+    return re.sub(r"[^a-z]", "", s.lower())
 
-        img = session.get(
-            "https://en.wikipedia.org/w/api.php",
-            params={
-                "action": "query",
-                "titles": page_title,
-                "prop": "pageimages",
-                "format": "json",
-                "pithumbsize": 400,
-                "redirects": 1,
-            },
-            headers=HEADERS,
-            timeout=10,
-        )
-        img.raise_for_status()
-        pages = img.json().get("query", {}).get("pages", {})
-        for page in pages.values():
+
+def _wiki_get(session, params, attempts=3):
+    """Wikipedia occasionally returns an error page instead of JSON; retry those."""
+    last = None
+    for i in range(attempts):
+        try:
+            r = session.get(
+                "https://en.wikipedia.org/w/api.php",
+                params={**params, "format": "json"},
+                headers=HEADERS,
+                timeout=15,
+            )
+            r.raise_for_status()
+            return r.json()
+        except Exception as e:
+            last = e
+            time.sleep(1.5 * (i + 1))
+    raise last
+
+
+def _title_matches(title: str, name: str) -> bool:
+    """Guard against the search returning a different person with a shared first name."""
+    t, parts = _norm(title), [p for p in name.split() if len(p) > 1]
+    if not parts:
+        return False
+    surname = _norm(parts[-1])
+    # Surname must appear, plus one more name part, so "Roger O'Sullivan"
+    # never matches "Roger Eatwell".
+    return bool(surname) and surname in t and any(_norm(p) in t for p in parts[:-1])
+
+
+# Guests are entertainers, broadcasters and writers. Plenty share a name with a
+# more famous politician — Charlie Baker and Ian Smith both do — so the article's
+# own description decides which one we take.
+DESC_GOOD = ("comedian", "comic", "actor", "actress", "presenter", "broadcaster",
+             "podcast", "writer", "author", "musician", "singer", "screenwriter",
+             "performer", "host", "television", "radio", "journalist", "footballer",
+             "classicist", "director", "producer", "entertainer")
+DESC_BAD = ("politician", "governor", "senator", "congressman", "prime minister",
+            "statesman", "military", "general", "admiral", "monarch", "bishop",
+            "dictator", "diplomat", "economist", "murderer", "criminal")
+
+
+def _score_page(title: str, desc: str) -> int:
+    d = f"{title} {desc}".lower()
+    score = 0
+    if any(w in d for w in DESC_GOOD):
+        score += 4
+    if any(w in d for w in DESC_BAD):
+        score -= 6
+    if "(comedian)" in title.lower() or "(comics)" in title.lower():
+        score += 2
+    return score
+
+
+def fetch_wikipedia_photo(name: str, session):
+    """Return (thumbnail_url, note). url is None when nothing trustworthy was found."""
+    try:
+        # Two searches: the bare name favours the most famous holder of it, the
+        # qualified one surfaces the performer when someone else outranks them.
+        ranked = []
+        for query in (name, f"{name} comedian"):
+            data = _wiki_get(session, {
+                "action": "query", "list": "search",
+                "srsearch": query, "srlimit": 5, "srnamespace": 0,
+            })
+            for r in data.get("query", {}).get("search", []):
+                if r["title"] not in ranked and _title_matches(r["title"], name):
+                    ranked.append(r["title"])
+        if not ranked:
+            return None, "no matching Wikipedia article"
+
+        data = _wiki_get(session, {
+            "action": "query", "titles": "|".join(ranked[:10]),
+            "prop": "pageimages|pageterms", "pithumbsize": 400, "redirects": 1,
+        })
+        pages = list(data.get("query", {}).get("pages", {}).values())
+
+        best = None
+        for page in pages:
+            title = page.get("title", "")
+            desc = " ".join(page.get("terms", {}).get("description", []))
             src = page.get("thumbnail", {}).get("source")
-            if src:
-                return src
-    except Exception:
-        pass
-    return None
+            if not src:
+                continue
+            score = _score_page(title, desc)
+            rank = ranked.index(title) if title in ranked else 99
+            if best is None or (score, -rank) > (best[0], -best[1]):
+                best = (score, rank, src, title, desc)
+
+        if best is None:
+            return None, f"no image on: {', '.join(ranked[:3])}"
+        score, _, src, title, desc = best
+        if score < 0:
+            return None, f"rejected '{title}' ({desc or 'no description'}) — looks like the wrong person"
+        return src, f"wikipedia: {title}" + (f" ({desc})" if desc else "")
+    except Exception as e:
+        return None, f"lookup failed: {type(e).__name__}: {e}"
 
 
 def fetch_episode_page(session, episode_id):
@@ -262,24 +322,64 @@ def should_skip(ep: dict) -> bool:
     )
 
 
+def refresh_photos(session, only_ids=None, force=False):
+    """Re-run guest photo lookups over the existing deck. No transcripts, no Claude."""
+    if not OUT_PATH.exists():
+        sys.exit(f"No cards file at {OUT_PATH}")
+    cards = json.loads(OUT_PATH.read_text(encoding="utf-8"))
+
+    targets = [c for c in cards
+               if (only_ids is None or c["episode"] in only_ids)
+               and (force or not c.get("photo"))]
+    print(f"{len(cards)} cards, {len(targets)} to look up\n")
+
+    found = failed = 0
+    for card in targets:
+        guest = card["guest"]
+        photo, note = fetch_wikipedia_photo(guest, session)
+        if photo:
+            card["photo"] = photo
+            found += 1
+            print(f"  OK   {guest} — {note}")
+        else:
+            card["photo"] = None
+            failed += 1
+            print(f"  --   {guest} — {note}")
+        time.sleep(0.6)
+
+    OUT_PATH.write_text(json.dumps(cards, indent=2, ensure_ascii=False), encoding="utf-8")
+    missing = [c["guest"] for c in cards if not c.get("photo")]
+    print(f"\nFound {found}, still missing {failed}. Wrote {OUT_PATH}")
+    print(f"Cards without a photo ({len(missing)}): {', '.join(missing) if missing else 'none'}")
+    print("Those show a letter placeholder in the game, which is intended.")
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--limit", type=int, default=0, help="Max episodes to process (0 = all)")
     parser.add_argument("--incremental", action="store_true", help="Skip already-processed episodes")
     parser.add_argument("--pages", type=int, default=4, help="Listing pages to fetch (default 4)")
     parser.add_argument("--episodes", help="Only (re)process these episode ids, comma-separated")
+    parser.add_argument("--photos-only", action="store_true",
+                        help="Only refresh guest photos on existing cards (no scraping, no API key)")
+    parser.add_argument("--force-photos", action="store_true",
+                        help="With --photos-only, also re-check cards that already have a photo")
     args = parser.parse_args()
 
     only_ids = None
     if args.episodes:
         only_ids = {int(x) for x in args.episodes.split(",") if x.strip()}
 
+    session = requests.Session()
+
+    if args.photos_only:
+        return refresh_photos(session, only_ids, args.force_photos)
+
     api_key = os.environ.get("ANTHROPIC_API_KEY")
     if not api_key:
         sys.exit("Set ANTHROPIC_API_KEY environment variable")
 
     client = anthropic.Anthropic(api_key=api_key)
-    session = requests.Session()
 
     existing = {}
     if (args.incremental or only_ids) and OUT_PATH.exists():
@@ -332,14 +432,10 @@ def main():
 
         print(f"  Transcript: {len(transcript)} chars")
 
-        photo = fetch_wikipedia_photo(guest, session)
-        if photo:
-            print(f"  Photo: Wikipedia")
-        elif og_photo:
-            photo = og_photo
-            print(f"  Photo: og:image")
-        else:
-            print(f"  Photo: none")
+        # Deliberately no og:image fallback — every episode returns the same
+        # podcast logo, so the card is better off with its initial placeholder.
+        photo, note = fetch_wikipedia_photo(guest, session)
+        print(f"  Photo: {note}")
 
         try:
             stats = extract_stats(transcript, client)
