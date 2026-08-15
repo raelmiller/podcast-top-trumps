@@ -1,7 +1,7 @@
 {
-  "generated": "2026-08-14T08:15:58.030487+00:00",
-  "total": 6,
-  "new": 0,
+  "generated": "2026-08-15T07:31:30.448193+00:00",
+  "total": 8,
+  "new": 1,
   "matches": [
     {
       "company": "Pleo",
@@ -85,6 +85,47 @@
       "seniority": "senior/IC",
       "loc_note": "",
       "is_new": false
+    },
+    {
+      "company": "Qualtrics",
+      "company_tier": "C",
+      "ats": "greenhouse",
+      "id": "Qualtrics:greenhouse:8099208",
+      "title": "Principal Analyst II Revenue Strategy & Operations, Enterprise (North America)",
+      "location": "Remote - US",
+      "url": "https://www.qualtrics.com/careers/us/en/job/8099208?gh_jid=8099208",
+      "department": "GTM Field Operations",
+      "posted": "2026-08-14T15:17:58-04:00",
+      "sector": "Experience management",
+      "hq": "Provo / London",
+      "size": "5,000+",
+      "stage": "Private (PE)",
+      "role_tier": "RevOps",
+      "role_priority": 1,
+      "seniority": "manager",
+      "loc_note": "",
+      "is_new": false
+    },
+    {
+      "company": "Planhat",
+      "company_tier": "C",
+      "ats": "ashby",
+      "id": "Planhat:ashby:6fa02dbb-5f21-4f74-8030-16e8e8a2fbbd",
+      "title": "GTM Operations Associate",
+      "location": "",
+      "url": "https://jobs.ashbyhq.com/planhat/6fa02dbb-5f21-4f74-8030-16e8e8a2fbbd",
+      "department": "",
+      "posted": "",
+      "sector": "Customer success",
+      "hq": "Stockholm / London",
+      "size": "200\u2013400",
+      "stage": "Growth",
+      "co_notes": "Stockholm HQ; London presence",
+      "role_tier": "Sales Ops",
+      "role_priority": 2,
+      "seniority": "senior/IC",
+      "loc_note": "location unknown",
+      "is_new": true
     },
     {
       "company": "Planhat",
