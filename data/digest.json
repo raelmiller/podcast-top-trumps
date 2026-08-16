@@ -1,7 +1,7 @@
 {
-  "generated": "2026-08-15T07:31:30.448193+00:00",
+  "generated": "2026-08-16T07:32:06.126473+00:00",
   "total": 8,
-  "new": 1,
+  "new": 0,
   "matches": [
     {
       "company": "Pleo",
@@ -125,7 +125,7 @@
       "role_priority": 2,
       "seniority": "senior/IC",
       "loc_note": "location unknown",
-      "is_new": true
+      "is_new": false
     },
     {
       "company": "Planhat",
