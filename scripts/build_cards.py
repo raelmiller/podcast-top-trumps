@@ -37,6 +37,14 @@ HEADERS = {
 
 MONTHS = r"(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)"
 
+# Wikimedia's API policy asks clients to identify themselves; generic browser
+# user-agents get rate-limited far more aggressively.
+WIKI_HEADERS = {
+    "User-Agent": "wdydy-top-trumps/1.0 (podcast card game; "
+                  "https://github.com/raelmiller/podcast-top-trumps)",
+    "Accept": "application/json",
+}
+
 EXTRACT_PROMPT = """You are reading the full transcript from "What Did You Do Yesterday?" — a podcast
 where a guest describes everything they did the previous day.
 
@@ -170,22 +178,29 @@ def _norm(s: str) -> str:
     return re.sub(r"[^a-z]", "", s.lower())
 
 
-def _wiki_get(session, params, attempts=3):
-    """Wikipedia occasionally returns an error page instead of JSON; retry those."""
+def _wiki_get(session, params, attempts=5):
+    """Wikipedia rate-limits hard and sometimes returns an error page; back off and retry."""
     last = None
     for i in range(attempts):
         try:
             r = session.get(
                 "https://en.wikipedia.org/w/api.php",
                 params={**params, "format": "json"},
-                headers=HEADERS,
-                timeout=15,
+                headers=WIKI_HEADERS,
+                timeout=20,
             )
+            if r.status_code == 429:
+                # Honour Retry-After when offered, otherwise back off exponentially.
+                wait = float(r.headers.get("Retry-After") or 0) or min(60, 4 * 2 ** i)
+                print(f"       rate-limited, waiting {wait:.0f}s")
+                time.sleep(wait)
+                last = requests.HTTPError("429 Too Many Requests")
+                continue
             r.raise_for_status()
             return r.json()
         except Exception as e:
             last = e
-            time.sleep(1.5 * (i + 1))
+            time.sleep(2 * (i + 1))
     raise last
 
 
@@ -224,49 +239,66 @@ def _score_page(title: str, desc: str) -> int:
     return score
 
 
+def _best_candidate(session, name, ranked):
+    """Score the candidate articles and return the strongest (score, src, title, desc)."""
+    data = _wiki_get(session, {
+        "action": "query", "titles": "|".join(ranked[:10]),
+        "prop": "pageimages|pageterms", "pithumbsize": 400, "redirects": 1,
+    })
+    best = None
+    for page in data.get("query", {}).get("pages", {}).values():
+        title = page.get("title", "")
+        desc = " ".join(page.get("terms", {}).get("description", []))
+        src = page.get("thumbnail", {}).get("source")
+        if not src:
+            continue
+        score = _score_page(title, desc)
+        rank = ranked.index(title) if title in ranked else 99
+        if best is None or (score, -rank) > (best[0], -best[1]):
+            best = (score, rank, src, title, desc)
+    return best
+
+
+def _search_titles(session, name, query):
+    data = _wiki_get(session, {
+        "action": "query", "list": "search",
+        "srsearch": query, "srlimit": 5, "srnamespace": 0,
+    })
+    return [r["title"] for r in data.get("query", {}).get("search", [])
+            if _title_matches(r["title"], name)]
+
+
 def fetch_wikipedia_photo(name: str, session):
-    """Return (thumbnail_url, note). url is None when nothing trustworthy was found."""
+    """Return (url, note, status) where status is 'found', 'none' or 'error'.
+
+    'error' means the lookup could not complete (rate limit, network) — the
+    caller must leave any existing photo alone and try again later.
+    """
     try:
-        # Two searches: the bare name favours the most famous holder of it, the
-        # qualified one surfaces the performer when someone else outranks them.
-        ranked = []
-        for query in (name, f"{name} comedian"):
-            data = _wiki_get(session, {
-                "action": "query", "list": "search",
-                "srsearch": query, "srlimit": 5, "srnamespace": 0,
-            })
-            for r in data.get("query", {}).get("search", []):
-                if r["title"] not in ranked and _title_matches(r["title"], name):
-                    ranked.append(r["title"])
+        ranked = _search_titles(session, name, name)
+        best = _best_candidate(session, name, ranked) if ranked else None
+
+        # Only pay for the second search when the first found nothing convincing:
+        # a clear performer match makes it redundant, which matters under rate limits.
+        if best is None or best[0] < 4:
+            extra = [t for t in _search_titles(session, name, f"{name} comedian")
+                     if t not in ranked]
+            if extra:
+                ranked = ranked + extra
+                alt = _best_candidate(session, name, ranked)
+                if alt and (best is None or alt[0] > best[0]):
+                    best = alt
+
         if not ranked:
-            return None, "no matching Wikipedia article"
-
-        data = _wiki_get(session, {
-            "action": "query", "titles": "|".join(ranked[:10]),
-            "prop": "pageimages|pageterms", "pithumbsize": 400, "redirects": 1,
-        })
-        pages = list(data.get("query", {}).get("pages", {}).values())
-
-        best = None
-        for page in pages:
-            title = page.get("title", "")
-            desc = " ".join(page.get("terms", {}).get("description", []))
-            src = page.get("thumbnail", {}).get("source")
-            if not src:
-                continue
-            score = _score_page(title, desc)
-            rank = ranked.index(title) if title in ranked else 99
-            if best is None or (score, -rank) > (best[0], -best[1]):
-                best = (score, rank, src, title, desc)
-
+            return None, "no matching Wikipedia article", "none"
         if best is None:
-            return None, f"no image on: {', '.join(ranked[:3])}"
+            return None, f"no image on: {', '.join(ranked[:3])}", "none"
         score, _, src, title, desc = best
         if score < 0:
-            return None, f"rejected '{title}' ({desc or 'no description'}) — looks like the wrong person"
-        return src, f"wikipedia: {title}" + (f" ({desc})" if desc else "")
+            return None, f"rejected '{title}' ({desc or 'no description'}) — wrong person", "none"
+        return src, f"wikipedia: {title}" + (f" ({desc})" if desc else ""), "found"
     except Exception as e:
-        return None, f"lookup failed: {type(e).__name__}: {e}"
+        return None, f"lookup failed: {type(e).__name__}: {e}", "error"
 
 
 def fetch_episode_page(session, episode_id):
@@ -333,24 +365,38 @@ def refresh_photos(session, only_ids=None, force=False):
                and (force or not c.get("photo"))]
     print(f"{len(cards)} cards, {len(targets)} to look up\n")
 
-    found = failed = 0
-    for card in targets:
+    def save():
+        OUT_PATH.write_text(json.dumps(cards, indent=2, ensure_ascii=False), encoding="utf-8")
+
+    found = none = errors = 0
+    errored = []
+    for i, card in enumerate(targets, 1):
         guest = card["guest"]
-        photo, note = fetch_wikipedia_photo(guest, session)
-        if photo:
+        photo, note, status = fetch_wikipedia_photo(guest, session)
+        if status == "found":
             card["photo"] = photo
             found += 1
             print(f"  OK   {guest} — {note}")
-        else:
+        elif status == "none":
             card["photo"] = None
-            failed += 1
+            none += 1
             print(f"  --   {guest} — {note}")
-        time.sleep(0.6)
+        else:
+            # Rate limit or network trouble: keep whatever the card already had.
+            errors += 1
+            errored.append(guest)
+            print(f"  ERR  {guest} — {note}")
+        if i % 10 == 0:
+            save()  # so a long run that dies keeps its progress
+        time.sleep(1.2)
 
-    OUT_PATH.write_text(json.dumps(cards, indent=2, ensure_ascii=False), encoding="utf-8")
+    save()
     missing = [c["guest"] for c in cards if not c.get("photo")]
-    print(f"\nFound {found}, still missing {failed}. Wrote {OUT_PATH}")
-    print(f"Cards without a photo ({len(missing)}): {', '.join(missing) if missing else 'none'}")
+    print(f"\nFound {found}, no article {none}, errors {errors}. Wrote {OUT_PATH}")
+    if errored:
+        print(f"\nCould not check {len(errored)} (rate limit or network): {', '.join(errored)}")
+        print("Their existing photos were left alone. Re-run the same command to retry just those.")
+    print(f"\nCards without a photo ({len(missing)}): {', '.join(missing) if missing else 'none'}")
     print("Those show a letter placeholder in the game, which is intended.")
 
 
@@ -434,7 +480,7 @@ def main():
 
         # Deliberately no og:image fallback — every episode returns the same
         # podcast logo, so the card is better off with its initial placeholder.
-        photo, note = fetch_wikipedia_photo(guest, session)
+        photo, note, _ = fetch_wikipedia_photo(guest, session)
         print(f"  Photo: {note}")
 
         try:
