@@ -1,7 +1,7 @@
 {
-  "generated": "2026-08-24T07:58:28.239058+00:00",
-  "total": 8,
-  "new": 0,
+  "generated": "2026-08-25T07:44:56.709559+00:00",
+  "total": 9,
+  "new": 1,
   "matches": [
     {
       "company": "Pleo",
@@ -22,6 +22,27 @@
       "seniority": "senior/IC",
       "loc_note": "location unknown",
       "is_new": false
+    },
+    {
+      "company": "Synthesia",
+      "company_tier": "A",
+      "ats": "ashby",
+      "id": "Synthesia:ashby:11571432-672d-41d9-80ec-bfc7708ae96a",
+      "title": "Director, Sales Strategy and Operations",
+      "location": "",
+      "url": "https://jobs.ashbyhq.com/synthesia/11571432-672d-41d9-80ec-bfc7708ae96a",
+      "department": "",
+      "posted": "",
+      "sector": "Video AI",
+      "hq": "London (HQ)",
+      "size": "400\u2013600",
+      "stage": "Late",
+      "co_notes": "London HQ, rapid GTM build-out",
+      "role_tier": "GTM Strategy",
+      "role_priority": 3,
+      "seniority": "director+",
+      "loc_note": "location unknown",
+      "is_new": true
     },
     {
       "company": "DeepL",
