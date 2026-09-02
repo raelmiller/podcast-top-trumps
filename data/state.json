@@ -17,239 +17,17 @@
     "title": "Manager, Revenue Strategy & Operations",
     "company": "Mixpanel"
   },
-  "Airwallex:ashby:4a4154c1-d00e-452e-9d65-5acb2f76c653": {
-    "first_seen": "2026-06-03T12:29:31.435570+00:00",
-    "last_seen": "2026-06-04T10:54:20.875574+00:00",
-    "title": "Senior Manager, Revenue Strategy & Operations",
-    "company": "Airwallex"
-  },
-  "Pigment:lever:3c436918-9e0c-41d5-aa1a-fa6ca62cbfcd": {
-    "first_seen": "2026-06-03T12:29:31.435570+00:00",
-    "last_seen": "2026-06-04T10:54:20.875574+00:00",
-    "title": "EPM Presales Operations - Marketing",
-    "company": "Pigment"
-  },
   "Nebius:greenhouse:4813946101": {
     "first_seen": "2026-06-03T12:29:31.435570+00:00",
     "last_seen": "2026-06-22T13:03:13.712785+00:00",
     "title": "Sales Operations Specialist",
     "company": "Nebius"
   },
-  "Multiverse:ashby:16c2d2f9-9837-4a33-8a27-6a700b463b89": {
-    "first_seen": "2026-06-03T12:29:31.435570+00:00",
-    "last_seen": "2026-06-03T12:29:31.435570+00:00",
-    "title": "Analytics Engineer",
-    "company": "Multiverse"
-  },
-  "Monzo:greenhouse:7873998": {
-    "first_seen": "2026-06-03T12:29:31.435570+00:00",
-    "last_seen": "2026-06-03T12:29:31.435570+00:00",
-    "title": "Lead Analytics Engineer, Borrowing",
-    "company": "Monzo"
-  },
-  "Intercom:greenhouse:7808050": {
-    "first_seen": "2026-06-03T12:29:31.435570+00:00",
-    "last_seen": "2026-06-03T12:29:31.435570+00:00",
-    "title": "Senior Analytics Engineer",
-    "company": "Intercom"
-  },
-  "Xero:ashby:f81c7ab6-d0bc-4747-bfc2-3d3a05dee509": {
-    "first_seen": "2026-06-03T12:29:31.435570+00:00",
-    "last_seen": "2026-06-04T10:54:20.875574+00:00",
-    "title": "Head of Sales Operations - Americas",
-    "company": "Xero"
-  },
   "Marqeta:greenhouse:7915193": {
     "first_seen": "2026-06-03T12:29:31.435570+00:00",
     "last_seen": "2026-08-11T08:12:13.998618+00:00",
     "title": "GTM Strategy & Operations Manager - EU / UK",
     "company": "Marqeta"
-  },
-  "Wise:smartrecruiters:744000129210959": {
-    "first_seen": "2026-06-03T12:29:31.435570+00:00",
-    "last_seen": "2026-06-03T12:29:31.435570+00:00",
-    "title": "Lead Analytics Engineer",
-    "company": "Wise"
-  },
-  "Twilio:greenhouse:7551660": {
-    "first_seen": "2026-06-03T12:29:31.435570+00:00",
-    "last_seen": "2026-06-03T12:29:31.435570+00:00",
-    "title": "Staff Analytics Engineer",
-    "company": "Twilio"
-  },
-  "Vanta:ashby:cc1cbee0-06cf-4b63-b49c-945b1c12f657": {
-    "first_seen": "2026-06-03T13:10:27.528713+00:00",
-    "last_seen": "2026-06-04T10:54:20.875574+00:00",
-    "title": "Revenue Operations Analyst",
-    "company": "Vanta"
-  },
-  "Elliptic:ashby:26980983-5ee9-4c79-9e92-a61cf2308f6d": {
-    "first_seen": "2026-06-03T13:10:27.528713+00:00",
-    "last_seen": "2026-06-04T10:54:20.875574+00:00",
-    "title": "RevOps Manager",
-    "company": "Elliptic"
-  },
-  "Demandbase:ashby:6d75dd0d-7c6e-454c-9792-95c36442699b": {
-    "first_seen": "2026-06-03T13:10:27.528713+00:00",
-    "last_seen": "2026-06-04T10:54:20.875574+00:00",
-    "title": "Vice President, Revenue Operations",
-    "company": "Demandbase"
-  },
-  "Zscaler:greenhouse:5032957007": {
-    "first_seen": "2026-06-03T13:10:27.528713+00:00",
-    "last_seen": "2026-06-03T13:10:27.528713+00:00",
-    "title": "Sales Operations Manager",
-    "company": "Zscaler"
-  },
-  "Cohere:ashby:cd3eacfe-1169-4df0-8164-93a857d5ddf0": {
-    "first_seen": "2026-06-04T10:54:20.875574+00:00",
-    "last_seen": "2026-06-04T10:54:20.875574+00:00",
-    "title": "RevOps Analyst (Analytics)",
-    "company": "Cohere"
-  },
-  "Cohere:ashby:a03e02e4-76be-4666-a71d-e7b1d51e4a0f": {
-    "first_seen": "2026-06-04T10:54:20.875574+00:00",
-    "last_seen": "2026-06-04T10:54:20.875574+00:00",
-    "title": "RevOps GTM Systems Architect",
-    "company": "Cohere"
-  },
-  "Vanta:ashby:620e667c-c5ff-45ce-a95e-a7d0a1e694b3": {
-    "first_seen": "2026-06-04T10:54:20.875574+00:00",
-    "last_seen": "2026-06-04T10:54:20.875574+00:00",
-    "title": "Revenue Operations Manager, Post Sales (EMEA)",
-    "company": "Vanta"
-  },
-  "Cohere:ashby:64c12340-0f1d-4320-9b5a-9bcb44150a1d": {
-    "first_seen": "2026-06-04T10:54:20.875574+00:00",
-    "last_seen": "2026-06-04T10:54:20.875574+00:00",
-    "title": "Senior Manager, Revenue Operations",
-    "company": "Cohere"
-  },
-  "Zip:ashby:4a088973-5969-48d1-b75c-01247f18ad8b": {
-    "first_seen": "2026-06-04T10:54:20.875574+00:00",
-    "last_seen": "2026-06-04T10:54:20.875574+00:00",
-    "title": "Director, GTM Strategy & Operations",
-    "company": "Zip"
-  },
-  "Harvey:ashby:5eae0fac-76ad-4058-a6f7-e91e771aa2d0": {
-    "first_seen": "2026-06-04T10:54:20.875574+00:00",
-    "last_seen": "2026-06-04T10:54:20.875574+00:00",
-    "title": "GTM Strategy & Analytics",
-    "company": "Harvey"
-  },
-  "Zip:ashby:7f052c21-f506-4fe2-8476-a5290091e715": {
-    "first_seen": "2026-06-04T10:54:20.875574+00:00",
-    "last_seen": "2026-06-04T10:54:20.875574+00:00",
-    "title": "GTM Strategy & Operations Manager, Data & Territory Operations",
-    "company": "Zip"
-  },
-  "Zip:ashby:9192b000-1ba2-46b6-98a7-16880603428d": {
-    "first_seen": "2026-06-04T10:54:20.875574+00:00",
-    "last_seen": "2026-06-04T10:54:20.875574+00:00",
-    "title": "GTM Strategy & Operations Senior Manager",
-    "company": "Zip"
-  },
-  "Zip:ashby:63a931a8-2539-488f-a38e-632f742471da": {
-    "first_seen": "2026-06-04T10:54:20.875574+00:00",
-    "last_seen": "2026-06-04T10:54:20.875574+00:00",
-    "title": "GTM Strategy & Operations Senior Manager",
-    "company": "Zip"
-  },
-  "Airwallex:ashby:aac30c34-833c-4904-8c02-c4ea4abdb013": {
-    "first_seen": "2026-06-04T10:54:20.875574+00:00",
-    "last_seen": "2026-06-04T10:54:20.875574+00:00",
-    "title": "Director, Revenue Strategy & Operations, ANZ",
-    "company": "Airwallex"
-  },
-  "Airwallex:ashby:9b86d020-21e1-43fc-baae-2cc03d8372a8": {
-    "first_seen": "2026-06-04T10:54:20.875574+00:00",
-    "last_seen": "2026-06-04T10:54:20.875574+00:00",
-    "title": "Director, Revenue Strategy & Operations, Americas",
-    "company": "Airwallex"
-  },
-  "Airwallex:ashby:7685d72f-4a7f-44c3-b172-9c95f9786aba": {
-    "first_seen": "2026-06-04T10:54:20.875574+00:00",
-    "last_seen": "2026-06-04T10:54:20.875574+00:00",
-    "title": "Manager, Revenue Operations, SG",
-    "company": "Airwallex"
-  },
-  "Airwallex:ashby:f3f5d5ad-1781-4bac-bbc1-7afcec4f2d71": {
-    "first_seen": "2026-06-04T10:54:20.875574+00:00",
-    "last_seen": "2026-06-04T10:54:20.875574+00:00",
-    "title": "Manager/Senior Manager, Revenue Strategy & Operations (Korea GTM)",
-    "company": "Airwallex"
-  },
-  "Airwallex:ashby:6bc4d976-3573-4e5e-b28c-36055511d2b3": {
-    "first_seen": "2026-06-04T10:54:20.875574+00:00",
-    "last_seen": "2026-06-04T10:54:20.875574+00:00",
-    "title": "Revenue Operations Manager, ANZ (Based in Bangalore)",
-    "company": "Airwallex"
-  },
-  "Airwallex:ashby:824d3ae2-0ea3-43dc-9c7c-1c491206d5fd": {
-    "first_seen": "2026-06-04T10:54:20.875574+00:00",
-    "last_seen": "2026-06-04T10:54:20.875574+00:00",
-    "title": "Senior Associate, Revenue Operations",
-    "company": "Airwallex"
-  },
-  "Airwallex:ashby:0cc1dd7e-7a43-4094-a1aa-fc6c9af21cfd": {
-    "first_seen": "2026-06-04T10:54:20.875574+00:00",
-    "last_seen": "2026-06-04T10:54:20.875574+00:00",
-    "title": "Senior Associate, Revenue Operations",
-    "company": "Airwallex"
-  },
-  "Airwallex:ashby:295b46b0-9377-4e09-8f2e-8bd69894f1ef": {
-    "first_seen": "2026-06-04T10:54:20.875574+00:00",
-    "last_seen": "2026-06-04T10:54:20.875574+00:00",
-    "title": "Senior Director, Revenue Strategy & Operations, Americas",
-    "company": "Airwallex"
-  },
-  "Airwallex:ashby:6ebef146-37b8-413f-b806-72f7dd7cf9fe": {
-    "first_seen": "2026-06-04T10:54:20.875574+00:00",
-    "last_seen": "2026-06-04T10:54:20.875574+00:00",
-    "title": "Senior Manager, Revenue Operations, Americas",
-    "company": "Airwallex"
-  },
-  "Plaid:ashby:b71c9e1a-b4ed-4802-b736-f89d682d673b": {
-    "first_seen": "2026-06-04T10:54:20.875574+00:00",
-    "last_seen": "2026-06-04T10:54:20.875574+00:00",
-    "title": "GTM Operations Associate, Revenue",
-    "company": "Plaid"
-  },
-  "Notion:ashby:83ef2eda-2f8b-42e9-a0ae-fa55c5628b26": {
-    "first_seen": "2026-06-04T10:54:20.875574+00:00",
-    "last_seen": "2026-06-04T10:54:20.875574+00:00",
-    "title": "Head of GTM Operations",
-    "company": "Notion"
-  },
-  "Zenoti:greenhouse:7661106003": {
-    "first_seen": "2026-06-04T10:54:20.875574+00:00",
-    "last_seen": "2026-06-04T10:54:20.875574+00:00",
-    "title": "Sales Operations - Senior Sales Analytics Lead",
-    "company": "Zenoti"
-  },
-  "Notion:ashby:cb4f5e1a-88e4-4259-b73c-ac975dbcde5f": {
-    "first_seen": "2026-06-04T10:54:20.875574+00:00",
-    "last_seen": "2026-06-04T10:54:20.875574+00:00",
-    "title": "Sales Operations Lead, AMER",
-    "company": "Notion"
-  },
-  "Airwallex:ashby:d6497250-bc29-4c4f-bafb-4d64688b607f": {
-    "first_seen": "2026-06-04T10:54:20.875574+00:00",
-    "last_seen": "2026-06-04T10:54:20.875574+00:00",
-    "title": "Associate Director, Revenue Strategy, Enterprise, Americas",
-    "company": "Airwallex"
-  },
-  "Airwallex:ashby:f04a317e-2479-490e-a04d-8b57f0b6f189": {
-    "first_seen": "2026-06-04T10:54:20.875574+00:00",
-    "last_seen": "2026-06-04T10:54:20.875574+00:00",
-    "title": "Associate Director, Revenue Strategy, SME",
-    "company": "Airwallex"
-  },
-  "Notion:ashby:c45ae77a-37d4-451a-bc59-1723fb15422e": {
-    "first_seen": "2026-06-04T10:54:20.875574+00:00",
-    "last_seen": "2026-06-04T10:54:20.875574+00:00",
-    "title": "Central GTM Strategy & Operations Manager",
-    "company": "Notion"
   },
   "Showpad:greenhouse:7895398": {
     "first_seen": "2026-06-04T10:54:20.875574+00:00",
@@ -269,66 +47,6 @@
     "title": "Director GTM Strategy",
     "company": "Showpad"
   },
-  "Airwallex:ashby:6d593547-7ca0-4a7f-9338-617867eb8ed1": {
-    "first_seen": "2026-06-04T10:54:20.875574+00:00",
-    "last_seen": "2026-06-04T10:54:20.875574+00:00",
-    "title": "Manager, Revenue Strategy",
-    "company": "Airwallex"
-  },
-  "Airwallex:ashby:f8d368e7-9d5f-424f-bf3a-b28435172e52": {
-    "first_seen": "2026-06-04T10:54:20.875574+00:00",
-    "last_seen": "2026-06-04T10:54:20.875574+00:00",
-    "title": "Manager, Revenue Strategy & Enablement, SG & SEA",
-    "company": "Airwallex"
-  },
-  "Airwallex:ashby:d1070f2b-354c-453e-b697-ba5e0e3973f8": {
-    "first_seen": "2026-06-04T10:54:20.875574+00:00",
-    "last_seen": "2026-06-04T10:54:20.875574+00:00",
-    "title": "Manager, Revenue Strategy Operations, CN",
-    "company": "Airwallex"
-  },
-  "Airwallex:ashby:e84e3221-4685-4247-b684-b08703dd9021": {
-    "first_seen": "2026-06-04T10:54:20.875574+00:00",
-    "last_seen": "2026-06-04T10:54:20.875574+00:00",
-    "title": "Manager, Revenue Strategy, SG",
-    "company": "Airwallex"
-  },
-  "n8n:ashby:e77c1fa5-1232-49a3-9db3-b291cd79006b": {
-    "first_seen": "2026-06-04T10:54:20.875574+00:00",
-    "last_seen": "2026-06-04T10:54:20.875574+00:00",
-    "title": "Sales Strategy & Operations Manager \u2013 US (East Coast-based)",
-    "company": "n8n"
-  },
-  "Airwallex:ashby:1a0430a3-6692-4bee-bf99-58538d2b9a86": {
-    "first_seen": "2026-06-04T10:54:20.875574+00:00",
-    "last_seen": "2026-06-04T10:54:20.875574+00:00",
-    "title": "Senior Manager, Revenue Strategy",
-    "company": "Airwallex"
-  },
-  "SugarCRM:lever:f4e90f02-3d3f-4313-8e90-aca3cd97b7b9": {
-    "first_seen": "2026-06-04T10:54:20.875574+00:00",
-    "last_seen": "2026-06-04T10:54:20.875574+00:00",
-    "title": "Director, Revenue Operations",
-    "company": "SugarCRM"
-  },
-  "Xero:ashby:38c27846-6d69-43c2-9e2c-e676d9e0ee85": {
-    "first_seen": "2026-06-04T10:54:20.875574+00:00",
-    "last_seen": "2026-06-04T10:54:20.875574+00:00",
-    "title": "Sales Operations Lead(US) 6-month contract",
-    "company": "Xero"
-  },
-  "Xero:ashby:329912f7-ba1f-474e-b66a-6c9ebfac732e": {
-    "first_seen": "2026-06-04T10:54:20.875574+00:00",
-    "last_seen": "2026-06-04T10:54:20.875574+00:00",
-    "title": "Senior Sales Operations Analyst",
-    "company": "Xero"
-  },
-  "G2:ashby:122bc9ef-827d-44f6-a6be-b326604f5bf8": {
-    "first_seen": "2026-06-04T10:54:20.875574+00:00",
-    "last_seen": "2026-06-04T10:54:20.875574+00:00",
-    "title": "Sales Strategy and Planning Specialist",
-    "company": "G2"
-  },
   "Smartsheet:greenhouse:7662421": {
     "first_seen": "2026-06-04T10:54:20.875574+00:00",
     "last_seen": "2026-06-10T11:10:17.708764+00:00",
@@ -337,7 +55,7 @@
   },
   "Paddle:ashby:237536a7-879c-4b05-b368-53904d13ddaf": {
     "first_seen": "2026-06-06T09:39:36.857546+00:00",
-    "last_seen": "2026-09-01T12:20:59.906640+00:00",
+    "last_seen": "2026-09-02T11:58:33.337380+00:00",
     "title": "VP of Revenue Operations",
     "company": "Paddle"
   },
@@ -361,7 +79,7 @@
   },
   "Pleo:ashby:b4e92b9e-3c46-44f8-ad28-8e430e254a44": {
     "first_seen": "2026-06-19T11:38:30.510547+00:00",
-    "last_seen": "2026-09-01T12:20:59.906640+00:00",
+    "last_seen": "2026-09-02T11:58:33.337380+00:00",
     "title": "RevOps Performance Analyst",
     "company": "Pleo"
   },
@@ -403,7 +121,7 @@
   },
   "Smartsheet:greenhouse:8053758": {
     "first_seen": "2026-07-11T08:52:28.172167+00:00",
-    "last_seen": "2026-09-01T12:20:59.906640+00:00",
+    "last_seen": "2026-09-02T11:58:33.337380+00:00",
     "title": "Sr. Product Marketing Manager - AI GTM Strategy, EMEA",
     "company": "Smartsheet"
   },
@@ -445,13 +163,13 @@
   },
   "DeepL:ashby:f232dbed-d15d-4263-b032-d1caf7636ec1": {
     "first_seen": "2026-08-21T07:44:23.699585+00:00",
-    "last_seen": "2026-09-01T12:20:59.906640+00:00",
+    "last_seen": "2026-09-02T11:58:33.337380+00:00",
     "title": "Senior Analyst - GTM Strategy",
     "company": "DeepL"
   },
   "Synthesia:ashby:11571432-672d-41d9-80ec-bfc7708ae96a": {
     "first_seen": "2026-08-25T07:44:56.709559+00:00",
-    "last_seen": "2026-09-01T12:20:59.906640+00:00",
+    "last_seen": "2026-09-02T11:58:33.337380+00:00",
     "title": "Director, Sales Strategy and Operations",
     "company": "Synthesia"
   }
