@@ -1,6 +1,6 @@
 {
-  "generated": "2026-09-03T11:58:20.911885+00:00",
-  "total": 5,
+  "generated": "2026-09-04T11:59:44.968903+00:00",
+  "total": 4,
   "new": 0,
   "matches": [
     {
@@ -61,27 +61,6 @@
       "role_tier": "GTM Strategy",
       "role_priority": 3,
       "seniority": "senior/IC",
-      "loc_note": "location unknown",
-      "is_new": false
-    },
-    {
-      "company": "Paddle",
-      "company_tier": "B",
-      "ats": "ashby",
-      "id": "Paddle:ashby:237536a7-879c-4b05-b368-53904d13ddaf",
-      "title": "VP of Revenue Operations",
-      "location": "",
-      "url": "https://jobs.ashbyhq.com/paddle/237536a7-879c-4b05-b368-53904d13ddaf",
-      "department": "",
-      "posted": "",
-      "sector": "Payments / Billing",
-      "hq": "London (HQ)",
-      "size": "300\u2013500",
-      "stage": "Late",
-      "co_notes": "London HQ",
-      "role_tier": "RevOps",
-      "role_priority": 1,
-      "seniority": "unspecified",
       "loc_note": "location unknown",
       "is_new": false
     },
