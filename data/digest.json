@@ -1,7 +1,7 @@
 {
-  "generated": "2026-09-10T12:05:37.162992+00:00",
-  "total": 4,
-  "new": 0,
+  "generated": "2026-09-11T12:05:10.020093+00:00",
+  "total": 5,
+  "new": 1,
   "matches": [
     {
       "company": "Pleo",
@@ -22,6 +22,27 @@
       "seniority": "senior/IC",
       "loc_note": "location unknown",
       "is_new": false
+    },
+    {
+      "company": "Cognism",
+      "company_tier": "A",
+      "ats": "greenhouse",
+      "id": "Cognism:greenhouse:4930509101",
+      "title": "VP, Revenue Operations",
+      "location": "London",
+      "url": "https://www.cognism.com/jobs?gh_jid=4930509101",
+      "department": "Revenue Operations",
+      "posted": "2026-09-10T10:18:20-04:00",
+      "sector": "Sales intelligence",
+      "hq": "London (HQ)",
+      "size": "500\u2013700",
+      "stage": "Late",
+      "co_notes": "London HQ; GTM-native",
+      "role_tier": "RevOps",
+      "role_priority": 1,
+      "seniority": "unspecified",
+      "loc_note": "",
+      "is_new": true
     },
     {
       "company": "Synthesia",
