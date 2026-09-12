@@ -1,6 +1,6 @@
 {
-  "generated": "2026-09-11T12:05:10.020093+00:00",
-  "total": 5,
+  "generated": "2026-09-12T11:30:18.422254+00:00",
+  "total": 6,
   "new": 1,
   "matches": [
     {
@@ -42,7 +42,7 @@
       "role_priority": 1,
       "seniority": "unspecified",
       "loc_note": "",
-      "is_new": true
+      "is_new": false
     },
     {
       "company": "Synthesia",
@@ -85,6 +85,26 @@
       "seniority": "manager",
       "loc_note": "location unknown",
       "is_new": false
+    },
+    {
+      "company": "Chainguard",
+      "company_tier": "B",
+      "ats": "greenhouse",
+      "id": "Chainguard:greenhouse:4712511006",
+      "title": "Director, Sales Operations - EMEA and APJ",
+      "location": "Remote - US",
+      "url": "https://job-boards.greenhouse.io/chainguard/jobs/4712511006",
+      "department": "GTM Strategy & Ops",
+      "posted": "2026-09-11T15:33:38-04:00",
+      "sector": "Supply chain security",
+      "hq": "Kirkland WA",
+      "size": "200\u2013400",
+      "stage": "Growth",
+      "role_tier": "Sales Ops",
+      "role_priority": 2,
+      "seniority": "director+",
+      "loc_note": "",
+      "is_new": true
     },
     {
       "company": "Smartsheet",
