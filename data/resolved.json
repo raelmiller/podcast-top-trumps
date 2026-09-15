@@ -2435,5 +2435,17 @@
     "size": "300\u2013500",
     "stage": "Late",
     "co_notes": "London presence"
+  },
+  "Snyk": {
+    "ats": "ashby",
+    "token": "snyk",
+    "jobs": 1,
+    "source": "probe",
+    "tier": "A",
+    "sector": "DevSecOps",
+    "hq": "London + Boston",
+    "size": "1,000\u20131,300",
+    "stage": "Late",
+    "co_notes": "Strong London GTM, data-rich"
   }
 }
