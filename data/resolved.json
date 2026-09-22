@@ -2447,5 +2447,16 @@
     "size": "1,000\u20131,300",
     "stage": "Late",
     "co_notes": "Strong London GTM, data-rich"
+  },
+  "Ambition": {
+    "ats": "ashby",
+    "token": "ambition",
+    "jobs": 1,
+    "source": "probe",
+    "tier": "C",
+    "sector": "Sales performance",
+    "hq": "Chattanooga",
+    "size": "50\u2013100",
+    "stage": "Growth"
   }
 }
