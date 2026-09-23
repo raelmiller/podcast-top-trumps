@@ -5,12 +5,6 @@
     "title": "GTM Operations Manager (Sales Ops)",
     "company": "Pleo"
   },
-  "Mixpanel:greenhouse:7951498": {
-    "first_seen": "2026-06-03T12:29:31.435570+00:00",
-    "last_seen": "2026-06-25T10:11:23.777388+00:00",
-    "title": "EMEA Revenue Strategy & Operations Manager",
-    "company": "Mixpanel"
-  },
   "Marqeta:greenhouse:7915193": {
     "first_seen": "2026-06-03T12:29:31.435570+00:00",
     "last_seen": "2026-08-11T08:12:13.998618+00:00",
@@ -55,7 +49,7 @@
   },
   "Pleo:ashby:b4e92b9e-3c46-44f8-ad28-8e430e254a44": {
     "first_seen": "2026-06-19T11:38:30.510547+00:00",
-    "last_seen": "2026-09-22T12:21:00.092088+00:00",
+    "last_seen": "2026-09-23T12:33:38.188802+00:00",
     "title": "RevOps Performance Analyst",
     "company": "Pleo"
   },
@@ -97,7 +91,7 @@
   },
   "Smartsheet:greenhouse:8053758": {
     "first_seen": "2026-07-11T08:52:28.172167+00:00",
-    "last_seen": "2026-09-22T12:21:00.092088+00:00",
+    "last_seen": "2026-09-23T12:33:38.188802+00:00",
     "title": "Sr. Product Marketing Manager - AI GTM Strategy, EMEA",
     "company": "Smartsheet"
   },
@@ -145,25 +139,25 @@
   },
   "Synthesia:ashby:11571432-672d-41d9-80ec-bfc7708ae96a": {
     "first_seen": "2026-08-25T07:44:56.709559+00:00",
-    "last_seen": "2026-09-22T12:21:00.092088+00:00",
+    "last_seen": "2026-09-23T12:33:38.188802+00:00",
     "title": "Director, Sales Strategy and Operations",
     "company": "Synthesia"
   },
   "Primer:ashby:b8645d28-cf60-4ca2-9194-945cd2c9c2c4": {
     "first_seen": "2026-09-09T12:11:01.313085+00:00",
-    "last_seen": "2026-09-22T12:21:00.092088+00:00",
+    "last_seen": "2026-09-23T12:33:38.188802+00:00",
     "title": "Revenue Operations Lead",
     "company": "Primer"
   },
   "Cognism:greenhouse:4930509101": {
     "first_seen": "2026-09-11T12:05:10.020093+00:00",
-    "last_seen": "2026-09-22T12:21:00.092088+00:00",
+    "last_seen": "2026-09-23T12:33:38.188802+00:00",
     "title": "VP, Revenue Operations",
     "company": "Cognism"
   },
   "Chainguard:greenhouse:4712511006": {
     "first_seen": "2026-09-12T11:30:18.422254+00:00",
-    "last_seen": "2026-09-22T12:21:00.092088+00:00",
+    "last_seen": "2026-09-23T12:33:38.188802+00:00",
     "title": "Director, Sales Operations - EMEA and APJ",
     "company": "Chainguard"
   }
