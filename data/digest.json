@@ -1,7 +1,7 @@
 {
-  "generated": "2026-09-23T12:33:38.188802+00:00",
-  "total": 6,
-  "new": 0,
+  "generated": "2026-09-24T12:33:02.312174+00:00",
+  "total": 7,
+  "new": 1,
   "matches": [
     {
       "company": "Pleo",
@@ -43,6 +43,27 @@
       "seniority": "unspecified",
       "loc_note": "",
       "is_new": false
+    },
+    {
+      "company": "Synthesia",
+      "company_tier": "A",
+      "ats": "ashby",
+      "id": "Synthesia:ashby:aff19178-febd-4c6b-bbe0-6c69c9f5c42f",
+      "title": "Senior Sales Operations Analyst",
+      "location": "",
+      "url": "https://jobs.ashbyhq.com/synthesia/aff19178-febd-4c6b-bbe0-6c69c9f5c42f",
+      "department": "",
+      "posted": "",
+      "sector": "Video AI",
+      "hq": "London (HQ)",
+      "size": "400\u2013600",
+      "stage": "Late",
+      "co_notes": "London HQ, rapid GTM build-out",
+      "role_tier": "Sales Ops",
+      "role_priority": 2,
+      "seniority": "senior/IC",
+      "loc_note": "location unknown",
+      "is_new": true
     },
     {
       "company": "Synthesia",
