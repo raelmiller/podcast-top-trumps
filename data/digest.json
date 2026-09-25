@@ -1,7 +1,7 @@
 {
-  "generated": "2026-09-24T12:33:02.312174+00:00",
+  "generated": "2026-09-25T12:33:16.457388+00:00",
   "total": 7,
-  "new": 1,
+  "new": 0,
   "matches": [
     {
       "company": "Pleo",
@@ -63,7 +63,7 @@
       "role_priority": 2,
       "seniority": "senior/IC",
       "loc_note": "location unknown",
-      "is_new": true
+      "is_new": false
     },
     {
       "company": "Synthesia",
@@ -136,7 +136,7 @@
       "location": "England",
       "url": "https://job-boards.greenhouse.io/smartsheet/jobs/8053758",
       "department": "Product Marketing",
-      "posted": "2026-09-21T18:18:55-04:00",
+      "posted": "2026-09-24T16:21:01-04:00",
       "sector": "Work management",
       "hq": "Bellevue / London",
       "size": "3,000\u20134,000",
