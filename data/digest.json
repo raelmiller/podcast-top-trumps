@@ -1,7 +1,7 @@
 {
-  "generated": "2026-09-25T12:33:16.457388+00:00",
-  "total": 7,
-  "new": 0,
+  "generated": "2026-09-26T12:03:24.366896+00:00",
+  "total": 8,
+  "new": 1,
   "matches": [
     {
       "company": "Pleo",
@@ -22,6 +22,26 @@
       "seniority": "senior/IC",
       "loc_note": "location unknown",
       "is_new": false
+    },
+    {
+      "company": "Pleo",
+      "company_tier": "A",
+      "ats": "ashby",
+      "id": "Pleo:ashby:9e57f45b-bc33-4fa5-81a8-59427e8cd39f",
+      "title": "Revenue Operations Analyst (CX)",
+      "location": "",
+      "url": "https://jobs.ashbyhq.com/pleo/9e57f45b-bc33-4fa5-81a8-59427e8cd39f",
+      "department": "",
+      "posted": "",
+      "sector": "Spend management",
+      "hq": "Copenhagen / London",
+      "size": "900\u20131,200",
+      "stage": "Late",
+      "role_tier": "RevOps",
+      "role_priority": 1,
+      "seniority": "senior/IC",
+      "loc_note": "location unknown",
+      "is_new": true
     },
     {
       "company": "Cognism",
