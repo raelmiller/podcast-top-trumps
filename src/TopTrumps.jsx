@@ -1,7 +1,11 @@
 import { useReducer, useRef, useState } from 'react'
 import { initializeApp } from 'firebase/app'
-import { getDatabase, ref, push, onChildAdded } from 'firebase/database'
+import { getDatabase, ref, push, set, onValue, onChildAdded } from 'firebase/database'
 import cards from '../data/cards.json'
+import {
+  CATS, BLANK, gameReducer, shuffle, seededShuffle,
+  makeCode, codeToSeed, deckFingerprint,
+} from './gameLogic.js'
 import './TopTrumps.css'
 
 // ── Firebase config ───────────────────────────────────────────────────────────
@@ -19,54 +23,9 @@ const firebaseConfig = {
 const db = getDatabase(initializeApp(firebaseConfig))
 // ─────────────────────────────────────────────────────────────────────────────
 
-const CATS = [
-  { key: 'wakeTime',       label: 'Wake Time',       icon: '⏰', lowerWins: true,  fmt: formatTime },
-  { key: 'exoticScore',    label: 'Exotic Food',     icon: '🍱', lowerWins: false, fmt: n => `${n}/100`, subKey: 'exoticFood' },
-  { key: 'transportModes', label: 'Transport Modes', icon: '🚌', lowerWins: false, fmt: n => String(n), subKey: 'transportList' },
-  { key: 'bedTime',        label: 'Bed Time',        icon: '🌙', lowerWins: false, fmt: formatTime },
-  { key: 'coffees',        label: 'Coffees',         icon: '☕', lowerWins: false, fmt: n => String(n) },
-]
-
-function formatTime(h) {
-  const hh = h % 24
-  const hours = Math.floor(hh)
-  const mins = Math.round((hh - hours) * 60)
-  const ampm = hours < 12 ? 'am' : 'pm'
-  const display12 = hours === 0 ? 12 : hours > 12 ? hours - 12 : hours
-  return `${String(display12).padStart(2, '0')}:${String(mins).padStart(2, '0')}${ampm}`
-}
-
-function mulberry32(seed) {
-  return function () {
-    seed |= 0; seed = seed + 0x6D2B79F5 | 0
-    let t = Math.imul(seed ^ seed >>> 15, 1 | seed)
-    t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t
-    return ((t ^ t >>> 14) >>> 0) / 4294967296
-  }
-}
-
-function seededShuffle(arr, seed) {
-  const a = [...arr]
-  const rand = mulberry32(seed)
-  for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(rand() * (i + 1));[a[i], a[j]] = [a[j], a[i]]
-  }
-  return a
-}
-
-function shuffle(arr) {
-  const a = [...arr]
-  for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));[a[i], a[j]] = [a[j], a[i]]
-  }
-  return a
-}
-
-function makeCode() {
-  return Math.floor(Math.random() * 2176782336).toString(36).toUpperCase().padStart(6, '0')
-}
-
-function codeToSeed(code) { return parseInt(code, 36) }
+// Identifies this build's deck. Both players must agree on it, or the same
+// card can end up in both hands — see the deck-mismatch guard below.
+const MY_DECK = deckFingerprint(cards)
 
 function getUrlParams() {
   const p = new URLSearchParams(window.location.search)
@@ -79,65 +38,6 @@ function makeShareUrl(code) {
   url.searchParams.set('g', code)
   url.searchParams.set('p', '2')
   return url.toString()
-}
-
-function dealHands(deck) {
-  return {
-    p1: deck.filter((_, i) => i % 2 === 0),
-    p2: deck.filter((_, i) => i % 2 === 1),
-  }
-}
-
-// ── Game reducer ──────────────────────────────────────────────────────────────
-// All actions have guards so receiving a duplicate (e.g. both players click
-// Next at the same moment) is a safe no-op.
-
-const BLANK = {
-  p1Hand: null, p2Hand: null, pot: [],
-  isP1Turn: true, round: 1,
-  phase: 'pick', cat: null, result: null,
-}
-
-function gameReducer(state, action) {
-  switch (action.type) {
-    case 'INIT': {
-      const { p1, p2 } = dealHands(action.deck)
-      return { ...BLANK, p1Hand: p1, p2Hand: p2 }
-    }
-    case 'PICK': {
-      if (state.phase !== 'pick') return state
-      const c = CATS.find(c => c.key === action.catKey)
-      const pv = state.p1Hand[0][c.key]
-      const cv = state.p2Hand[0][c.key]
-      const result = pv === cv ? 'draw' : (c.lowerWins ? pv < cv : pv > cv) ? 'win' : 'lose'
-      return { ...state, cat: c, result, phase: 'reveal' }
-    }
-    case 'NEXT': {
-      if (state.phase !== 'reveal') return state
-      const top1 = state.p1Hand[0], top2 = state.p2Hand[0]
-      let newP1, newP2, newPot, nextIsP1Turn
-      if (state.result === 'win') {
-        newP1 = [...state.p1Hand.slice(1), ...state.pot, top1, top2]
-        newP2 = state.p2Hand.slice(1); newPot = []; nextIsP1Turn = true
-      } else if (state.result === 'lose') {
-        newP1 = state.p1Hand.slice(1)
-        newP2 = [...state.p2Hand.slice(1), ...state.pot, top2, top1]
-        newPot = []; nextIsP1Turn = false
-      } else {
-        newP1 = state.p1Hand.slice(1); newP2 = state.p2Hand.slice(1)
-        newPot = [...state.pot, top1, top2]; nextIsP1Turn = state.isP1Turn
-      }
-      if (newP1.length === 0 || newP2.length === 0)
-        return { ...state, p1Hand: newP1, p2Hand: newP2, phase: 'gameover' }
-      return {
-        ...state, p1Hand: newP1, p2Hand: newP2, pot: newPot,
-        isP1Turn: nextIsP1Turn, round: state.round + 1,
-        phase: 'pick', cat: null, result: null,
-      }
-    }
-    case 'RESET': return BLANK
-    default: return state
-  }
 }
 
 // ── Component ─────────────────────────────────────────────────────────────────
@@ -157,6 +57,25 @@ export default function TopTrumps() {
   const unsubRef = useRef(null)
   // Firebase ref for the current game's moves
   const movesRef = useRef(null)
+  // Unsubscribe handle for the deck-agreement watcher
+  const deckUnsubRef = useRef(null)
+  // Set when the two players turn out to be on different builds of the deck
+  const [deckMismatch, setDeckMismatch] = useState(null)
+
+  // ── Deck agreement ─────────────────────────────────────────────────────────
+  // Both players publish the fingerprint of the deck they loaded. The seeded
+  // shuffle only produces matching hands if both decks are identical, so if the
+  // fingerprints differ the two screens are dealing from different packs and the
+  // same card can be top of both hands. Detect it and stop rather than play on.
+
+  function watchDeckAgreement(code, playerNum) {
+    set(ref(db, `games/${code}/decks/${playerNum}`), MY_DECK)
+    deckUnsubRef.current = onValue(ref(db, `games/${code}/decks`), snap => {
+      const seen = Object.values(snap.val() || {})
+      const other = seen.find(f => f !== MY_DECK)
+      if (other) setDeckMismatch({ mine: MY_DECK, theirs: other })
+    })
+  }
 
   // ── Firebase helpers ────────────────────────────────────────────────────────
 
@@ -176,6 +95,8 @@ export default function TopTrumps() {
     unsubRef.current?.()
     unsubRef.current = null
     movesRef.current = null
+    deckUnsubRef.current?.()
+    deckUnsubRef.current = null
   }
 
   function send(msg) {
@@ -195,6 +116,7 @@ export default function TopTrumps() {
     setGameCode(code); setPlayerNum(1)
     setShareUrl(makeShareUrl(code))
     startListening(code)
+    watchDeckAgreement(code, 1)
     setScreen('host-waiting')
   }
 
@@ -207,6 +129,7 @@ export default function TopTrumps() {
     dispatch({ type: 'INIT', deck: seededShuffle(cards, codeToSeed(code)) })
     setGameCode(code); setPlayerNum(2)
     startListening(code)
+    watchDeckAgreement(code, 2)
     setMode('multi'); setScreen('game')
   }
 
@@ -226,6 +149,7 @@ export default function TopTrumps() {
     stopListening()
     dispatch({ type: 'RESET' })
     setMode(null); setPlayerNum(null); setGameCode(''); setShareUrl('')
+    setDeckMismatch(null)
     setScreen('setup')
     const url = new URL(window.location.href); url.search = ''
     window.history.replaceState({}, '', url)
@@ -244,6 +168,29 @@ export default function TopTrumps() {
   const oppLabel = mode === 'multi' ? 'Friend' : 'CPU'
 
   // ── Screens ─────────────────────────────────────────────────────────────────
+
+  // A deck mismatch means the two screens are dealing from different packs, so
+  // nothing shown after this point can be trusted. Block before any game screen.
+  if (deckMismatch) {
+    return (
+      <div className="tt-over">
+        <h1 style={{ fontSize: 'clamp(1.4rem,5vw,2.2rem)' }}>Different card packs</h1>
+        <p style={{ color: '#aaa', fontSize: '0.95rem', maxWidth: '30rem', lineHeight: 1.5 }}>
+          You and your friend have different versions of the deck, so you'd be
+          playing with mismatched cards. This happens when one of you has an
+          older copy of the page open.
+        </p>
+        <p style={{ color: '#888', fontSize: '0.9rem', maxWidth: '30rem', lineHeight: 1.5 }}>
+          <strong style={{ color: '#ffd700' }}>Both of you</strong> reload the
+          page, then start a new game.
+        </p>
+        <button className="tt-btn" onClick={() => window.location.reload()}>Reload</button>
+        <p style={{ color: '#444', fontSize: '0.7rem', fontFamily: 'monospace' }}>
+          yours: {deckMismatch.mine} · theirs: {deckMismatch.theirs}
+        </p>
+      </div>
+    )
+  }
 
   if (screen === 'setup') {
     return (
