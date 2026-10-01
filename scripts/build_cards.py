@@ -142,6 +142,29 @@ def extract_json_array(text, var_name):
     return None
 
 
+def _describe_listing_response(page, url, resp):
+    """Say why a listing page yielded nothing, so a silent zero is diagnosable."""
+    body = resp.text or ""
+    title = ""
+    try:
+        t = BeautifulSoup(body, "html.parser").find("title")
+        title = t.get_text(strip=True) if t else ""
+    except Exception:
+        pass
+    print(f"  !! page {page} parsed to 0 episodes")
+    print(f"     url    : {url}")
+    print(f"     status : {resp.status_code}  bytes: {len(body)}")
+    print(f"     title  : {title!r}")
+    print(f"     markers: serverEpisodeData={'serverEpisodeData' in body} "
+          f"'episode='={'episode=' in body} segment-item={'segment-item' in body}")
+    low = body.lower()
+    for sign in ("captcha", "cloudflare", "just a moment", "access denied",
+                 "forbidden", "enable javascript", "rate limit"):
+        if sign in low:
+            print(f"     NOTE   : response mentions {sign!r} — looks like a block page")
+    print(f"     opening: {body[:300].strip()!r}")
+
+
 def fetch_episode_list(session, page=1):
     url = f"{BASE_URL}/?view=episodes&sort=relevance&page={page}"
     resp = session.get(url, headers=HEADERS, timeout=30)
@@ -161,6 +184,9 @@ def fetch_episode_list(session, page=1):
         seen.add(ep_id)
         text = a.get_text(" ", strip=True)
         episodes.append({"id": ep_id, "title": text, "episode_type": "interview"})
+
+    if not episodes:
+        _describe_listing_response(page, url, resp)
     return episodes
 
 
@@ -443,6 +469,17 @@ def main():
 
     interview_eps = [e for e in all_episodes if not should_skip(e)]
     print(f"Found {len(all_episodes)} total, {len(interview_eps)} to consider")
+
+    # An empty listing means the scrape failed, not that there is nothing new.
+    # Stop before writing, so a broken listing can never quietly rewrite the
+    # deck and report success.
+    if not all_episodes:
+        sys.exit(
+            "\nERROR: the episode listing returned no episodes at all.\n"
+            "The deck was NOT modified. The site's markup has changed, or it is\n"
+            "refusing this client (see the diagnostics above). Nothing to do until\n"
+            "that is fixed — re-running will not help."
+        )
 
     # Old cards stay in the list; a rebuilt card is appended after its predecessor
     # and wins the dedupe at write time, so a failed fetch leaves the old one intact.
