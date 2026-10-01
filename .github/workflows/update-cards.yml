@@ -1,0 +1,117 @@
+name: update-cards
+
+# Scrapes any new episodes, fills in missing guest photos, and pushes the
+# updated deck. Netlify watches main, so a push here deploys the site.
+#
+# Requires the repository secret ANTHROPIC_API_KEY (Settings → Secrets and
+# variables → Actions). Photo lookups need no key; the stat extraction does.
+
+on:
+  schedule:
+    # Mondays, off the hour: scheduled jobs on :00 are the most delayed.
+    - cron: "17 6 * * 1"
+  workflow_dispatch:
+    inputs:
+      episodes:
+        description: "Rebuild only these episode ids (comma-separated). Blank = fetch new episodes."
+        required: false
+        default: ""
+      skip_photos:
+        description: "Skip the photo refresh"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  # Never let two runs push the deck at once.
+  group: update-cards
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install scraper dependencies
+        run: pip install requests beautifulsoup4 anthropic
+
+      - name: Record the deck before any changes
+        run: |
+          python - <<'PY'
+          import json, pathlib
+          cards = json.loads(pathlib.Path("data/cards.json").read_text(encoding="utf-8"))
+          print(f"before: {len(cards)} cards, {sum(1 for c in cards if c.get('photo'))} photos")
+          PY
+
+      - name: Scrape episodes
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          if [ -z "$ANTHROPIC_API_KEY" ]; then
+            echo "::error::ANTHROPIC_API_KEY secret is not set — add it in Settings → Secrets and variables → Actions"
+            exit 1
+          fi
+          if [ -n "${{ github.event.inputs.episodes }}" ]; then
+            python scripts/build_cards.py --episodes "${{ github.event.inputs.episodes }}"
+          else
+            python scripts/build_cards.py --incremental
+          fi
+
+      - name: Fill in missing guest photos
+        if: github.event.inputs.skip_photos != 'true'
+        run: python scripts/build_cards.py --photos-only
+
+      - name: Check the deck is still valid
+        # Fails the run before anything is pushed if the deck is malformed or
+        # a card has gone missing or duplicated.
+        run: node test/cards.test.mjs
+
+      - name: Summarise the result
+        run: |
+          python - <<'PY'
+          import json, os, pathlib
+          cards = json.loads(pathlib.Path("data/cards.json").read_text(encoding="utf-8"))
+          photos = sum(1 for c in cards if c.get("photo"))
+          newest = max(cards, key=lambda c: c["id"])
+          lines = [
+              f"**{len(cards)} cards**, {photos} with photos",
+              f"Newest episode: {newest['id']} — {newest['guest']}",
+          ]
+          missing = [c["guest"] for c in cards if not c.get("photo")]
+          if missing:
+              lines.append(f"\nNo photo ({len(missing)}): {', '.join(missing)}")
+          summary = "\n".join(lines)
+          print(summary)
+          with open(os.environ["GITHUB_STEP_SUMMARY"], "a") as f:
+              f.write(summary + "\n")
+          PY
+
+      - name: Commit and push the deck
+        run: |
+          git config user.name  "update-cards"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/cards.json
+          if git diff --cached --quiet; then
+            echo "No deck changes — nothing to deploy."
+            exit 0
+          fi
+          git commit -m "Update cards (run ${{ github.run_id }})"
+          # The role-monitor job also pushes here, so rebase rather than fail.
+          for i in 1 2 3; do
+            git pull --rebase --autostash origin main && git push && exit 0
+            echo "Push attempt $i failed, retrying..."
+            sleep $((i * 5))
+          done
+          echo "::error::Could not push after 3 attempts"
+          exit 1
