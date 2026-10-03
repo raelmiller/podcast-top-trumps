@@ -1,7 +1,7 @@
 {
-  "generated": "2026-10-02T13:28:04.296621+00:00",
+  "generated": "2026-10-03T12:18:00.817151+00:00",
   "total": 8,
-  "new": 0,
+  "new": 1,
   "matches": [
     {
       "company": "Pleo",
@@ -42,6 +42,27 @@
       "seniority": "senior/IC",
       "loc_note": "location unknown",
       "is_new": false
+    },
+    {
+      "company": "Hyperexponential",
+      "company_tier": "A",
+      "ats": "ashby",
+      "id": "Hyperexponential:ashby:efae53d3-6f7c-4afd-9d71-56b5f31daa07",
+      "title": "Revenue Operations Leader (Senior Director\u2013VP)",
+      "location": "",
+      "url": "https://jobs.ashbyhq.com/hyperexponential/efae53d3-6f7c-4afd-9d71-56b5f31daa07",
+      "department": "",
+      "posted": "",
+      "sector": "Insurance pricing SaaS",
+      "hq": "London (HQ)",
+      "size": "200\u2013400",
+      "stage": "Growth",
+      "co_notes": "London HQ; niche but strong GTM",
+      "role_tier": "RevOps",
+      "role_priority": 1,
+      "seniority": "director+",
+      "loc_note": "location unknown",
+      "is_new": true
     },
     {
       "company": "Cognism",
@@ -144,26 +165,6 @@
       "role_tier": "Sales Ops",
       "role_priority": 2,
       "seniority": "director+",
-      "loc_note": "",
-      "is_new": false
-    },
-    {
-      "company": "Smartsheet",
-      "company_tier": "C",
-      "ats": "greenhouse",
-      "id": "Smartsheet:greenhouse:8053758",
-      "title": "Sr. Product Marketing Manager - AI GTM Strategy, EMEA",
-      "location": "England",
-      "url": "https://job-boards.greenhouse.io/smartsheet/jobs/8053758",
-      "department": "Product Marketing",
-      "posted": "2026-09-30T19:22:27-04:00",
-      "sector": "Work management",
-      "hq": "Bellevue / London",
-      "size": "3,000\u20134,000",
-      "stage": "Public",
-      "role_tier": "GTM Strategy",
-      "role_priority": 3,
-      "seniority": "manager",
       "loc_note": "",
       "is_new": false
     }
