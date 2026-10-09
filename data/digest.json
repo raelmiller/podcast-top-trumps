@@ -1,7 +1,7 @@
 {
-  "generated": "2026-10-08T14:18:17.161505+00:00",
-  "total": 7,
-  "new": 0,
+  "generated": "2026-10-09T14:07:12.869861+00:00",
+  "total": 8,
+  "new": 1,
   "matches": [
     {
       "company": "Pleo",
@@ -147,6 +147,26 @@
       "seniority": "manager",
       "loc_note": "location unknown",
       "is_new": false
+    },
+    {
+      "company": "Qualtrics",
+      "company_tier": "C",
+      "ats": "greenhouse",
+      "id": "Qualtrics:greenhouse:8264863",
+      "title": "Principal Analyst II, Revenue Operations",
+      "location": "London",
+      "url": "https://www.qualtrics.com/careers/us/en/job/8264863?gh_jid=8264863",
+      "department": "GTM Training & Enablement",
+      "posted": "2026-10-09T02:59:29-04:00",
+      "sector": "Experience management",
+      "hq": "Provo / London",
+      "size": "5,000+",
+      "stage": "Private (PE)",
+      "role_tier": "RevOps",
+      "role_priority": 1,
+      "seniority": "manager",
+      "loc_note": "",
+      "is_new": true
     }
   ]
 }
