@@ -1,7 +1,7 @@
 {
-  "generated": "2026-10-09T14:07:12.869861+00:00",
+  "generated": "2026-10-10T13:18:05.607977+00:00",
   "total": 8,
-  "new": 1,
+  "new": 0,
   "matches": [
     {
       "company": "Pleo",
@@ -166,7 +166,7 @@
       "role_priority": 1,
       "seniority": "manager",
       "loc_note": "",
-      "is_new": true
+      "is_new": false
     }
   ]
 }
