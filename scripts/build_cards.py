@@ -255,14 +255,29 @@ def fetch_episode_list(session, page=1):
     return episodes
 
 
+# A leading episode marker: "EP12:", "S6 EP5:", "Series 6 - Episode 5:"
+_EP_PREFIX = re.compile(
+    r'^\s*(?:S(?:eries|eason)?\s*\d+\s*[,·\-–]?\s*)?'
+    r'E(?:P|pisode)?\s*\d+\s*[:\-–]\s*', re.IGNORECASE)
+# A trailing publication date, with or without a weekday
+_EP_DATE = re.compile(
+    rf'\s*[,·\-–]?\s*(?:(?:Mon|Tue|Wed|Thu|Fri|Sat|Sun)\w*,?\s*)?'
+    rf'{MONTHS}\w*\s+\d{{1,2}}(?:,?\s*\d{{4}})?\s*$', re.IGNORECASE)
+
+
 def extract_guest(title):
-    m = re.search(rf'EP\d+[:\s]+(.+?)\s+{MONTHS}\s+\d', title, re.IGNORECASE)
-    if m:
-        return m.group(1).strip()
-    m = re.search(rf'^(.+?)\s+{MONTHS}\s+\d', title, re.IGNORECASE)
-    if m:
-        return m.group(1).strip()
-    return title
+    """The guest's name alone, with episode numbering and dates stripped.
+
+    The site's titles have changed shape — they now carry a season prefix and
+    no trailing date ("S6 EP3: Paul Foot") — so strip each part independently
+    rather than requiring one fixed layout. Anything already clean is returned
+    unchanged.
+    """
+    t = (title or "").strip()
+    t = _EP_PREFIX.sub("", t)
+    t = _EP_DATE.sub("", t)
+    t = t.strip(" \t-–—:,·")
+    return t or (title or "").strip()
 
 
 def _norm(s: str) -> str:
