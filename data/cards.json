@@ -1341,7 +1341,7 @@
   {
     "id": 671,
     "episode": 671,
-    "guest": "S5 EP11: Danny Wallace ",
+    "guest": "Danny Wallace",
     "photo": null,
     "wakeTime": 6.3,
     "exoticFood": "Teriyaki beef with edamame beans, kimchi, and cauliflower rice from Wagamama",
@@ -1354,7 +1354,7 @@
   {
     "id": 674,
     "episode": 674,
-    "guest": "S6 EP1: Rob Rouse",
+    "guest": "Rob Rouse",
     "photo": null,
     "wakeTime": 8.5,
     "exoticFood": "haddock and cod fish and chips",
@@ -1367,7 +1367,7 @@
   {
     "id": 676,
     "episode": 676,
-    "guest": "S6 EP2: Chris Lintott",
+    "guest": "Chris Lintott",
     "photo": null,
     "wakeTime": 6,
     "exoticFood": "Bitterbollen and chips",
@@ -1380,11 +1380,11 @@
   {
     "id": 678,
     "episode": 678,
-    "guest": "S6 EP3: Paul Foot",
+    "guest": "Paul Foot",
     "photo": null,
     "wakeTime": 4,
     "exoticFood": "Marks and Spencer ultimate prawn cocktail with king prawns in Mary Rose dressing and avocado",
-    "exoticScore": 28,
+    "exoticScore": 20,
     "transportModes": 1,
     "transportList": "walking",
     "bedTime": 24.33,
@@ -1393,7 +1393,7 @@
   {
     "id": 680,
     "episode": 680,
-    "guest": "S6 EP4: Lara Ricote",
+    "guest": "Lara Ricote",
     "photo": null,
     "wakeTime": 10.5,
     "exoticFood": "Thai green curry with poke bowl chicken",
@@ -1406,7 +1406,7 @@
   {
     "id": 682,
     "episode": 682,
-    "guest": "S6 EP5: Emma Sidi ",
+    "guest": "Emma Sidi",
     "photo": null,
     "wakeTime": 5.75,
     "exoticFood": "chicken satay",
