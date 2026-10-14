@@ -1,7 +1,7 @@
 {
-  "generated": "2026-10-13T14:51:13.294629+00:00",
-  "total": 8,
-  "new": 0,
+  "generated": "2026-10-14T12:42:47.790781+00:00",
+  "total": 9,
+  "new": 1,
   "matches": [
     {
       "company": "Pleo",
@@ -167,6 +167,26 @@
       "seniority": "manager",
       "loc_note": "",
       "is_new": false
+    },
+    {
+      "company": "Twilio",
+      "company_tier": "C",
+      "ats": "greenhouse",
+      "id": "Twilio:greenhouse:8266068",
+      "title": "Sales Operations Planning Analyst",
+      "location": "Remote - US",
+      "url": "https://job-boards.greenhouse.io/twilio/jobs/8266068",
+      "department": "Sales Operations",
+      "posted": "2026-10-13T17:49:30-04:00",
+      "sector": "CPaaS",
+      "hq": "San Francisco / London",
+      "size": "5,000+",
+      "stage": "Public",
+      "role_tier": "Sales Ops",
+      "role_priority": 2,
+      "seniority": "senior/IC",
+      "loc_note": "",
+      "is_new": true
     }
   ]
 }
