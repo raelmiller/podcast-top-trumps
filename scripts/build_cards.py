@@ -123,22 +123,78 @@ Transcript:
 DEFAULTS = {"wakeTime": 7.5, "exoticFood": "home cooking", "exoticScore": 30, "transportModes": 2, "transportList": None, "bedTime": 23.0, "coffees": 2}
 
 
-def extract_json_array(text, var_name):
-    m = re.search(rf'{re.escape(var_name)}\s*=\s*(\[)', text)
-    if not m:
-        return None
-    start = m.start(1)
-    depth = 0
-    for i, ch in enumerate(text[start:]):
-        if ch == '[':
+_EPISODE_KEYS = ("episodes", "data", "items", "results", "list", "all")
+
+
+def _balanced_slice(text, start):
+    """The complete JSON value beginning at text[start] ('[' or '{'), or None.
+
+    Tracks string state, so a bracket inside an episode title cannot throw the
+    depth count off.
+    """
+    open_ch = text[start]
+    close_ch = ']' if open_ch == '[' else '}'
+    depth, in_str, esc = 0, False, False
+    for i in range(start, len(text)):
+        ch = text[i]
+        if in_str:
+            if esc:
+                esc = False
+            elif ch == '\\':
+                esc = True
+            elif ch == '"':
+                in_str = False
+            continue
+        if ch == '"':
+            in_str = True
+        elif ch == open_ch:
             depth += 1
-        elif ch == ']':
+        elif ch == close_ch:
             depth -= 1
             if depth == 0:
-                try:
-                    return json.loads(text[start:start + i + 1])
-                except json.JSONDecodeError:
-                    return None
+                return text[start:i + 1]
+    return None
+
+
+def _coerce_episode_list(value):
+    """Find the list of episode objects, whether it's bare or wrapped."""
+    if isinstance(value, list):
+        return value if value and all(isinstance(v, dict) for v in value) else None
+    if isinstance(value, dict):
+        for key in _EPISODE_KEYS:
+            got = _coerce_episode_list(value.get(key))
+            if got:
+                return got
+        for v in value.values():  # any nested list of objects carrying an id
+            if (isinstance(v, list) and v and all(isinstance(x, dict) for x in v)
+                    and "id" in v[0]):
+                return v
+    return None
+
+
+def extract_json_array(text, var_name):
+    """Pull the episode array out of inline JS.
+
+    The site declares it in ways that have changed over time, so match on the
+    bare name and accept whatever punctuation precedes the value — an
+    assignment, a const, or a JSON key — and a wrapper object around the list.
+    """
+    short = var_name.split(".")[-1]
+    for m in re.finditer(re.escape(short), text):
+        j = m.end()
+        while j < len(text) and text[j] in " \t\r\n=:\"'":
+            j += 1
+        if j >= len(text) or text[j] not in "[{":
+            continue
+        raw = _balanced_slice(text, j)
+        if not raw:
+            continue
+        try:
+            got = _coerce_episode_list(json.loads(raw))
+        except json.JSONDecodeError:
+            continue
+        if got:
+            return got
     return None
 
 
@@ -157,12 +213,21 @@ def _describe_listing_response(page, url, resp):
     print(f"     title  : {title!r}")
     print(f"     markers: serverEpisodeData={'serverEpisodeData' in body} "
           f"'episode='={'episode=' in body} segment-item={'segment-item' in body}")
-    low = body.lower()
-    for sign in ("captcha", "cloudflare", "just a moment", "access denied",
-                 "forbidden", "enable javascript", "rate limit"):
-        if sign in low:
-            print(f"     NOTE   : response mentions {sign!r} — looks like a block page")
-    print(f"     opening: {body[:300].strip()!r}")
+    # Only a small or non-200 body is plausibly a challenge page; these words
+    # also appear harmlessly in the scripts of a perfectly healthy page.
+    if resp.status_code != 200 or len(body) < 5000:
+        low = body.lower()
+        for sign in ("captcha", "cloudflare", "just a moment", "access denied",
+                     "forbidden", "enable javascript", "rate limit"):
+            if sign in low:
+                print(f"     NOTE   : response mentions {sign!r} — may be a block page")
+    # The data is there but unparsed: show how it is declared.
+    hit = body.find("serverEpisodeData")
+    if hit != -1:
+        print("     NOTE   : the data IS present but could not be parsed. Context:")
+        print(f"     {body[hit:hit + 240]!r}")
+    else:
+        print(f"     opening: {body[:300].strip()!r}")
 
 
 def fetch_episode_list(session, page=1):
@@ -461,10 +526,18 @@ def main():
 
     print("Fetching episode list...")
     all_episodes = []
+    seen_ids = set()
     for page in range(1, args.pages + 1):
         print(f"  Page {page}...")
         eps = fetch_episode_list(session, page)
-        all_episodes.extend(eps)
+        fresh = [e for e in eps if e.get("id") not in seen_ids]
+        seen_ids.update(e.get("id") for e in fresh)
+        all_episodes.extend(fresh)
+        # The listing paginates client-side: every page returns the same payload.
+        # Once a page adds nothing new there is no point asking for more.
+        if not fresh:
+            print(f"  (page {page} added no new episodes — stopping)")
+            break
         time.sleep(1)
 
     interview_eps = [e for e in all_episodes if not should_skip(e)]
