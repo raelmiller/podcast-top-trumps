@@ -1337,5 +1337,83 @@
     "transportList": "walking, car, walking",
     "bedTime": 25,
     "coffees": 3
+  },
+  {
+    "id": 671,
+    "episode": 671,
+    "guest": "S5 EP11: Danny Wallace ",
+    "photo": null,
+    "wakeTime": 6.3,
+    "exoticFood": "Teriyaki beef with edamame beans, kimchi, and cauliflower rice from Wagamama",
+    "exoticScore": 28,
+    "transportModes": 3,
+    "transportList": "car, walking",
+    "bedTime": 23.5,
+    "coffees": 3
+  },
+  {
+    "id": 674,
+    "episode": 674,
+    "guest": "S6 EP1: Rob Rouse",
+    "photo": null,
+    "wakeTime": 8.5,
+    "exoticFood": "haddock and cod fish and chips",
+    "exoticScore": 11,
+    "transportModes": 2,
+    "transportList": "car, walk",
+    "bedTime": 22.33,
+    "coffees": 2
+  },
+  {
+    "id": 676,
+    "episode": 676,
+    "guest": "S6 EP2: Chris Lintott",
+    "photo": null,
+    "wakeTime": 6,
+    "exoticFood": "Bitterbollen and chips",
+    "exoticScore": 28,
+    "transportModes": 3,
+    "transportList": "walking, coach, tram",
+    "bedTime": 24.5,
+    "coffees": 3
+  },
+  {
+    "id": 678,
+    "episode": 678,
+    "guest": "S6 EP3: Paul Foot",
+    "photo": null,
+    "wakeTime": 4,
+    "exoticFood": "Marks and Spencer ultimate prawn cocktail with king prawns in Mary Rose dressing and avocado",
+    "exoticScore": 28,
+    "transportModes": 1,
+    "transportList": "walking",
+    "bedTime": 24.33,
+    "coffees": 0
+  },
+  {
+    "id": 680,
+    "episode": 680,
+    "guest": "S6 EP4: Lara Ricote",
+    "photo": null,
+    "wakeTime": 10.5,
+    "exoticFood": "Thai green curry with poke bowl chicken",
+    "exoticScore": 28,
+    "transportModes": 2,
+    "transportList": "overground, Victoria line",
+    "bedTime": 23.83,
+    "coffees": 3
+  },
+  {
+    "id": 682,
+    "episode": 682,
+    "guest": "S6 EP5: Emma Sidi ",
+    "photo": null,
+    "wakeTime": 5.75,
+    "exoticFood": "chicken satay",
+    "exoticScore": 26,
+    "transportModes": 3,
+    "transportList": "walking, bus, tube",
+    "bedTime": 24.0,
+    "coffees": 1
   }
 ]
