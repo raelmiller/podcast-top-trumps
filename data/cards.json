@@ -1384,7 +1384,7 @@
     "photo": null,
     "wakeTime": 4,
     "exoticFood": "Marks and Spencer ultimate prawn cocktail with king prawns in Mary Rose dressing and avocado",
-    "exoticScore": 28,
+    "exoticScore": 20,
     "transportModes": 1,
     "transportList": "walking",
     "bedTime": 24.33,
@@ -1413,7 +1413,7 @@
     "exoticScore": 26,
     "transportModes": 3,
     "transportList": "walking, bus, tube",
-    "bedTime": 24.0,
+    "bedTime": 24,
     "coffees": 1
   }
 ]
