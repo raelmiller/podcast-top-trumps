@@ -1,28 +1,8 @@
 {
-  "generated": "2026-10-14T12:42:47.790781+00:00",
-  "total": 9,
-  "new": 1,
+  "generated": "2026-10-15T12:24:06.453769+00:00",
+  "total": 8,
+  "new": 0,
   "matches": [
-    {
-      "company": "Pleo",
-      "company_tier": "A",
-      "ats": "ashby",
-      "id": "Pleo:ashby:b4e92b9e-3c46-44f8-ad28-8e430e254a44",
-      "title": "RevOps Performance Analyst",
-      "location": "",
-      "url": "https://jobs.ashbyhq.com/pleo/b4e92b9e-3c46-44f8-ad28-8e430e254a44",
-      "department": "",
-      "posted": "",
-      "sector": "Spend management",
-      "hq": "Copenhagen / London",
-      "size": "900\u20131,200",
-      "stage": "Late",
-      "role_tier": "RevOps",
-      "role_priority": 1,
-      "seniority": "senior/IC",
-      "loc_note": "location unknown",
-      "is_new": false
-    },
     {
       "company": "Pleo",
       "company_tier": "A",
@@ -177,7 +157,7 @@
       "location": "Remote - US",
       "url": "https://job-boards.greenhouse.io/twilio/jobs/8266068",
       "department": "Sales Operations",
-      "posted": "2026-10-13T17:49:30-04:00",
+      "posted": "2026-10-14T13:14:04-04:00",
       "sector": "CPaaS",
       "hq": "San Francisco / London",
       "size": "5,000+",
@@ -186,7 +166,7 @@
       "role_priority": 2,
       "seniority": "senior/IC",
       "loc_note": "",
-      "is_new": true
+      "is_new": false
     }
   ]
 }
