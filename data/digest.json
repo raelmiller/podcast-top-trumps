@@ -1,6 +1,6 @@
 {
-  "generated": "2026-10-18T11:59:47.184303+00:00",
-  "total": 7,
+  "generated": "2026-10-19T14:18:07.388748+00:00",
+  "total": 6,
   "new": 0,
   "matches": [
     {
@@ -63,27 +63,6 @@
       "role_priority": 1,
       "seniority": "unspecified",
       "loc_note": "",
-      "is_new": false
-    },
-    {
-      "company": "Synthesia",
-      "company_tier": "A",
-      "ats": "ashby",
-      "id": "Synthesia:ashby:11571432-672d-41d9-80ec-bfc7708ae96a",
-      "title": "Director, Sales Strategy and Operations",
-      "location": "",
-      "url": "https://jobs.ashbyhq.com/synthesia/11571432-672d-41d9-80ec-bfc7708ae96a",
-      "department": "",
-      "posted": "",
-      "sector": "Video AI",
-      "hq": "London (HQ)",
-      "size": "400\u2013600",
-      "stage": "Late",
-      "co_notes": "London HQ, rapid GTM build-out",
-      "role_tier": "GTM Strategy",
-      "role_priority": 3,
-      "seniority": "director+",
-      "loc_note": "location unknown",
       "is_new": false
     },
     {
