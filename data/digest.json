@@ -1,7 +1,7 @@
 {
-  "generated": "2026-10-19T14:18:07.388748+00:00",
-  "total": 6,
-  "new": 0,
+  "generated": "2026-10-20T12:31:56.890047+00:00",
+  "total": 7,
+  "new": 1,
   "matches": [
     {
       "company": "Pleo",
@@ -85,6 +85,26 @@
       "seniority": "manager",
       "loc_note": "location unknown",
       "is_new": false
+    },
+    {
+      "company": "Sigma Computing",
+      "company_tier": "B",
+      "ats": "greenhouse",
+      "id": "Sigma Computing:greenhouse:8038730003",
+      "title": "Revenue Operations Manager - UK",
+      "location": "London",
+      "url": "https://job-boards.greenhouse.io/sigmacomputing/jobs/8038730003",
+      "department": "Operations",
+      "posted": "2026-10-20T05:04:57-04:00",
+      "sector": "BI",
+      "hq": "San Francisco",
+      "size": "300\u2013500",
+      "stage": "Late",
+      "role_tier": "RevOps",
+      "role_priority": 1,
+      "seniority": "manager",
+      "loc_note": "",
+      "is_new": true
     },
     {
       "company": "Qualtrics",
