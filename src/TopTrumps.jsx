@@ -61,6 +61,8 @@ export default function TopTrumps() {
   const deckUnsubRef = useRef(null)
   // Set when the two players turn out to be on different builds of the deck
   const [deckMismatch, setDeckMismatch] = useState(null)
+  // The card a correction is being suggested for, or null
+  const [flagged, setFlagged] = useState(null)
 
   // ── Deck agreement ─────────────────────────────────────────────────────────
   // Both players publish the fingerprint of the deck they loaded. The seeded
@@ -290,13 +292,14 @@ export default function TopTrumps() {
         <div className="tt-side">
           <p className="tt-label">Your card</p>
           <TrumpCard card={myCard} alwaysVisible phase={gs.phase} activeCat={gs.cat}
-            onPick={pick} isMe result={resultForMe} canPick={gs.phase === 'pick' && isMyTurn} />
+            onPick={pick} isMe result={resultForMe} canPick={gs.phase === 'pick' && isMyTurn}
+            onFlag={setFlagged} />
         </div>
         <div className="tt-vs">VS</div>
         <div className="tt-side">
           <p className="tt-label">{oppLabel}'s card</p>
           <TrumpCard card={oppCard} phase={gs.phase} activeCat={gs.cat}
-            isMe={false} result={resultForMe} canPick={false} />
+            isMe={false} result={resultForMe} canPick={false} onFlag={setFlagged} />
         </div>
       </div>
 
@@ -313,6 +316,8 @@ export default function TopTrumps() {
         )}
       </div>
 
+      {flagged && <FeedbackModal card={flagged} onClose={() => setFlagged(null)} />}
+
       <Credits />
     </div>
   )
@@ -326,7 +331,115 @@ function Credits() {
   )
 }
 
-function TrumpCard({ card, alwaysVisible, phase, activeCat, onPick, isMe, result, canPick }) {
+const FEEDBACK_FIELDS = [
+  ['exoticScore',    'Exotic food score'],
+  ['exoticFood',     'The food itself'],
+  ['wakeTime',       'Wake time'],
+  ['bedTime',        'Bed time'],
+  ['transportModes', 'Transport'],
+  ['coffees',        'Coffees'],
+  ['photo',          'Photo'],
+  ['other',          'Something else'],
+]
+
+function FeedbackModal({ card, onClose }) {
+  const [field, setField]         = useState('exoticScore')
+  const [suggested, setSuggested] = useState('')
+  const [reason, setReason]       = useState('')
+  const [from, setFrom]           = useState('')
+  const [status, setStatus]       = useState('editing')
+
+  async function submit(e) {
+    e.preventDefault()
+    if (!suggested.trim() && !reason.trim()) return
+    setStatus('sending')
+    try {
+      await push(ref(db, 'feedback'), {
+        at: new Date().toISOString(),
+        episode: card.episode,
+        guest: card.guest,
+        field,
+        suggested: suggested.trim() || null,
+        reason: reason.trim() || null,
+        from: from.trim() || null,
+        // Snapshot what the submitter was actually looking at, so a suggestion
+        // made against an out-of-date page is obvious when reviewing it.
+        current: {
+          exoticFood: card.exoticFood ?? null,
+          exoticScore: card.exoticScore ?? null,
+          wakeTime: card.wakeTime ?? null,
+          bedTime: card.bedTime ?? null,
+          transportModes: card.transportModes ?? null,
+          coffees: card.coffees ?? null,
+          hasPhoto: !!card.photo,
+        },
+        deck: MY_DECK,
+      })
+      setStatus('sent')
+    } catch (err) {
+      setStatus('error')
+    }
+  }
+
+  return (
+    <div className="tt-modal-backdrop" onClick={onClose}>
+      <div className="tt-modal" onClick={e => e.stopPropagation()}>
+        {status === 'sent' ? (
+          <>
+            <h3>Thanks — sent</h3>
+            <p className="tt-modal-note">
+              It'll be reviewed before anything changes on the card.
+            </p>
+            <button className="tt-btn" onClick={onClose}>Close</button>
+          </>
+        ) : (
+          <form onSubmit={submit}>
+            <h3>Suggest a correction</h3>
+            <p className="tt-modal-note">
+              EP. {card.episode} — <strong>{card.guest}</strong>
+            </p>
+
+            <label className="tt-modal-label">What's wrong?</label>
+            <select className="tt-modal-input" value={field}
+              onChange={e => setField(e.target.value)}>
+              {FEEDBACK_FIELDS.map(([k, label]) => (
+                <option key={k} value={k}>{label}</option>
+              ))}
+            </select>
+
+            <label className="tt-modal-label">What should it be? (optional)</label>
+            <input className="tt-modal-input" value={suggested} maxLength={120}
+              placeholder={field === 'exoticScore' ? 'e.g. 45' : 'e.g. the correct dish'}
+              onChange={e => setSuggested(e.target.value)} />
+
+            <label className="tt-modal-label">Why?</label>
+            <textarea className="tt-modal-input" rows={3} value={reason} maxLength={600}
+              placeholder="What did they actually have, or what's off about the score?"
+              onChange={e => setReason(e.target.value)} />
+
+            <label className="tt-modal-label">Your name (optional)</label>
+            <input className="tt-modal-input" value={from} maxLength={60}
+              onChange={e => setFrom(e.target.value)} />
+
+            {status === 'error' && (
+              <p className="tt-modal-error">Couldn't send that — try again in a moment.</p>
+            )}
+
+            <div className="tt-modal-actions">
+              <button type="button" className="tt-modal-cancel" onClick={onClose}>Cancel</button>
+              <button type="submit" className="tt-btn"
+                disabled={status === 'sending' || (!suggested.trim() && !reason.trim())}>
+                {status === 'sending' ? 'Sending…' : 'Send'}
+              </button>
+            </div>
+          </form>
+        )}
+      </div>
+    </div>
+  )
+}
+
+function TrumpCard({ card, alwaysVisible, phase, activeCat, onPick, isMe, result, canPick, onFlag }) {
   const revealed = alwaysVisible || phase === 'reveal'
   if (!card) return null
   return (
@@ -336,6 +449,13 @@ function TrumpCard({ card, alwaysVisible, phase, activeCat, onPick, isMe, result
       ) : (
         <>
           <div className="tt-card-top">
+            {onFlag && (
+              // Deliberately a small corner control rather than a card-wide
+              // click: the stat rows are already the category picker.
+              <button className="tt-flag" title="Suggest a correction"
+                aria-label={`Suggest a correction for ${card.guest}`}
+                onClick={e => { e.stopPropagation(); onFlag(card) }}>⚑</button>
+            )}
             <span className="tt-ep-badge">EP. {card.episode}</span>
             {card.photo
               ? <img className="tt-photo" src={card.photo} alt={card.guest} />

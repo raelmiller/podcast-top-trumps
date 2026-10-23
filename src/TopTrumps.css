@@ -344,3 +344,102 @@ body {
   .tt-side { width: 100%; max-width: 320px; }
   .tt-vs { padding-top: 0; }
 }
+
+/* Correction form */
+
+.tt-card-top { position: relative; }
+
+.tt-flag {
+  position: absolute;
+  top: 0.4rem;
+  right: 0.4rem;
+  background: rgba(0,0,0,0.18);
+  color: rgba(0,0,0,0.5);
+  border: none;
+  border-radius: 6px;
+  width: 1.6rem;
+  height: 1.6rem;
+  font-size: 0.8rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.12s, color 0.12s;
+}
+.tt-flag:hover { background: rgba(0,0,0,0.3); color: #fff; }
+
+.tt-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.72);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  z-index: 50;
+}
+
+.tt-modal {
+  background: #141428;
+  border: 1px solid #2a2a50;
+  border-radius: 14px;
+  padding: 1.25rem;
+  width: 100%;
+  max-width: 420px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.7);
+}
+
+.tt-modal h3 {
+  color: #ffd700;
+  font-size: 1.1rem;
+  margin-bottom: 0.3rem;
+}
+
+.tt-modal-note { color: #888; font-size: 0.8rem; margin-bottom: 0.9rem; }
+.tt-modal-note strong { color: #ccc; }
+
+.tt-modal-label {
+  display: block;
+  font-size: 0.7rem;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin: 0.75rem 0 0.25rem;
+}
+
+.tt-modal-input {
+  width: 100%;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid #333;
+  border-radius: 8px;
+  color: #eee;
+  font-size: 0.9rem;
+  font-family: inherit;
+  padding: 0.5rem 0.65rem;
+  outline: none;
+  resize: vertical;
+}
+.tt-modal-input:focus { border-color: rgba(255,215,0,0.5); }
+
+.tt-modal-error { color: #ff8080; font-size: 0.8rem; margin-top: 0.6rem; }
+
+.tt-modal-actions {
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: 1.1rem;
+}
+
+.tt-modal-actions .tt-btn { padding: 0.55rem 1.2rem; font-size: 0.85rem; }
+.tt-modal-actions .tt-btn:disabled { opacity: 0.45; cursor: not-allowed; }
+
+.tt-modal-cancel {
+  background: none;
+  border: none;
+  color: #666;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+.tt-modal-cancel:hover { color: #aaa; }

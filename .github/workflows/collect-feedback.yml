@@ -1,0 +1,69 @@
+name: collect-feedback
+
+# Pulls card corrections submitted from the game into data/feedback.json, so
+# they can be reviewed in the repo. Reads only — nothing is changed on a card
+# until a review is accepted.
+
+on:
+  schedule:
+    # Daily, off the hour.
+    - cron: "23 7 * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: cards-data
+  cancel-in-progress: false
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: pip install requests
+
+      - name: Collect suggestions
+        run: python scripts/collect_feedback.py
+
+      - name: Report what is awaiting review
+        run: |
+          python - <<'PY'
+          import json, os, pathlib
+          p = pathlib.Path("data/feedback.json")
+          items = json.loads(p.read_text(encoding="utf-8")) if p.exists() else []
+          pending = [i for i in items if i.get("status") == "pending"]
+          lines = [f"**{len(pending)} awaiting review** ({len(items)} total)"]
+          for i in pending[:25]:
+              lines.append(
+                  f"- ep {i.get('episode')} {i.get('guest')} — `{i.get('field')}` "
+                  f"→ {i.get('suggested') or '(no value)'}: {i.get('reason') or ''}")
+          summary = "\n".join(lines)
+          print(summary)
+          with open(os.environ["GITHUB_STEP_SUMMARY"], "a") as f:
+              f.write(summary + "\n")
+          PY
+
+      - name: Commit any new suggestions
+        run: |
+          git config user.name  "collect-feedback"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/feedback.json
+          if git diff --cached --quiet; then
+            echo "No new suggestions."
+            exit 0
+          fi
+          git commit -m "Collect card suggestions (run ${{ github.run_id }})"
+          for i in 1 2 3; do
+            git pull --rebase --autostash origin main && git push && exit 0
+            echo "Push attempt $i failed, retrying..."
+            sleep $((i * 5))
+          done
+          echo "::error::Could not push after 3 attempts"
+          exit 1
