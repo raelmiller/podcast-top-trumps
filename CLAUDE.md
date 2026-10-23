@@ -55,10 +55,12 @@ venue is, on a curve centred near 42.
 Cooking at home is **not** a penalty: judge the dish on its scarcity,
 ingredients and effort. The restaurant distinction only separates basic meals.
 
-Reheated takeaway **leftovers** score lower than cooking from scratch, and lower
-than the same dish eaten fresh — no effort, no freshness. They belong in 11–25
-whatever the dish was: Pizza Hut leftovers 14, leftover beef and black bean 18,
-against 35 for that dish ordered fresh. Note "leftovers" in `exoticFood` so the
+Reheated or second-day food scores lower than cooking from scratch, and lower
+than the same dish eaten fresh — no effort, no freshness. This applies however
+the guest phrases it: "leftovers", "last night's takeaway", "the rest of the
+curry", reheated, warmed up, day-old, cold pizza for breakfast. They belong in
+11–25 whatever the dish was: Pizza Hut leftovers 14, leftover beef and black
+bean 18, against 35 for that dish ordered fresh. Note it in `exoticFood` so the
 score explains itself.
 
 ## Updating episodes
