@@ -21,5 +21,26 @@
     "deck": "86L1XZ-109",
     "decidedAt": "2026-10-23",
     "decision": "Kept at 30. Pasta alla vodka cooked at home is simple everyday cooking; 35 would put it level with curry-house dishes already at 35."
+  },
+  {
+    "id": "-P4bcxEX0WW6Lz_HazRB",
+    "status": "pending",
+    "at": "2026-10-23T07:22:32.289Z",
+    "episode": 356,
+    "guest": "Rhys James",
+    "field": "exoticScore",
+    "suggested": "18",
+    "reason": "This is cold food from a supermarket - should be lower",
+    "from": null,
+    "current": {
+      "bedTime": 25,
+      "coffees": 1,
+      "exoticFood": "California rolls, chicken drumsticks, and brownie from M&S Food Hall",
+      "exoticScore": 26,
+      "hasPhoto": true,
+      "transportModes": 1,
+      "wakeTime": 8.15
+    },
+    "deck": "86L1XZ-109"
   }
 ]
