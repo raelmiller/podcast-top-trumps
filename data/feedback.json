@@ -1,1 +1,23 @@
-[]
+[
+  {
+    "id": "-P4b_ch8Tlph9ZC17ZKF",
+    "status": "pending",
+    "at": "2026-10-23T07:08:01.735Z",
+    "episode": 479,
+    "guest": "Kelly Cates",
+    "field": "exoticScore",
+    "suggested": "35",
+    "reason": "It’s a touch low",
+    "from": null,
+    "current": {
+      "bedTime": 22,
+      "coffees": 2,
+      "exoticFood": "Pasta a la vodka",
+      "exoticScore": 30,
+      "hasPhoto": false,
+      "transportModes": 2,
+      "wakeTime": 9.5
+    },
+    "deck": "86L1XZ-109"
+  }
+]
