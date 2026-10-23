@@ -95,6 +95,12 @@ Extract these statistics from the transcript. For each field:
   dishes land — a plain meal is worth more cooked to order in a good kitchen than reheated at
   home. Venue cost raises a score; it is never a precondition for a high one.
 
+  Reheated takeaway leftovers score LOWER than cooking from scratch, and lower than the same
+  dish eaten fresh — there is no effort and no freshness in it. Put leftovers in the 11-25
+  band whatever the dish was originally: Pizza Hut leftovers = 14, last night's takeaway
+  beef and black bean = 18, even though the same beef and black bean ordered fresh is 35.
+  Say so in exoticFood when the food is leftovers, so the score is self-explanatory.
+
   Use the WHOLE range and commit to the extremes. If it is a British staple, give it a
   single-digit or teens score — do not hedge toward the middle.
   Integer. Use null if no food mentioned.

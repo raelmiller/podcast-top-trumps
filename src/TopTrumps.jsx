@@ -316,6 +316,11 @@ export default function TopTrumps() {
         )}
       </div>
 
+      <p className="tt-flag-hint">
+        Spotted a mistake? Tap the <span className="tt-flag-inline">⚑</span> on a
+        card to suggest a correction.
+      </p>
+
       {flagged && <FeedbackModal card={flagged} onClose={() => setFlagged(null)} />}
 
       <Credits />

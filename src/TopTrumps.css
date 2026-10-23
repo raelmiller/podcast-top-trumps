@@ -443,3 +443,19 @@ body {
   cursor: pointer;
 }
 .tt-modal-cancel:hover { color: #aaa; }
+
+.tt-flag-hint {
+  width: 100%;
+  max-width: 700px;
+  text-align: center;
+  font-size: 0.72rem;
+  color: #555;
+  padding: 0.25rem 1rem 0;
+}
+
+.tt-flag-inline {
+  color: #ffd700;
+  background: rgba(255,215,0,0.12);
+  border-radius: 4px;
+  padding: 0 0.25rem;
+}

@@ -304,8 +304,8 @@
     "guest": "Huge Davies",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/HugeDavies-byPhilipRomano.jpg/500px-HugeDavies-byPhilipRomano.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
     "wakeTime": 7,
-    "exoticFood": "beef and black bean sauce",
-    "exoticScore": 33,
+    "exoticFood": "beef and black bean sauce (takeaway leftovers)",
+    "exoticScore": 18,
     "transportModes": 4,
     "transportList": "tube, train, walking, taxi",
     "bedTime": 25.5,
@@ -1413,7 +1413,7 @@
     "exoticScore": 26,
     "transportModes": 3,
     "transportList": "walking, bus, tube",
-    "bedTime": 24.0,
+    "bedTime": 24,
     "coffees": 1
   }
 ]
