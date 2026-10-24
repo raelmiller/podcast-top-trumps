@@ -1,7 +1,7 @@
 {
-  "generated": "2026-10-23T12:25:38.941513+00:00",
-  "total": 7,
-  "new": 0,
+  "generated": "2026-10-24T11:52:36.474584+00:00",
+  "total": 8,
+  "new": 1,
   "matches": [
     {
       "company": "Pleo",
@@ -125,6 +125,26 @@
       "seniority": "manager",
       "loc_note": "",
       "is_new": false
+    },
+    {
+      "company": "Spotify",
+      "company_tier": "C",
+      "ats": "lever",
+      "id": "Spotify:lever:66184cac-4d6c-46f6-868c-bac0c184fd22",
+      "title": "Revenue Operations Manager - Spotify Technology",
+      "location": "London",
+      "url": "https://jobs.lever.co/spotify/66184cac-4d6c-46f6-868c-bac0c184fd22",
+      "department": "Platform",
+      "posted": "1792767976982",
+      "sector": "Audio / Media",
+      "hq": "Stockholm / London",
+      "size": "9,000+",
+      "stage": "Public",
+      "role_tier": "RevOps",
+      "role_priority": 1,
+      "seniority": "manager",
+      "loc_note": "",
+      "is_new": true
     },
     {
       "company": "Twilio",
