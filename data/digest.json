@@ -1,7 +1,7 @@
 {
-  "generated": "2026-10-24T11:52:36.474584+00:00",
+  "generated": "2026-10-25T12:22:09.442167+00:00",
   "total": 8,
-  "new": 1,
+  "new": 0,
   "matches": [
     {
       "company": "Pleo",
@@ -144,7 +144,7 @@
       "role_priority": 1,
       "seniority": "manager",
       "loc_note": "",
-      "is_new": true
+      "is_new": false
     },
     {
       "company": "Twilio",
