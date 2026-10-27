@@ -1,7 +1,7 @@
 {
-  "generated": "2026-10-26T13:51:59.808932+00:00",
+  "generated": "2026-10-27T13:00:37.698610+00:00",
   "total": 8,
-  "new": 0,
+  "new": 1,
   "matches": [
     {
       "company": "Pleo",
@@ -66,6 +66,26 @@
       "is_new": false
     },
     {
+      "company": "Pleo",
+      "company_tier": "A",
+      "ats": "ashby",
+      "id": "Pleo:ashby:2e97058b-71ce-4ba9-8eb3-2462ce369521",
+      "title": "Sales Operations Business Partner (CX)",
+      "location": "",
+      "url": "https://jobs.ashbyhq.com/pleo/2e97058b-71ce-4ba9-8eb3-2462ce369521",
+      "department": "",
+      "posted": "",
+      "sector": "Spend management",
+      "hq": "Copenhagen / London",
+      "size": "900\u20131,200",
+      "stage": "Late",
+      "role_tier": "Sales Ops",
+      "role_priority": 2,
+      "seniority": "unspecified",
+      "loc_note": "location unknown",
+      "is_new": true
+    },
+    {
       "company": "Primer",
       "company_tier": "B",
       "ats": "ashby",
@@ -100,26 +120,6 @@
       "hq": "San Francisco",
       "size": "300\u2013500",
       "stage": "Late",
-      "role_tier": "RevOps",
-      "role_priority": 1,
-      "seniority": "manager",
-      "loc_note": "",
-      "is_new": false
-    },
-    {
-      "company": "Qualtrics",
-      "company_tier": "C",
-      "ats": "greenhouse",
-      "id": "Qualtrics:greenhouse:8264863",
-      "title": "Principal Analyst II, Revenue Operations",
-      "location": "London",
-      "url": "https://www.qualtrics.com/careers/us/en/job/8264863?gh_jid=8264863",
-      "department": "GTM Training & Enablement",
-      "posted": "2026-10-23T04:29:10-04:00",
-      "sector": "Experience management",
-      "hq": "Provo / London",
-      "size": "5,000+",
-      "stage": "Private (PE)",
       "role_tier": "RevOps",
       "role_priority": 1,
       "seniority": "manager",
