@@ -1,7 +1,7 @@
 {
-  "generated": "2026-10-27T13:00:37.698610+00:00",
+  "generated": "2026-10-28T13:50:50.278508+00:00",
   "total": 8,
-  "new": 1,
+  "new": 0,
   "matches": [
     {
       "company": "Pleo",
@@ -70,7 +70,7 @@
       "company_tier": "A",
       "ats": "ashby",
       "id": "Pleo:ashby:2e97058b-71ce-4ba9-8eb3-2462ce369521",
-      "title": "Sales Operations Business Partner (CX)",
+      "title": "Sales Operations Business Partner",
       "location": "",
       "url": "https://jobs.ashbyhq.com/pleo/2e97058b-71ce-4ba9-8eb3-2462ce369521",
       "department": "",
@@ -83,7 +83,7 @@
       "role_priority": 2,
       "seniority": "unspecified",
       "loc_note": "location unknown",
-      "is_new": true
+      "is_new": false
     },
     {
       "company": "Primer",
@@ -155,7 +155,7 @@
       "location": "Remote - US",
       "url": "https://job-boards.greenhouse.io/twilio/jobs/8266068",
       "department": "Sales Operations",
-      "posted": "2026-10-14T13:14:04-04:00",
+      "posted": "2026-10-27T12:21:03-04:00",
       "sector": "CPaaS",
       "hq": "San Francisco / London",
       "size": "5,000+",
