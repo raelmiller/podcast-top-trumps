@@ -1,28 +1,8 @@
 {
-  "generated": "2026-10-28T13:50:50.278508+00:00",
-  "total": 8,
+  "generated": "2026-10-29T13:59:52.355157+00:00",
+  "total": 6,
   "new": 0,
   "matches": [
-    {
-      "company": "Pleo",
-      "company_tier": "A",
-      "ats": "ashby",
-      "id": "Pleo:ashby:9e57f45b-bc33-4fa5-81a8-59427e8cd39f",
-      "title": "Revenue Operations Analyst (CX)",
-      "location": "",
-      "url": "https://jobs.ashbyhq.com/pleo/9e57f45b-bc33-4fa5-81a8-59427e8cd39f",
-      "department": "",
-      "posted": "",
-      "sector": "Spend management",
-      "hq": "Copenhagen / London",
-      "size": "900\u20131,200",
-      "stage": "Late",
-      "role_tier": "RevOps",
-      "role_priority": 1,
-      "seniority": "senior/IC",
-      "loc_note": "location unknown",
-      "is_new": false
-    },
     {
       "company": "Hyperexponential",
       "company_tier": "A",
@@ -143,26 +123,6 @@
       "role_tier": "RevOps",
       "role_priority": 1,
       "seniority": "manager",
-      "loc_note": "",
-      "is_new": false
-    },
-    {
-      "company": "Twilio",
-      "company_tier": "C",
-      "ats": "greenhouse",
-      "id": "Twilio:greenhouse:8266068",
-      "title": "Sales Operations Planning Analyst",
-      "location": "Remote - US",
-      "url": "https://job-boards.greenhouse.io/twilio/jobs/8266068",
-      "department": "Sales Operations",
-      "posted": "2026-10-27T12:21:03-04:00",
-      "sector": "CPaaS",
-      "hq": "San Francisco / London",
-      "size": "5,000+",
-      "stage": "Public",
-      "role_tier": "Sales Ops",
-      "role_priority": 2,
-      "seniority": "senior/IC",
       "loc_note": "",
       "is_new": false
     }
