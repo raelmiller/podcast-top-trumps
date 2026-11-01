@@ -1341,13 +1341,8 @@
   {
     "id": 671,
     "episode": 671,
-<<<<<<< HEAD
-    "guest": "S5 EP11: Danny Wallace ",
-    "photo": null,
-=======
     "guest": "Danny Wallace",
     "photo": "https://upload.wikimedia.org/wikipedia/commons/1/1a/Danny_Wallace.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
->>>>>>> 08a350940e8d41ba63085d5e3dfdf5e8870ed5d3
     "wakeTime": 6.3,
     "exoticFood": "Teriyaki beef with edamame beans, kimchi, and cauliflower rice from Wagamama",
     "exoticScore": 28,
@@ -1359,11 +1354,7 @@
   {
     "id": 674,
     "episode": 674,
-<<<<<<< HEAD
-    "guest": "S6 EP1: Rob Rouse",
-=======
     "guest": "Rob Rouse",
->>>>>>> 08a350940e8d41ba63085d5e3dfdf5e8870ed5d3
     "photo": null,
     "wakeTime": 8.5,
     "exoticFood": "haddock and cod fish and chips",
@@ -1376,13 +1367,8 @@
   {
     "id": 676,
     "episode": 676,
-<<<<<<< HEAD
-    "guest": "S6 EP2: Chris Lintott",
-    "photo": null,
-=======
     "guest": "Chris Lintott",
     "photo": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e3/Jodcast_live_2016_006.jpg/500px-Jodcast_live_2016_006.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
->>>>>>> 08a350940e8d41ba63085d5e3dfdf5e8870ed5d3
     "wakeTime": 6,
     "exoticFood": "Bitterbollen and chips",
     "exoticScore": 28,
@@ -1394,19 +1380,11 @@
   {
     "id": 678,
     "episode": 678,
-<<<<<<< HEAD
-    "guest": "S6 EP3: Paul Foot",
-    "photo": null,
-    "wakeTime": 4,
-    "exoticFood": "Marks and Spencer ultimate prawn cocktail with king prawns in Mary Rose dressing and avocado",
-    "exoticScore": 28,
-=======
     "guest": "Paul Foot",
     "photo": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bb/Paul_Foot_Parkteatret_Crap_%C3%A5pp%C3%A5_Park_%28213202%29.jpg/500px-Paul_Foot_Parkteatret_Crap_%C3%A5pp%C3%A5_Park_%28213202%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
     "wakeTime": 4,
     "exoticFood": "Marks and Spencer ultimate prawn cocktail with king prawns in Mary Rose dressing and avocado",
     "exoticScore": 20,
->>>>>>> 08a350940e8d41ba63085d5e3dfdf5e8870ed5d3
     "transportModes": 1,
     "transportList": "walking",
     "bedTime": 24.33,
@@ -1415,13 +1393,8 @@
   {
     "id": 680,
     "episode": 680,
-<<<<<<< HEAD
-    "guest": "S6 EP4: Lara Ricote",
-    "photo": null,
-=======
     "guest": "Lara Ricote",
     "photo": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/98/Lara_Ricote_at_the_2024_Edinburgh_Festival_Fringe_3.jpg/500px-Lara_Ricote_at_the_2024_Edinburgh_Festival_Fringe_3.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
->>>>>>> 08a350940e8d41ba63085d5e3dfdf5e8870ed5d3
     "wakeTime": 10.5,
     "exoticFood": "Thai green curry with poke bowl chicken",
     "exoticScore": 28,
@@ -1433,23 +1406,14 @@
   {
     "id": 682,
     "episode": 682,
-<<<<<<< HEAD
-    "guest": "S6 EP5: Emma Sidi ",
-    "photo": null,
-=======
     "guest": "Emma Sidi",
     "photo": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/48/EmmaSidi-byPhilipRomano.jpg/500px-EmmaSidi-byPhilipRomano.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
->>>>>>> 08a350940e8d41ba63085d5e3dfdf5e8870ed5d3
     "wakeTime": 5.75,
     "exoticFood": "chicken satay",
     "exoticScore": 26,
     "transportModes": 3,
     "transportList": "walking, bus, tube",
-<<<<<<< HEAD
-    "bedTime": 24.0,
-=======
     "bedTime": 24,
->>>>>>> 08a350940e8d41ba63085d5e3dfdf5e8870ed5d3
     "coffees": 1
   }
 ]
