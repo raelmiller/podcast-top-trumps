@@ -24,7 +24,7 @@
   },
   {
     "id": "-P4bcxEX0WW6Lz_HazRB",
-    "status": "pending",
+    "status": "accepted",
     "at": "2026-10-23T07:22:32.289Z",
     "episode": 356,
     "guest": "Rhys James",
@@ -41,6 +41,9 @@
       "transportModes": 1,
       "wakeTime": 8.15
     },
-    "deck": "86L1XZ-109"
+    "deck": "86L1XZ-109",
+    "decidedAt": "2026-11-01",
+    "newScore": 18,
+    "decision": "Accepted 18. A supermarket meal deal is simple everyday food, in line with Pret 16, Leon 16 and Nando's 23; 26 wrongly placed it among naturalised restaurant dishes."
   }
 ]
