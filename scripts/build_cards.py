@@ -582,6 +582,7 @@ def main():
     # and wins the dedupe at write time, so a failed fetch leaves the old one intact.
     cards = list(existing.values())
     processed = 0
+    failed = []  # episodes that had a transcript but whose stats could not be read
 
     for ep in interview_eps:
         ep_id = ep["id"]
@@ -620,7 +621,17 @@ def main():
         try:
             stats = extract_stats(transcript, client)
         except Exception as e:
+            msg = str(e)
+            # A bad key fails identically for every episode, so stop rather than
+            # grinding through the whole listing and reporting success.
+            if "authentication_error" in msg or "401" in msg or "invalid x-api-key" in msg:
+                sys.exit(
+                    f"\nERROR: the Anthropic API rejected the key — {msg}\n"
+                    "The deck was NOT modified. Replace the ANTHROPIC_API_KEY secret\n"
+                    "(Settings -> Secrets and variables -> Actions) and run again."
+                )
             print(f"  Stats extraction failed: {e}")
+            failed.append((ep_id, guest, msg[:120]))
             time.sleep(2)
             continue
 
@@ -639,6 +650,14 @@ def main():
     cards = sorted(deduped.values(), key=lambda c: c["episode"])
     OUT_PATH.write_text(json.dumps(cards, indent=2, ensure_ascii=False), encoding="utf-8")
     print(f"\nWrote {len(cards)} cards to {OUT_PATH}")
+
+    # Episodes whose transcript was read but whose stats were lost are a real
+    # failure: the deck is written, but it is missing cards it should have.
+    if failed:
+        print(f"\n{len(failed)} episode(s) had a transcript but no stats:")
+        for ep_id, guest, why in failed:
+            print(f"  ep {ep_id} {guest} — {why}")
+        sys.exit("\nERROR: episodes were skipped. They are NOT in the deck.")
 
 
 if __name__ == "__main__":
