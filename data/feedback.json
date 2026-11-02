@@ -48,7 +48,7 @@
   },
   {
     "id": "-P5QSvQmpckH0onL4VUP",
-    "status": "pending",
+    "status": "accepted",
     "at": "2026-11-02T08:54:36.529Z",
     "episode": 483,
     "guest": "Jessica Fostekew",
@@ -65,7 +65,10 @@
       "transportModes": 5,
       "wakeTime": 6.33
     },
-    "deck": "86L1XZ-109"
+    "deck": "86L1XZ-109",
+    "newScore": 30,
+    "decidedAt": "2026-11-02",
+    "decision": "Standard cocktail, in line with negroni 31 and mango lassi 34. Spelling corrected to curaçao."
   },
   {
     "id": "-P5S06XjjRaZtcJG7Z2_",
@@ -90,7 +93,7 @@
   },
   {
     "id": "-P5S0FPbXf_DVprirH3T",
-    "status": "pending",
+    "status": "adjusted",
     "at": "2026-11-02T16:08:34.843Z",
     "episode": 536,
     "guest": "David Baddiel",
@@ -107,11 +110,14 @@
       "transportModes": 2,
       "wakeTime": 10
     },
-    "deck": "86L1XZ-109"
+    "deck": "86L1XZ-109",
+    "newScore": 34,
+    "decidedAt": "2026-11-02",
+    "decision": "Too high agreed, but 25 too harsh: unfamiliar to British eaters yet an assembly from a jar. Set alongside cold salmon with capers at 33."
   },
   {
     "id": "-P5S0LB7WzNkVUcu3BIZ",
-    "status": "pending",
+    "status": "adjusted",
     "at": "2026-11-02T16:08:58.492Z",
     "episode": 434,
     "guest": "Alex Horne",
@@ -128,7 +134,10 @@
       "transportModes": 2,
       "wakeTime": 6.92
     },
-    "deck": "86L1XZ-109"
+    "deck": "86L1XZ-109",
+    "newScore": 30,
+    "decidedAt": "2026-11-02",
+    "decision": "Too high agreed. Smoked trout alone is a supermarket pack with no cooking described, unlike Ed Gamble kipper with poached eggs at 49."
   },
   {
     "id": "-P5S0gHwd5X7FTEM1zfe",
