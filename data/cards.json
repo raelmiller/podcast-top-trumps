@@ -380,14 +380,14 @@
     "id": 367,
     "episode": 367,
     "guest": "Josie Long",
-    "photo": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Josie_Long_2013.jpg/500px-Josie_Long_2013.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-    "wakeTime": 7.5,
-    "exoticFood": "home cooking",
-    "exoticScore": 30,
+    "photo": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7a/Josie_Long_2013.jpg/500px-Josie_Long_2013.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "wakeTime": 7,
+    "exoticFood": "Roasted aubergine with ricotta, basil, tomato, and avocado",
+    "exoticScore": 32,
     "transportModes": 2,
-    "transportList": null,
+    "transportList": "taxi, bus",
     "bedTime": 23,
-    "coffees": 2
+    "coffees": 0
   },
   {
     "id": 368,
