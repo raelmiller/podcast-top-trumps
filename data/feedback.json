@@ -72,7 +72,7 @@
   },
   {
     "id": "-P5S06XjjRaZtcJG7Z2_",
-    "status": "pending",
+    "status": "accepted",
     "at": "2026-11-02T16:07:58.382Z",
     "episode": 367,
     "guest": "Josie Long",
@@ -89,7 +89,10 @@
       "transportModes": 2,
       "wakeTime": 7.5
     },
-    "deck": "86L1XZ-109"
+    "deck": "86L1XZ-109",
+    "newScore": 32,
+    "decidedAt": "2026-11-02",
+    "decision": "Re-scraped episode 367 under the current prompt. The transcript did have a specific meal after all — roasted aubergine with ricotta, basil, tomato and avocado — replacing the \"home cooking\" fallback. 30 -> 32."
   },
   {
     "id": "-P5S0FPbXf_DVprirH3T",
