@@ -141,7 +141,7 @@
   },
   {
     "id": "-P5S0gHwd5X7FTEM1zfe",
-    "status": "pending",
+    "status": "accepted",
     "at": "2026-11-02T16:10:29.040Z",
     "episode": 665,
     "guest": "Andy Parsons",
@@ -158,6 +158,9 @@
       "transportModes": 2,
       "wakeTime": 7.33
     },
-    "deck": "86L1XZ-109"
+    "deck": "86L1XZ-109",
+    "newScore": 26,
+    "decidedAt": "2026-11-02",
+    "decision": "Confirmed by the owner: he had a roast chicken. The barbecued bugs were discussed, not eaten — the same extraction error as Ross Noble. A roast is cooking, so 26, just below Nadia Shireen at 28 which adds rosemary, garlic and lemon."
   }
 ]
