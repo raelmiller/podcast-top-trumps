@@ -1415,5 +1415,31 @@
     "transportList": "walking, bus, tube",
     "bedTime": 24,
     "coffees": 1
+  },
+  {
+    "id": 684,
+    "episode": 684,
+    "guest": "Catherine Bohart",
+    "photo": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b9/Catherine_Bohart_at_the_2026_Edinburgh_Fringe-12_%28cropped%29.jpg/500px-Catherine_Bohart_at_the_2026_Edinburgh_Fringe-12_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "wakeTime": 7.5,
+    "exoticFood": "aubergine pasta with Richmond meat-free sausages (leftover)",
+    "exoticScore": 14,
+    "transportModes": 0,
+    "transportList": null,
+    "bedTime": 23,
+    "coffees": 2
+  },
+  {
+    "id": 686,
+    "episode": 686,
+    "guest": "Harriet Kemsley",
+    "photo": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f8/Harriet_Kemsley_at_BAFTA_2026_02.jpg/500px-Harriet_Kemsley_at_BAFTA_2026_02.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "wakeTime": 9,
+    "exoticFood": "Wagamama's kids meal (chicken nuggets and chips)",
+    "exoticScore": 18,
+    "transportModes": 2,
+    "transportList": "car, train",
+    "bedTime": 24,
+    "coffees": 2
   }
 ]
