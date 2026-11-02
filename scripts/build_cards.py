@@ -578,6 +578,27 @@ def main():
             "that is fixed — re-running will not help."
         )
 
+    # --episodes must work for any card, but the listing only carries the most
+    # recent ~50, so an older episode is not in it. Its page is still reachable
+    # by id, and the deck already knows the guest's name, so build the entry
+    # from there rather than silently processing nothing.
+    if only_ids:
+        listed = {e["id"]: e for e in interview_eps}
+        work, unknown = [], []
+        for ep_id in sorted(only_ids):
+            if ep_id in listed:
+                work.append(listed[ep_id])
+            elif ep_id in existing:
+                work.append({"id": ep_id, "title": existing[ep_id]["guest"],
+                             "episode_type": "interview"})
+                print(f"  ep {ep_id} is not in the listing; using the name on its card")
+            else:
+                unknown.append(ep_id)
+        if unknown:
+            sys.exit(f"\nERROR: episode(s) {unknown} are in neither the listing nor the "
+                     "deck.\nThe deck was NOT modified.")
+        interview_eps = work
+
     # Old cards stay in the list; a rebuilt card is appended after its predecessor
     # and wins the dedupe at write time, so a failed fetch leaves the old one intact.
     cards = list(existing.values())
@@ -588,9 +609,6 @@ def main():
         ep_id = ep["id"]
         raw_title = ep.get("title", f"Episode {ep_id}")
         guest = extract_guest(raw_title)
-
-        if only_ids and ep_id not in only_ids:
-            continue
 
         if args.incremental and not only_ids and ep_id in existing:
             continue
@@ -653,6 +671,10 @@ def main():
 
     # Episodes whose transcript was read but whose stats were lost are a real
     # failure: the deck is written, but it is missing cards it should have.
+    if only_ids and processed == 0:
+        sys.exit(f"\nERROR: none of the requested episodes {sorted(only_ids)} were "
+                 "rebuilt.\nSee the reasons above; the deck is unchanged.")
+
     if failed:
         print(f"\n{len(failed)} episode(s) had a transcript but no stats:")
         for ep_id, guest, why in failed:
