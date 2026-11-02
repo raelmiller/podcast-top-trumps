@@ -45,5 +45,110 @@
     "decidedAt": "2026-11-01",
     "newScore": 18,
     "decision": "Accepted 18. A supermarket meal deal is simple everyday food, in line with Pret 16, Leon 16 and Nando's 23; 26 wrongly placed it among naturalised restaurant dishes."
+  },
+  {
+    "id": "-P5QSvQmpckH0onL4VUP",
+    "status": "pending",
+    "at": "2026-11-02T08:54:36.529Z",
+    "episode": 483,
+    "guest": "Jessica Fostekew",
+    "field": "exoticScore",
+    "suggested": "Lower",
+    "reason": "It's just a drink, and it's spelled Curaçao",
+    "from": "Mike",
+    "current": {
+      "bedTime": 23,
+      "coffees": 2,
+      "exoticFood": "Blue margarita with karakao at Pan-Asian restaurant",
+      "exoticScore": 58,
+      "hasPhoto": false,
+      "transportModes": 5,
+      "wakeTime": 6.33
+    },
+    "deck": "86L1XZ-109"
+  },
+  {
+    "id": "-P5S06XjjRaZtcJG7Z2_",
+    "status": "pending",
+    "at": "2026-11-02T16:07:58.382Z",
+    "episode": 367,
+    "guest": "Josie Long",
+    "field": "exoticScore",
+    "suggested": null,
+    "reason": "Not specific on the food",
+    "from": null,
+    "current": {
+      "bedTime": 23,
+      "coffees": 2,
+      "exoticFood": "home cooking",
+      "exoticScore": 30,
+      "hasPhoto": true,
+      "transportModes": 2,
+      "wakeTime": 7.5
+    },
+    "deck": "86L1XZ-109"
+  },
+  {
+    "id": "-P5S0FPbXf_DVprirH3T",
+    "status": "pending",
+    "at": "2026-11-02T16:08:34.843Z",
+    "episode": 536,
+    "guest": "David Baddiel",
+    "field": "exoticScore",
+    "suggested": "25",
+    "reason": "Too high",
+    "from": null,
+    "current": {
+      "bedTime": 25,
+      "coffees": 0,
+      "exoticFood": "Pickled herring with potato salad",
+      "exoticScore": 56,
+      "hasPhoto": true,
+      "transportModes": 2,
+      "wakeTime": 10
+    },
+    "deck": "86L1XZ-109"
+  },
+  {
+    "id": "-P5S0LB7WzNkVUcu3BIZ",
+    "status": "pending",
+    "at": "2026-11-02T16:08:58.492Z",
+    "episode": 434,
+    "guest": "Alex Horne",
+    "field": "exoticScore",
+    "suggested": "25",
+    "reason": "Too high",
+    "from": null,
+    "current": {
+      "bedTime": 23.5,
+      "coffees": 2,
+      "exoticFood": "Smoked trout",
+      "exoticScore": 46,
+      "hasPhoto": true,
+      "transportModes": 2,
+      "wakeTime": 6.92
+    },
+    "deck": "86L1XZ-109"
+  },
+  {
+    "id": "-P5S0gHwd5X7FTEM1zfe",
+    "status": "pending",
+    "at": "2026-11-02T16:10:29.040Z",
+    "episode": 665,
+    "guest": "Andy Parsons",
+    "field": "exoticScore",
+    "suggested": null,
+    "reason": "He actually had a roast chicken on the day",
+    "from": null,
+    "current": {
+      "bedTime": 22.5,
+      "coffees": 2,
+      "exoticFood": "Barbecued bugs and seafood at St Kilda beach, Melbourne",
+      "exoticScore": 52,
+      "hasPhoto": true,
+      "transportModes": 2,
+      "wakeTime": 7.33
+    },
+    "deck": "86L1XZ-109"
   }
 ]
