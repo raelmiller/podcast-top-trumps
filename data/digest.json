@@ -1,7 +1,7 @@
 {
-  "generated": "2026-11-02T16:51:55.807902+00:00",
-  "total": 7,
-  "new": 0,
+  "generated": "2026-11-03T14:54:37.137751+00:00",
+  "total": 8,
+  "new": 1,
   "matches": [
     {
       "company": "Hyperexponential",
@@ -23,6 +23,26 @@
       "seniority": "director+",
       "loc_note": "location unknown",
       "is_new": false
+    },
+    {
+      "company": "Pleo",
+      "company_tier": "A",
+      "ats": "ashby",
+      "id": "Pleo:ashby:13a96e9a-2a4b-43ef-b4eb-d417b48c4da8",
+      "title": "Technical Program Manager, Revenue Operations",
+      "location": "",
+      "url": "https://jobs.ashbyhq.com/pleo/13a96e9a-2a4b-43ef-b4eb-d417b48c4da8",
+      "department": "",
+      "posted": "",
+      "sector": "Spend management",
+      "hq": "Copenhagen / London",
+      "size": "900\u20131,200",
+      "stage": "Late",
+      "role_tier": "RevOps",
+      "role_priority": 1,
+      "seniority": "manager",
+      "loc_note": "location unknown",
+      "is_new": true
     },
     {
       "company": "Cognism",
