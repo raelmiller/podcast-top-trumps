@@ -1,7 +1,7 @@
 {
-  "generated": "2026-11-06T14:51:36.155847+00:00",
-  "total": 7,
-  "new": 0,
+  "generated": "2026-11-07T13:50:13.647086+00:00",
+  "total": 8,
+  "new": 1,
   "matches": [
     {
       "company": "Pleo",
@@ -104,6 +104,26 @@
       "seniority": "manager",
       "loc_note": "",
       "is_new": false
+    },
+    {
+      "company": "Chainguard",
+      "company_tier": "B",
+      "ats": "greenhouse",
+      "id": "Chainguard:greenhouse:4726566006",
+      "title": "Staff Revenue Operations Manager - EMEA",
+      "location": "Remote - US",
+      "url": "https://job-boards.greenhouse.io/chainguard/jobs/4726566006",
+      "department": "GTM Strategy & Ops",
+      "posted": "2026-11-06T11:46:41-05:00",
+      "sector": "Supply chain security",
+      "hq": "Kirkland WA",
+      "size": "200\u2013400",
+      "stage": "Growth",
+      "role_tier": "RevOps",
+      "role_priority": 1,
+      "seniority": "manager",
+      "loc_note": "",
+      "is_new": true
     },
     {
       "company": "Qualtrics",
