@@ -1,7 +1,7 @@
 {
-  "generated": "2026-11-07T13:50:13.647086+00:00",
+  "generated": "2026-11-08T14:08:53.907141+00:00",
   "total": 8,
-  "new": 1,
+  "new": 0,
   "matches": [
     {
       "company": "Pleo",
@@ -123,7 +123,7 @@
       "role_priority": 1,
       "seniority": "manager",
       "loc_note": "",
-      "is_new": true
+      "is_new": false
     },
     {
       "company": "Qualtrics",
