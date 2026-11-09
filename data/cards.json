@@ -1441,5 +1441,18 @@
     "transportList": "car, train",
     "bedTime": 24,
     "coffees": 2
+  },
+  {
+    "id": 688,
+    "episode": 688,
+    "guest": "Henry Paker",
+    "photo": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7a/Henry_Paker_EIBF_2025.jpg/500px-Henry_Paker_EIBF_2025.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "wakeTime": 7,
+    "exoticFood": "Chocolate orange biscuit",
+    "exoticScore": 18,
+    "transportModes": 2,
+    "transportList": "lime bike, lift",
+    "bedTime": 23.25,
+    "coffees": 3
   }
 ]
