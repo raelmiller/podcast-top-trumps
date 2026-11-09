@@ -1,10 +1,4 @@
 {
-  "Marqeta:greenhouse:7915193": {
-    "first_seen": "2026-06-03T12:29:31.435570+00:00",
-    "last_seen": "2026-08-11T08:12:13.998618+00:00",
-    "title": "GTM Strategy & Operations Manager - EU / UK",
-    "company": "Marqeta"
-  },
   "Paddle:ashby:237536a7-879c-4b05-b368-53904d13ddaf": {
     "first_seen": "2026-06-06T09:39:36.857546+00:00",
     "last_seen": "2026-09-03T11:58:20.911885+00:00",
@@ -73,13 +67,13 @@
   },
   "Primer:ashby:b8645d28-cf60-4ca2-9194-945cd2c9c2c4": {
     "first_seen": "2026-09-09T12:11:01.313085+00:00",
-    "last_seen": "2026-11-08T14:08:53.907141+00:00",
+    "last_seen": "2026-11-09T17:08:55.218111+00:00",
     "title": "Revenue Operations Lead",
     "company": "Primer"
   },
   "Cognism:greenhouse:4930509101": {
     "first_seen": "2026-09-11T12:05:10.020093+00:00",
-    "last_seen": "2026-11-08T14:08:53.907141+00:00",
+    "last_seen": "2026-11-09T17:08:55.218111+00:00",
     "title": "VP, Revenue Operations",
     "company": "Cognism"
   },
@@ -109,7 +103,7 @@
   },
   "Qualtrics:greenhouse:8264863": {
     "first_seen": "2026-10-09T14:07:12.869861+00:00",
-    "last_seen": "2026-11-08T14:08:53.907141+00:00",
+    "last_seen": "2026-11-09T17:08:55.218111+00:00",
     "title": "Principal Analyst II, Revenue Operations",
     "company": "Qualtrics"
   },
@@ -121,31 +115,31 @@
   },
   "Sigma Computing:greenhouse:8038730003": {
     "first_seen": "2026-10-20T12:31:56.890047+00:00",
-    "last_seen": "2026-11-08T14:08:53.907141+00:00",
+    "last_seen": "2026-11-09T17:08:55.218111+00:00",
     "title": "Revenue Operations Manager - UK",
     "company": "Sigma Computing"
   },
   "Spotify:lever:66184cac-4d6c-46f6-868c-bac0c184fd22": {
     "first_seen": "2026-10-24T11:52:36.474584+00:00",
-    "last_seen": "2026-11-08T14:08:53.907141+00:00",
+    "last_seen": "2026-11-09T17:08:55.218111+00:00",
     "title": "Revenue Operations Manager - Spotify Technology",
     "company": "Spotify"
   },
   "Pleo:ashby:2e97058b-71ce-4ba9-8eb3-2462ce369521": {
     "first_seen": "2026-10-27T13:00:37.698610+00:00",
-    "last_seen": "2026-11-08T14:08:53.907141+00:00",
+    "last_seen": "2026-11-09T17:08:55.218111+00:00",
     "title": "Sales Operations Business Partner",
     "company": "Pleo"
   },
   "Pleo:ashby:13a96e9a-2a4b-43ef-b4eb-d417b48c4da8": {
     "first_seen": "2026-11-03T14:54:37.137751+00:00",
-    "last_seen": "2026-11-08T14:08:53.907141+00:00",
+    "last_seen": "2026-11-09T17:08:55.218111+00:00",
     "title": "Technical Program Manager, Revenue Operations",
     "company": "Pleo"
   },
   "Chainguard:greenhouse:4726566006": {
     "first_seen": "2026-11-07T13:50:13.647086+00:00",
-    "last_seen": "2026-11-08T14:08:53.907141+00:00",
+    "last_seen": "2026-11-09T17:08:55.218111+00:00",
     "title": "Staff Revenue Operations Manager - EMEA",
     "company": "Chainguard"
   }
