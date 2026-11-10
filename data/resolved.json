@@ -2458,5 +2458,16 @@
     "hq": "Chattanooga",
     "size": "50\u2013100",
     "stage": "Growth"
+  },
+  "Optimizely": {
+    "ats": "smartrecruiters",
+    "token": "optimizely",
+    "jobs": 40,
+    "source": "probe",
+    "tier": "B",
+    "sector": "DXP / Experimentation",
+    "hq": "New York / Nottingham",
+    "size": "1,200\u20131,500",
+    "stage": "Late (PE)"
   }
 }
