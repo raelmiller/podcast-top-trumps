@@ -1,7 +1,7 @@
 {
-  "generated": "2026-11-14T14:00:46.584458+00:00",
+  "generated": "2026-11-15T14:35:12.139080+00:00",
   "total": 9,
-  "new": 1,
+  "new": 0,
   "matches": [
     {
       "company": "Pleo",
@@ -143,7 +143,7 @@
       "role_priority": 2,
       "seniority": "director+",
       "loc_note": "location unknown",
-      "is_new": true
+      "is_new": false
     },
     {
       "company": "Spotify",
