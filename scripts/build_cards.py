@@ -274,6 +274,51 @@ _EP_DATE = re.compile(
     rf'{MONTHS}\w*\s+\d{{1,2}}(?:,?\s*\d{{4}})?\s*$', re.IGNORECASE)
 
 
+# Page titles carry the site name; listing titles do not.
+_SITE_SUFFIX = re.compile(
+    r'\s*[|\u2013\u2014-]\s*(?:Everything Is Showbiz|What Did You Do Yesterday\??)\s*$',
+    re.IGNORECASE)
+
+
+def probe_new_episodes(session, known_ids, span=12, stop_after=6):
+    """Look just past the highest id we hold, for episodes the listing omits.
+
+    The listing returns about 50 episodes sorted by relevance, so a brand new
+    one need not appear in it — but its page is reachable by id, which is how
+    an episode gets found even when the listing does not mention it.
+    """
+    if not known_ids:
+        return []
+    start = max(known_ids)
+    print(f"Probing ids {start + 1}-{start + span} for episodes the listing omits...")
+    found, misses = [], 0
+    for ep_id in range(start + 1, start + 1 + span):
+        if ep_id in known_ids:
+            continue
+        try:
+            transcript, _photo, title = fetch_episode_page(session, ep_id)
+        except Exception as e:
+            print(f"  ep {ep_id}: {type(e).__name__}")
+            misses += 1
+            if misses >= stop_after:
+                break
+            continue
+        if len(transcript) < 5000:
+            misses += 1
+            if misses >= stop_after:
+                print(f"  stopping after {stop_after} ids with no transcript")
+                break
+            continue
+        misses = 0
+        print(f"  ep {ep_id}: found — {title!r} ({len(transcript)} chars)")
+        found.append({"id": ep_id, "title": title or f"Episode {ep_id}",
+                      "episode_type": "interview"})
+        time.sleep(1)
+    if not found:
+        print("  nothing new past the listing")
+    return found
+
+
 def extract_guest(title):
     """The guest's name alone, with episode numbering and dates stripped.
 
@@ -283,6 +328,7 @@ def extract_guest(title):
     unchanged.
     """
     t = (title or "").strip()
+    t = _SITE_SUFFIX.sub("", t)
     t = _EP_PREFIX.sub("", t)
     t = _EP_DATE.sub("", t)
     t = t.strip(" \t-–—:,·")
@@ -416,6 +462,14 @@ def fetch_wikipedia_photo(name: str, session):
         return None, f"lookup failed: {type(e).__name__}: {e}", "error"
 
 
+def _page_title(soup):
+    og = soup.find("meta", property="og:title")
+    if og and og.get("content"):
+        return og["content"].strip()
+    t = soup.find("title")
+    return t.get_text(strip=True) if t else ""
+
+
 def fetch_episode_page(session, episode_id):
     url = f"{BASE_URL}/?view=episodes&episode={episode_id}"
     resp = session.get(url, headers=HEADERS, timeout=30)
@@ -441,7 +495,7 @@ def fetch_episode_page(session, episode_id):
     if og:
         photo = og.get("content")
 
-    return transcript, photo
+    return transcript, photo, _page_title(soup)
 
 
 def extract_stats(transcript: str, client: anthropic.Anthropic) -> dict:
@@ -599,6 +653,12 @@ def main():
                      "deck.\nThe deck was NOT modified.")
         interview_eps = work
 
+    # The listing is sorted by relevance and capped, so it can miss a new
+    # episode entirely. Probe past the highest id we hold before giving up.
+    if args.incremental and not only_ids:
+        known = set(existing) | {e["id"] for e in interview_eps}
+        interview_eps = interview_eps + probe_new_episodes(session, known)
+
     # Old cards stay in the list; a rebuilt card is appended after its predecessor
     # and wins the dedupe at write time, so a failed fetch leaves the old one intact.
     cards = list(existing.values())
@@ -619,7 +679,7 @@ def main():
         print(f"Processing ep {ep_id}: {guest}")
 
         try:
-            transcript, og_photo = fetch_episode_page(session, ep_id)
+            transcript, og_photo, _ = fetch_episode_page(session, ep_id)
         except Exception as e:
             print(f"  Failed to fetch page: {e}")
             time.sleep(2)
