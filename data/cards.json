@@ -1454,5 +1454,31 @@
     "transportList": "lime bike, lift",
     "bedTime": 23.25,
     "coffees": 3
+  },
+  {
+    "id": 690,
+    "episode": 690,
+    "guest": "Sophie Duker",
+    "photo": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1b/Sophie_Duker_at_the_2026_Edinburgh_Fringe-12_%28cropped%29.jpg/500px-Sophie_Duker_at_the_2026_Edinburgh_Fringe-12_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "wakeTime": 5.83,
+    "exoticFood": "Georgian gondola bread with cheese, egg yolk, and butter (leftover)",
+    "exoticScore": 32,
+    "transportModes": 4,
+    "transportList": "overground, bus, Victoria line, walking",
+    "bedTime": 25.95,
+    "coffees": 1
+  },
+  {
+    "id": 692,
+    "episode": 692,
+    "guest": "Olga Koch",
+    "photo": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b7/Olga_Koch_2026.jpg/500px-Olga_Koch_2026.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "wakeTime": 7,
+    "exoticFood": "Albanian tasting menu (seven courses from north to south of Albania)",
+    "exoticScore": 48,
+    "transportModes": 5,
+    "transportList": "Dart train, Patoka (Albanian Uber), car/taxi, Wizz Air flight, train",
+    "bedTime": 21.33,
+    "coffees": 2
   }
 ]
