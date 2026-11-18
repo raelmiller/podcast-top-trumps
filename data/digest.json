@@ -1,6 +1,6 @@
 {
-  "generated": "2026-11-17T16:45:15.193635+00:00",
-  "total": 9,
+  "generated": "2026-11-18T16:14:18.733707+00:00",
+  "total": 8,
   "new": 0,
   "matches": [
     {
@@ -114,7 +114,7 @@
       "location": "Remote - US",
       "url": "https://job-boards.greenhouse.io/chainguard/jobs/4726566006",
       "department": "GTM Strategy & Ops",
-      "posted": "2026-11-10T17:45:22-05:00",
+      "posted": "2026-11-18T00:00:41-05:00",
       "sector": "Supply chain security",
       "hq": "Kirkland WA",
       "size": "200\u2013400",
@@ -123,26 +123,6 @@
       "role_priority": 1,
       "seniority": "manager",
       "loc_note": "",
-      "is_new": false
-    },
-    {
-      "company": "Zapier",
-      "company_tier": "B",
-      "ats": "ashby",
-      "id": "Zapier:ashby:79f0aa77-7a24-4246-a623-a37fb2149de6",
-      "title": "Director, GTM Operations",
-      "location": "",
-      "url": "https://jobs.ashbyhq.com/zapier/79f0aa77-7a24-4246-a623-a37fb2149de6",
-      "department": "",
-      "posted": "",
-      "sector": "Automation",
-      "hq": "Remote-first",
-      "size": "700\u20131,000",
-      "stage": "Late",
-      "role_tier": "Sales Ops",
-      "role_priority": 2,
-      "seniority": "director+",
-      "loc_note": "location unknown",
       "is_new": false
     },
     {
