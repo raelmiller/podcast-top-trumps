@@ -1,7 +1,7 @@
 {
-  "generated": "2026-11-19T16:20:49.011832+00:00",
+  "generated": "2026-11-20T16:00:16.972132+00:00",
   "total": 9,
-  "new": 1,
+  "new": 0,
   "matches": [
     {
       "company": "Pleo",
@@ -144,7 +144,7 @@
       "role_priority": 1,
       "seniority": "manager",
       "loc_note": "",
-      "is_new": true
+      "is_new": false
     },
     {
       "company": "Spotify",
@@ -175,7 +175,7 @@
       "location": "London",
       "url": "https://www.qualtrics.com/careers/us/en/job/8264863?gh_jid=8264863",
       "department": "GTM Training & Enablement",
-      "posted": "2026-11-13T10:52:37-05:00",
+      "posted": "2026-11-19T17:33:28-05:00",
       "sector": "Experience management",
       "hq": "Provo / London",
       "size": "5,000+",
