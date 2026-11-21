@@ -1,6 +1,6 @@
 {
-  "generated": "2026-11-20T16:00:16.972132+00:00",
-  "total": 9,
+  "generated": "2026-11-21T15:09:37.291691+00:00",
+  "total": 8,
   "new": 0,
   "matches": [
     {
@@ -65,27 +65,6 @@
       "is_new": false
     },
     {
-      "company": "Primer",
-      "company_tier": "B",
-      "ats": "ashby",
-      "id": "Primer:ashby:b8645d28-cf60-4ca2-9194-945cd2c9c2c4",
-      "title": "Revenue Operations Lead",
-      "location": "",
-      "url": "https://jobs.ashbyhq.com/primer/b8645d28-cf60-4ca2-9194-945cd2c9c2c4",
-      "department": "",
-      "posted": "",
-      "sector": "Payments orchestration",
-      "hq": "London (HQ)",
-      "size": "200\u2013400",
-      "stage": "Growth",
-      "co_notes": "London HQ; payments infra",
-      "role_tier": "RevOps",
-      "role_priority": 1,
-      "seniority": "manager",
-      "loc_note": "location unknown",
-      "is_new": false
-    },
-    {
       "company": "Sigma Computing",
       "company_tier": "B",
       "ats": "greenhouse",
@@ -114,7 +93,7 @@
       "location": "Remote - US",
       "url": "https://job-boards.greenhouse.io/chainguard/jobs/4726566006",
       "department": "GTM Strategy & Ops",
-      "posted": "2026-11-18T00:00:41-05:00",
+      "posted": "2026-11-20T14:50:55-05:00",
       "sector": "Supply chain security",
       "hq": "Kirkland WA",
       "size": "200\u2013400",
@@ -174,8 +153,8 @@
       "title": "Strategy and Operations Analyst II, Revenue Operations Strategy",
       "location": "London",
       "url": "https://www.qualtrics.com/careers/us/en/job/8264863?gh_jid=8264863",
-      "department": "GTM Training & Enablement",
-      "posted": "2026-11-19T17:33:28-05:00",
+      "department": "GTM Enablement",
+      "posted": "2026-11-20T18:08:59-05:00",
       "sector": "Experience management",
       "hq": "Provo / London",
       "size": "5,000+",
