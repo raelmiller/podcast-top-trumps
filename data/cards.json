@@ -1480,5 +1480,18 @@
     "transportList": "Dart train, Patoka (Albanian Uber), car/taxi, Wizz Air flight, train",
     "bedTime": 21.33,
     "coffees": 2
+  },
+  {
+    "id": 693,
+    "episode": 693,
+    "guest": "WDWDY #96.1: Huel-y Lewis and the News (David's Yesterday)",
+    "photo": null,
+    "wakeTime": 9,
+    "exoticFood": "Doherty whiskey",
+    "exoticScore": 18,
+    "transportModes": 2,
+    "transportList": "car, walking",
+    "bedTime": 23.5,
+    "coffees": 1
   }
 ]
