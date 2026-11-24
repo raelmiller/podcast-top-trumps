@@ -1,6 +1,6 @@
 {
-  "generated": "2026-11-23T19:00:43.157110+00:00",
-  "total": 7,
+  "generated": "2026-11-24T18:37:05.548078+00:00",
+  "total": 8,
   "new": 0,
   "matches": [
     {
@@ -102,6 +102,26 @@
       "role_priority": 1,
       "seniority": "manager",
       "loc_note": "",
+      "is_new": false
+    },
+    {
+      "company": "Zapier",
+      "company_tier": "B",
+      "ats": "ashby",
+      "id": "Zapier:ashby:79f0aa77-7a24-4246-a623-a37fb2149de6",
+      "title": "Director, GTM Operations",
+      "location": "",
+      "url": "https://jobs.ashbyhq.com/zapier/79f0aa77-7a24-4246-a623-a37fb2149de6",
+      "department": "",
+      "posted": "",
+      "sector": "Automation",
+      "hq": "Remote-first",
+      "size": "700\u20131,000",
+      "stage": "Late",
+      "role_tier": "Sales Ops",
+      "role_priority": 2,
+      "seniority": "director+",
+      "loc_note": "location unknown",
       "is_new": false
     },
     {
