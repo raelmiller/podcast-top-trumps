@@ -165,5 +165,26 @@
     "newScore": 26,
     "decidedAt": "2026-11-02",
     "decision": "Confirmed by the owner: he had a roast chicken. The barbecued bugs were discussed, not eaten — the same extraction error as Ross Noble. A roast is cooking, so 26, just below Nadia Shireen at 28 which adds rosemary, garlic and lemon."
+  },
+  {
+    "id": "-P7QE97dpFdkbrwJZL_t",
+    "status": "pending",
+    "at": "2026-11-27T04:21:28.232Z",
+    "episode": 662,
+    "guest": "Tom Ballard",
+    "field": "transportModes",
+    "suggested": null,
+    "reason": "5 score, only 4 listed\nalso thanks for this awesome game",
+    "from": "Will Powell",
+    "current": {
+      "bedTime": 25.75,
+      "coffees": 2,
+      "exoticFood": "lamb massaman curry",
+      "exoticScore": 26,
+      "hasPhoto": true,
+      "transportModes": 5,
+      "wakeTime": 7
+    },
+    "deck": "1J3MW63-115"
   }
 ]
