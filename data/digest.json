@@ -1,6 +1,6 @@
 {
-  "generated": "2026-11-26T17:34:13.095979+00:00",
-  "total": 8,
+  "generated": "2026-11-27T17:13:02.415327+00:00",
+  "total": 7,
   "new": 0,
   "matches": [
     {
@@ -42,26 +42,6 @@
       "role_priority": 1,
       "seniority": "unspecified",
       "loc_note": "",
-      "is_new": false
-    },
-    {
-      "company": "Pleo",
-      "company_tier": "A",
-      "ats": "ashby",
-      "id": "Pleo:ashby:2e97058b-71ce-4ba9-8eb3-2462ce369521",
-      "title": "Sales Operations Business Partner",
-      "location": "",
-      "url": "https://jobs.ashbyhq.com/pleo/2e97058b-71ce-4ba9-8eb3-2462ce369521",
-      "department": "",
-      "posted": "",
-      "sector": "Spend management",
-      "hq": "Copenhagen / London",
-      "size": "900\u20131,200",
-      "stage": "Late",
-      "role_tier": "Sales Ops",
-      "role_priority": 2,
-      "seniority": "unspecified",
-      "loc_note": "location unknown",
       "is_new": false
     },
     {
